@@ -3,23 +3,19 @@ title: Avaliação de biomulching com agregação de extrato de Capsicum frutesc
   cobertura de solo e agente de controle de pragas em Brassica oleracea
 author: "Mateus Colombo"
 output:
+  pdf_document: default
+  word_document: default
   html_document:
     df_print: paged
-  word_document: default
-  pdf_document: default
 ---
  
- 
- **Resumo**
+**Resumo**
 
 O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.
 
- 
- **Introdução**
+# Introdução
 
-
-
- **Justificativa/Problema**
+## Justificativa/Problema
 
 O Brasil é um dos maiores produtores agrícolas do mundo e um dos que mais utiliza agrotóxicos. De acordo com a ANVISA, 51% dos alimentos contêm resíduos de agrotóxicos, isso sem considerar o glifosato, o pesticida mais utilizado no mundo. Hoje, dos 50 agrotóxicos mais utilizados no país 28 são proibidos em outros países, fora os que são contrabandeados e entram ilegalmente no país. (Campanha Nacional Contra os Agrotóxicos e Pela Vida, 2019). 
 
@@ -35,12 +31,12 @@ Visando instigar o desenvolvimento de novos métodos de controle de pragas na ag
 
 Um ponto importante durante o desenvolvimento de uma nova metodologia para tal finalidade, é a correta análise dos dados obtidos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes de maneira manual e arcaica, o que pode acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final podem consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo. Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos, está a utilização de softwares e outros programas de análise tais como o Rstudio. 
 
- **#Métodos e materiais**
+# Métodos e materiais
 
 No presente projeto foram utilizadas as seguintes metodologias.*melhorar*
 
 
- **##Teste em condições controladas da essência e do biomulching**
+## Teste em condições controladas da essência e do biomulching
 
 O seguinte teste foi baseado na metodologia de Santos e Silva, 2015.
 
@@ -61,8 +57,7 @@ Foram colocadas em cada vidro um papel toalha no fundo, juntamente com folhas de
 - 2 contraprova (só com 10 ml de água);
 Manteve-se a temperatura em torno de 25°C, com observações nos intervalos de 30min, 1h, 2h, 12h, 24h, 48h e 116h, após o início do teste.
 
-
- **##Teste do biomulching em plantação de couve**
+## Teste do biomulching em plantação de couve
 
 Primeiramente o solo foi preparado com um mês de antecedência do início do teste, sendo feita a retirada de plantas invasoras, a aeração e aração do solo, com cerca de 20cm de profundidade. Após o solo foi adubado com cinzas, restos de alimentos, cal e esterco. Então foram dispostos cinco canteiros de aproximadamente 0,5m X 2,5m, totalizando cerca de 15m², nos quais foram plantados cinco pés de couve (_Brassica oleracea_) no espaçamento de 50cm X 1m em cada canteiro. Foram plantadas 25 mudas de couve, as quais haviam sido cultivadas a partir de ramos de outras plantas. 
 
@@ -120,12 +115,12 @@ As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de cap
 Medição semanal da área com presença do biomulching.
 
 
- **##Pré tratamento dos dados do projeto do biomulching**
+## Pré tratamento dos dados do projeto do biomulching
 
 Nesta etapa os dados coletados do projeto de desenvolvimento do biomulching, os quais estavam em tabelas no formato xlsx, foram organizados com o objetivo de facilidar a leitura das tabela pelo programa Rstudio. Para tanto, criaram-se novas tabelas organizando os dados em colunas continuas e com cada célula corespondendo a uma unica observação. Removeran-se informações referentes a plotagem de gráficos e outras não pertinentes aos dados brutos. Mantiveram-se a separação dos dados entre as pastas já existentes no arquivo.
 
 
- **##Importação e organização dos dados para o Rstudio**
+## Importação e organização dos dados para o Rstudio
 
 Para transferir os dados para o Rstudio utilizou-se o comando "read_xlsx" do pacote tidyverse, por meio do qual foram lidas as tabelas em xlsx onde estavam os dados. Para cada conjunto de dados referentes as diferentes variáveis e testes foi criado uma referencia começando por "df." seguido do nome para identificar o conjunto de dados. Alguns conjuntos ainda foram reformatados para uma melhor organização e também para adicionar o código/legenda referente aos tratamentos utilizados no projeto.
 
@@ -154,7 +149,7 @@ tribble (
  
  #Carregar conjuntos de dados
 
- **###Presença de outros agentes prejudiciais**
+### Presença de outros agentes prejudiciais
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.armadilhas":
  
@@ -226,7 +221,7 @@ bind_rows(
 
 ```
 
- **###Dados a respeito das condições climáticas ao longo do período experimental**
+### Dados a respeito das condições climáticas ao longo do período experimental
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.clima":
  
@@ -265,7 +260,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
 
- **###Quantidade de plantas invasoras ao longo do período experimental**
+### Quantidade de plantas invasoras ao longo do período experimental
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.plantas_invasoras":
  
@@ -290,7 +285,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
 
- **###Dados das plantas de couve**
+### Dados das plantas de couve
 
 - altura das couves
 - massa folhar total das couves ao final do periodo experimental
@@ -335,7 +330,7 @@ bind_rows(
 
 ```
 
- ##degradação do protótipo de biomulching:
+## Degradação do protótipo de biomulching
  
  Foram alterados os valores de Percentual de degração para valor em porcentagem de degradação dividindo o valor original por 100. Após foram retidas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
 
@@ -349,7 +344,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
  
-##dados experimento em condições controladas
+## dados experimento em condições controladas
 
 -pulgões vivos
 -pulgões mortos
@@ -395,12 +390,12 @@ bind_rows(
 
 ```
 
- **#Resultados:**
+# Resultados
 
 A partir dos dados obtidos geramos o seguinte resultado da análise dos dados:
 
 
-##Pimenta como prevenção
+## Pimenta como prevenção
 
 A essência de pimenta por si só, auxilia no controle dos pulgões?
 E de moscas e lagartas?
@@ -432,11 +427,7 @@ df.armadilhas %>%
 
 Observando o gráfico 1, ...
 
-
-
-
-
-##biomulching como controle de pragas
+## Biomulching como controle de pragas
 
 O biomulching contribui para reduzir a população de pulgões?
 O biomulching contribui para reduzir a população de outros insetos?
@@ -457,7 +448,7 @@ df.armadilhas %>%
 
 ```
 
-##eficiência dos tratamentos
+## Eficiência dos tratamentos
 
 Há diferença entre os tratamentos, se sim qual foi o com maior redução aparente da população de pulgões e qual teve menor redução aparente? (realizar análises estatísticas dos resultados)
 
@@ -469,21 +460,20 @@ Qual a eficiência dos tratamentos?
 Através da utilização da fórmula de Abbot, foi calculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle.
 
 ```{r grafico 3, include=FALSE}
-df.armadilhas%>%
-  tibble(~Prevenção, ~Eficiência
-         
-         )->df.eficiencia
+#df.armadilhas%>%
+ # tibble(~Prevenção, ~Eficiência
+  #       
+  #       )->df.eficiencia
 
-df.eficiencia%>%
-  ggplt()
+#df.eficiencia%>%
+ # ggplt()
 
 
 
 
 ```
 
-
-##biomulching como cobertura
+## Biomulching como cobertura
 
 Quanto tempo leva para ser degradado?
 
@@ -537,7 +527,7 @@ df.umidade_solo%>%
 
 
 
-##desenvolvimento das plantas
+## Desenvolvimento das plantas
 
 Existe diferença no crescimento e rendimento na produção de couve? Se sim, quais os tratamentos mais significativos.
 Qual o rendimento médio de produção de massa comestível?
@@ -573,7 +563,7 @@ df.dados_plantas%>%
 ```
 
 
-##resultado teste em condições controladas
+## Resultado do teste em condições controladas
 
 
 
@@ -613,7 +603,8 @@ df.controlado %>%
 ```
 
 
-#Novas perguntas:
+# Novas perguntas
+
 utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
 
 
@@ -664,7 +655,7 @@ Em relação ao canteiro que utilizou a essência de pimenta no controle e o bio
 ```
 
 
- **#Conclusões**
+# Conclusões
 
 além de todo o tabalho com o Rstudio
 
@@ -673,7 +664,7 @@ também criamos um repositório git para o projeto onde foram registrados todos 
 
 estamos testando o repositório git local para ver se está funcionando certo.
 
- **#Referências**
+# Referências
 
 ANVISA (Agencia Nacional de Vigilancia Sanitária), Programa de análise de resíduos de agrotóxicos em alimentos – PARA. Plano pluriannual (2017-2020) resultados do 1° ciclo, 2017-2018.
 
