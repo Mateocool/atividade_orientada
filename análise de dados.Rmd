@@ -410,7 +410,7 @@ E de moscas e lagartas?
 
 
 
-```{r grafico 1, include=FALSE}
+```{r grafico 1, echo=TRUE}
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
   ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
@@ -520,7 +520,7 @@ Dentre os tratamentos quais tiver o melhor controle da umidade do solo, o biomul
 
 
 
-```{r include=FALSE}
+```{r echo=FALSE}
 
 df.umidade_solo%>%
   ggplot(aes(x = Dia, y = `percentual corrigido`, color = Prevenção))+
@@ -557,14 +557,57 @@ df.dados_plantas%>%
   ggtitle("Massa total (g) de cada canteiro")
 ```
 
+
+Vamos averiguar a questão do tamanho médio
+
+```{r}
+df.dados_plantas%>%
+  #filter(Código == "G")%>%
+    print %>%
+  filter(grepl("tamanho", Observação)) %>%
+  group_by(Código) %>%
+  summarize(N=n(),
+            Altura.Média = mean(Valor),
+            Altura.SD = sd(Valor),
+            Altura.SE = 3 * Altura.SD / sqrt(N)) %>%
+  ggplot(aes(x = Código, y = Altura.Média)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = Altura.Média - Altura.SE,
+                    ymax = Altura.Média + Altura.SE), width = 0.2) +
+  ylim(0, NA) +
+  ylab("Altura Média [cm]") +
+  xlab("Identificador do Canteiro") +
+    ggtitle("Tamanho médio das folhas de couve em cada canteiro")
+```
+
+O gráfico indica que não há diferença estatística no tamanho das cauves entre os diferentes canteiros. Mesmo assim, fizemos o teste estatístico student-t  para confirmar par a par se existe ou não tal diferença:
+
+```{r}
+df.dados_plantas%>%
+  #filter(Código == "G")%>%
+    print %>%
+  filter(grepl("tamanho", Observação)) %>%
+  filter(Código %in% c("G", "T")) %>%
+  select(Código, Valor) %>%
+  pivot_wider(names_from="Código", values_from = "Valor") -> dados
+
+t.test(dados$G[[1]], dados$T[[1]])
+
+
+```
+
+
 ```{r}
 
 df.dados_plantas%>%
   #filter(Código == "G")%>%
-  filter(Observação == "tamanho")%>%
+    print %>%
+  filter(grepl("tamanho", Observação)) %>%
+  #filter(Observação == "tamanho")%>%
+
   ggplot(aes(x = Planta, y = Valor))+
-    geom_bar(stat = "identity")+
-  ggtitle("Tamanho médio das folhas de couve em cada canteiro")
+  geom_bar(stat = "identity")+
+
 
 
 
