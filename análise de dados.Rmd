@@ -3,44 +3,46 @@ title: Avaliação de biomulching com agregação de extrato de Capsicum frutesc
   cobertura de solo e agente de controle de pragas em Brassica oleracea
 author: "Mateus Colombo"
 output:
+  pdf_document: default
+  word_document: default
   html_document:
     df_print: paged
-  word_document: default
-  pdf_document: default
 ---
  
- 
- **Resumo**
+**Resumo**
 
+[//]: # (Atualizar o resumo para esse novo projeto - questões de reprodutibilidade da análise de dados)
 O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.
 
- 
- **Introdução**
+# Introdução
 
-
-
- **Justificativa/Problema**
+## Justificativa/Problema
 
 O Brasil é um dos maiores produtores agrícolas do mundo e um dos que mais utiliza agrotóxicos. De acordo com a ANVISA, 51% dos alimentos contêm resíduos de agrotóxicos, isso sem considerar o glifosato, o pesticida mais utilizado no mundo. Hoje, dos 50 agrotóxicos mais utilizados no país 28 são proibidos em outros países, fora os que são contrabandeados e entram ilegalmente no país. (Campanha Nacional Contra os Agrotóxicos e Pela Vida, 2019). 
 
 Um fato o qual não se pode negar é de que os agrotóxicos afetam a vida. De uma maneira positiva auxiliando no combate de pragas e protegendo as plantações contra perdas econômicas, sendo como uma forma de segurança para os produtores. Contudo, estes também irão afetar todos os outros seres vivos presentes no meio, os quais são benéficos para as plantas, para os seres humano e a natureza como um todo.
 
-Estas substâncias quando má administradas pelos produtores pode causar uma série de malefícios à saúde humana, como intoxicação, desordens hormonais, doenças neurológicas e até mesmo alguns tipos de câncer podem ser favorecidos pela exposição desprotegida e excessiva aos agrotóxicos, (CASAL et. al., 2015). Além de tamanhos prejuízos à saúde, também há vários problemas ambientais que podem ser causados pelo uso indiscriminado destas substâncias. Entre elas estão a poluição do solo, da água, do ar, e consequentemente isso irá afetar os ecossistemas e a biodiversidade expostas a tais contaminantes, (SOARES e PORTO, 2007), (CASAL et. al., 2015). 
+Estas substâncias quando má administradas pelos produtores pode causar uma série de malefícios à saúde humana, como intoxicação, desordens hormonais, doenças neurológicas e até mesmo alguns tipos de câncer podem ser favorecidos pela exposição desprotegida e excessiva aos agrotóxicos, (CASAL et. al., 2015). Além de tamanhos prejuízos à saúde, também há vários problemas ambientais que podem ser causados pelo uso indiscriminado destas substâncias. Entre elas estão a poluição do solo, da água, do ar, e consequentemente isso irá afetar os ecossistemas e a biodiversidade expostas a tais contaminantes (SOARES e PORTO, 2007), (CASAL et. al., 2015). 
 
 Com todos estes problemas ocasionados pelo uso incorreto de pesticidas, evidencia-se uma necessidade por métodos alternativos aos agrotóxicos para promover uma agricultura mais saudável, sustentável e segura. Dentre as alternativas, está a utilização de bioinseticidas, óleos essenciais e extratos que estão presentes nas plantas aromáticas e podem apresentar atividade atraente, repelente, e até tóxica a insetos e microrganismos, (SALTO, 2004), (PICANÇO, 2010). Os produtos de plantas são considerados como menos problemáticos para o meio ambiente, devido a fácil decomposição, porém não deixam de ser componentes químicos, devendo seus efeitos serem estudados.  (SALTO, 2004). Entretanto, estes apresentam uma desvantagem em relação aos agrotóxicos convencionais, a necessidade do uso de maiores quantidades de princípio ativo e em maior número de aplicações. 
 
-Uma outra alternativa aos agrotóxicos é a técnica de mulching, na qual consiste na cobertura do solo com algum material como folhas secas, jornal, TNT ou com o uso de lonas plásticas, as quais podem ser biodegradáveis ou não. O uso do mulching auxilia em múltiplos fatores durante o cultivo como o controle da umidade do solo, dos nutrientes, da temperatura do solo, de infestações de insetos e como uma barreira para o desenvolvimento de plantas invasoras, (NETO, 2016), (CHIELLINI, 2002). Todos os fatores juntos promovem um crescimento das plantas mais rápido gerando maiores rendimentos e o produto é mais facilmente colido e limpo, ( CHIELLINI, 2002). Entretanto, está técnica também apresenta suas desvantagens, como normalmente são utilizados mulchings plásticos, estes após um certo período começam e se rasgar e a se degradar em pequenos pedaços que permanecem dispersos no solo, assim perdendo sua utilidade. Este fato faz necessária a remoção do mulching, a qual pode ser difícil de ser realizada se este já estiver bastante degradado, e após a remoção ainda existirão os resíduos plásticos, que não são reciclados devido a presença de altas quantidades de terra e outros contaminantes como pesticidas, ( CHIELLINI, 2002).
+Uma outra alternativa aos agrotóxicos é a técnica de /mulching/, na qual consiste na cobertura do solo com algum material como folhas secas, jornal, TNT ou com o uso de lonas plásticas, as quais podem ser biodegradáveis ou não. O uso do mulching auxilia em múltiplos fatores durante o cultivo como o controle da umidade do solo, dos nutrientes, da temperatura do solo, de infestações de insetos e como uma barreira para o desenvolvimento de plantas invasoras (NETO, 2016), (CHIELLINI, 2002). Todos os fatores juntos promovem um crescimento das plantas mais rápido gerando maiores rendimentos e o produto é mais facilmente colido e limpo (CHIELLINI, 2002). Entretanto, esta técnica também apresenta suas desvantagens, como normalmente são utilizados mulchings plásticos, estes após um certo período começam e se rasgar e a se degradar em pequenos pedaços que permanecem dispersos no solo, assim perdendo sua utilidade. Este fato faz necessária a remoção do mulching, a qual pode ser difícil de ser realizada se este já estiver bastante degradado, e após a remoção ainda existirão os resíduos plásticos, que não são reciclados devido a presença de altas quantidades de terra e outros contaminantes como pesticidas (CHIELLINI, 2002).
+
+[//]: # vamos averiguar se podemos melhor gerenciar as referências bibliográficas
 
 Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o biomulching com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de Capsicum frutensis para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
 
 Um ponto importante durante o desenvolvimento de uma nova metodologia para tal finalidade, é a correta análise dos dados obtidos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes de maneira manual e arcaica, o que pode acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final podem consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo. Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos, está a utilização de softwares e outros programas de análise tais como o Rstudio. 
 
- **#Métodos e materiais**
+[//]: # tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).
+
+# Métodos e materiais
 
 No presente projeto foram utilizadas as seguintes metodologias.*melhorar*
 
+[//]: # aqui tu podes colocar um esquema que ilustra desde a coleta de dados manual, inserção de dados na planilha, 
 
- **##Teste em condições controladas da essência e do biomulching**
+## Teste em condições controladas da essência e do biomulching
 
 O seguinte teste foi baseado na metodologia de Santos e Silva, 2015.
 
@@ -61,8 +63,7 @@ Foram colocadas em cada vidro um papel toalha no fundo, juntamente com folhas de
 - 2 contraprova (só com 10 ml de água);
 Manteve-se a temperatura em torno de 25°C, com observações nos intervalos de 30min, 1h, 2h, 12h, 24h, 48h e 116h, após o início do teste.
 
-
- **##Teste do biomulching em plantação de couve**
+## Teste do biomulching em plantação de couve
 
 Primeiramente o solo foi preparado com um mês de antecedência do início do teste, sendo feita a retirada de plantas invasoras, a aeração e aração do solo, com cerca de 20cm de profundidade. Após o solo foi adubado com cinzas, restos de alimentos, cal e esterco. Então foram dispostos cinco canteiros de aproximadamente 0,5m X 2,5m, totalizando cerca de 15m², nos quais foram plantados cinco pés de couve (_Brassica oleracea_) no espaçamento de 50cm X 1m em cada canteiro. Foram plantadas 25 mudas de couve, as quais haviam sido cultivadas a partir de ramos de outras plantas. 
 
@@ -109,9 +110,11 @@ Medição de altura nas semanas, 9, 11 e 12, além disso foi aferido o tamanho m
 Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick (Rezende, 2007). As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
 As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de capacidade, pintadas internamente de amarelo. Em cada bandeja foi colocado 500 ml de água e 2 gotas de detergente, para quebrar a tensão superficial, foram cobertos por uma proteção de organza para evitar perda de material em caso de transbordamento e foram instaladas na altura do dossel das plantas. O controle foi feito a cada 3 dias sendo utilizadas duas armadilhas por canteiro.
 
+#![Alt text]("P_20181222_201917.jpg")
+
 ```{r include=FALSE}
 
-#![Alt text]("P_20181222_201917.jpg")
+
 
 #![Caption for the picture.](/path/to/image.png)
 
@@ -120,12 +123,12 @@ As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de cap
 Medição semanal da área com presença do biomulching.
 
 
- **##Pré tratamento dos dados do projeto do biomulching**
+## Pré tratamento dos dados do projeto do biomulching
 
 Nesta etapa os dados coletados do projeto de desenvolvimento do biomulching, os quais estavam em tabelas no formato xlsx, foram organizados com o objetivo de facilidar a leitura das tabela pelo programa Rstudio. Para tanto, criaram-se novas tabelas organizando os dados em colunas continuas e com cada célula corespondendo a uma unica observação. Removeran-se informações referentes a plotagem de gráficos e outras não pertinentes aos dados brutos. Mantiveram-se a separação dos dados entre as pastas já existentes no arquivo.
 
 
- **##Importação e organização dos dados para o Rstudio**
+## Importação e organização dos dados para o Rstudio
 
 Para transferir os dados para o Rstudio utilizou-se o comando "read_xlsx" do pacote tidyverse, por meio do qual foram lidas as tabelas em xlsx onde estavam os dados. Para cada conjunto de dados referentes as diferentes variáveis e testes foi criado uma referencia começando por "df." seguido do nome para identificar o conjunto de dados. Alguns conjuntos ainda foram reformatados para uma melhor organização e também para adicionar o código/legenda referente aos tratamentos utilizados no projeto.
 
@@ -154,7 +157,7 @@ tribble (
  
  #Carregar conjuntos de dados
 
- **###Presença de outros agentes prejudiciais**
+### Presença de outros agentes prejudiciais
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.armadilhas":
  
@@ -226,7 +229,7 @@ bind_rows(
 
 ```
 
- **###Dados a respeito das condições climáticas ao longo do período experimental**
+### Dados a respeito das condições climáticas ao longo do período experimental
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.clima":
  
@@ -265,7 +268,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
 
- **###Quantidade de plantas invasoras ao longo do período experimental**
+### Quantidade de plantas invasoras ao longo do período experimental
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.plantas_invasoras":
  
@@ -290,7 +293,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
 
- **###Dados das plantas de couve**
+### Dados das plantas de couve
 
 - altura das couves
 - massa folhar total das couves ao final do periodo experimental
@@ -335,7 +338,7 @@ bind_rows(
 
 ```
 
- ##degradação do protótipo de biomulching:
+## Degradação do protótipo de biomulching
  
  Foram alterados os valores de Percentual de degração para valor em porcentagem de degradação dividindo o valor original por 100. Após foram retidas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
 
@@ -349,7 +352,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
  
-##dados experimento em condições controladas
+## dados experimento em condições controladas
 
 -pulgões vivos
 -pulgões mortos
@@ -395,12 +398,12 @@ bind_rows(
 
 ```
 
- **#Resultados:**
+# Resultados
 
 A partir dos dados obtidos geramos o seguinte resultado da análise dos dados:
 
 
-##Pimenta como prevenção
+## Pimenta como prevenção
 
 A essência de pimenta por si só, auxilia no controle dos pulgões?
 E de moscas e lagartas?
@@ -432,11 +435,7 @@ df.armadilhas %>%
 
 Observando o gráfico 1, ...
 
-
-
-
-
-##biomulching como controle de pragas
+## Biomulching como controle de pragas
 
 O biomulching contribui para reduzir a população de pulgões?
 O biomulching contribui para reduzir a população de outros insetos?
@@ -457,7 +456,7 @@ df.armadilhas %>%
 
 ```
 
-##eficiência dos tratamentos
+## Eficiência dos tratamentos
 
 Há diferença entre os tratamentos, se sim qual foi o com maior redução aparente da população de pulgões e qual teve menor redução aparente? (realizar análises estatísticas dos resultados)
 
@@ -469,21 +468,20 @@ Qual a eficiência dos tratamentos?
 Através da utilização da fórmula de Abbot, foi calculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle.
 
 ```{r grafico 3, include=FALSE}
-df.armadilhas%>%
-  tibble(~Prevenção, ~Eficiência
-         
-         )->df.eficiencia
+#df.armadilhas%>%
+ # tibble(~Prevenção, ~Eficiência
+  #       
+  #       )->df.eficiencia
 
-df.eficiencia%>%
-  ggplt()
+#df.eficiencia%>%
+ # ggplt()
 
 
 
 
 ```
 
-
-##biomulching como cobertura
+## Biomulching como cobertura
 
 Quanto tempo leva para ser degradado?
 
@@ -537,7 +535,7 @@ df.umidade_solo%>%
 
 
 
-##desenvolvimento das plantas
+## Desenvolvimento das plantas
 
 Existe diferença no crescimento e rendimento na produção de couve? Se sim, quais os tratamentos mais significativos.
 Qual o rendimento médio de produção de massa comestível?
@@ -573,7 +571,7 @@ df.dados_plantas%>%
 ```
 
 
-##resultado teste em condições controladas
+## Resultado do teste em condições controladas
 
 
 
@@ -613,7 +611,8 @@ df.controlado %>%
 ```
 
 
-#Novas perguntas:
+# Novas perguntas
+
 utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
 
 
@@ -664,7 +663,7 @@ Em relação ao canteiro que utilizou a essência de pimenta no controle e o bio
 ```
 
 
- **#Conclusões**
+# Conclusões
 
 além de todo o tabalho com o Rstudio
 
@@ -673,7 +672,7 @@ também criamos um repositório git para o projeto onde foram registrados todos 
 
 estamos testando o repositório git local para ver se está funcionando certo.
 
- **#Referências**
+# Referências
 
 ANVISA (Agencia Nacional de Vigilancia Sanitária), Programa de análise de resíduos de agrotóxicos em alimentos – PARA. Plano pluriannual (2017-2020) resultados do 1° ciclo, 2017-2018.
 
@@ -703,8 +702,6 @@ PICANÇO, M. C.; Manejo integrado de pragas. UFV, Viçosa, MG, 2010. Disponível
 
 WICKHAM, H, e GROLEMUND, G. R for Data Science, visualize, model, transform, tidy, and import data. O’REILLY. 2016.
 
-
-
 git init // inicia a linha do tempo
 git add // adiciona ou atualiza mudanças para irem para a linha do tempo
 git commit // adiciona um ponto na linha do tempo
@@ -719,6 +716,4 @@ git remote add origin https://github.com/Mateocool/nome do repositório git //cr
 git remote -v // confere os repositórios criados
 git push -u origin master // puxa o arquivo mestre para a nuvem (colocar credenciais da conta)
 git push // puxa o arquivo para o repositório na nuvem (atualiza na nuvem)
-
-
 
