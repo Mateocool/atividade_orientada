@@ -666,7 +666,12 @@ Em relação ao canteiro que utilizou a essência de pimenta no controle e o bio
 
  **#Conclusões**
 
+além de todo o tabalho com o Rstudio
 
+
+também criamos um repositório git para o projeto onde foram registrados todos os passos ao longo do desenvolvimento do trabalho.
+
+estamos testando o repositório git local para ver se está funcionando certo.
 
  **#Referências**
 
