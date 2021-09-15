@@ -705,3 +705,20 @@ WICKHAM, H, e GROLEMUND, G. R for Data Science, visualize, model, transform, tid
 
 
 
+git init // inicia a linha do tempo
+git add // adiciona ou atualiza mudanças para irem para a linha do tempo
+git commit // adiciona um ponto na linha do tempo
+git log // visualiza os pontos na linha do tempo
+git status // informa o estado das alterações do nosso projeto
+git show + número do comit // mostra as alterações daquele commit em específico
+git show // mostra as alterações do últimos commit
+
+para criar o repositório virtual:
+
+git remote add origin https://github.com/Mateocool/nome do repositório git //cria o repositório pela primeira vez
+git remote -v // confere os repositórios criados
+git push -u origin master // puxa o arquivo mestre para a nuvem (colocar credenciais da conta)
+git push // puxa o arquivo para o repositório na nuvem (atualiza na nuvem)
+
+
+
