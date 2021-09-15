@@ -109,9 +109,11 @@ Medição de altura nas semanas, 9, 11 e 12, além disso foi aferido o tamanho m
 Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick (Rezende, 2007). As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
 As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de capacidade, pintadas internamente de amarelo. Em cada bandeja foi colocado 500 ml de água e 2 gotas de detergente, para quebrar a tensão superficial, foram cobertos por uma proteção de organza para evitar perda de material em caso de transbordamento e foram instaladas na altura do dossel das plantas. O controle foi feito a cada 3 dias sendo utilizadas duas armadilhas por canteiro.
 
+#![Alt text]("P_20181222_201917.jpg")
+
 ```{r include=FALSE}
 
-#![Alt text]("P_20181222_201917.jpg")
+
 
 #![Caption for the picture.](/path/to/image.png)
 
