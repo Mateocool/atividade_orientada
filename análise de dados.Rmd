@@ -27,14 +27,19 @@ Com todos estes problemas ocasionados pelo uso incorreto de pesticidas, evidenci
 
 Uma outra alternativa aos agrotóxicos é a técnica de mulching, na qual consiste na cobertura do solo com algum material como folhas secas, jornal, TNT ou com o uso de lonas plásticas, as quais podem ser biodegradáveis ou não. O uso do mulching auxilia em múltiplos fatores durante o cultivo como o controle da umidade do solo, dos nutrientes, da temperatura do solo, de infestações de insetos e como uma barreira para o desenvolvimento de plantas invasoras, (NETO, 2016), (CHIELLINI, 2002). Todos os fatores juntos promovem um crescimento das plantas mais rápido gerando maiores rendimentos e o produto é mais facilmente colido e limpo, ( CHIELLINI, 2002). Entretanto, está técnica também apresenta suas desvantagens, como normalmente são utilizados mulchings plásticos, estes após um certo período começam e se rasgar e a se degradar em pequenos pedaços que permanecem dispersos no solo, assim perdendo sua utilidade. Este fato faz necessária a remoção do mulching, a qual pode ser difícil de ser realizada se este já estiver bastante degradado, e após a remoção ainda existirão os resíduos plásticos, que não são reciclados devido a presença de altas quantidades de terra e outros contaminantes como pesticidas, ( CHIELLINI, 2002).
 
+[//]: # vamos averiguar se podemos melhor gerenciar as referências bibliográficas
+
 Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o biomulching com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de Capsicum frutensis para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
 
 Um ponto importante durante o desenvolvimento de uma nova metodologia para tal finalidade, é a correta análise dos dados obtidos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes de maneira manual e arcaica, o que pode acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final podem consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo. Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos, está a utilização de softwares e outros programas de análise tais como o Rstudio. 
+
+[//]: # tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).
 
 # Métodos e materiais
 
 No presente projeto foram utilizadas as seguintes metodologias.*melhorar*
 
+[//]: # aqui tu podes colocar um esquema que ilustra desde a coleta de dados manual, inserção de dados na planilha, 
 
 ## Teste em condições controladas da essência e do biomulching
 
