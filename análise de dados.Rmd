@@ -1,10 +1,10 @@
 ---
-title: Avaliação de biomulching com agregação de extrato de Capsicum frutescens como
-  cobertura de solo e agente de controle de pragas em Brassica oleracea
+title: Avaliação de biomulching com agregação de extrato de _Capsicum frutescens_ como
+  cobertura de solo e agente de controle de pragas em _Brassica oleracea_
 author: "Mateus Colombo"
 output:
-  pdf_document: default
   word_document: default
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -30,17 +30,22 @@ Uma outra alternativa aos agrotóxicos é a técnica de /mulching/, na qual cons
 
 [//]: # vamos averiguar se podemos melhor gerenciar as referências bibliográficas
 
-Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o biomulching com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de Capsicum frutensis para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
+Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o biomulching com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de _Capsicum frutensis_ para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
 
-Um ponto importante durante o desenvolvimento de uma nova metodologia para tal finalidade, é a correta análise dos dados obtidos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes de maneira manual e arcaica, o que pode acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final podem consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo. Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos, está a utilização de softwares e outros programas de análise tais como o Rstudio. 
+Um ponto importante durante o desenvolvimento de um projeto de pesquisa é a correta análise dos dados obtidos e descrição dos processos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes manualmente, o que poderia acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final poderiam consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo.Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos é a utilização de softwares e outros programas de análise tais como o Rstudio.
+
+Já para a parte de organização e descrição dos processos do projeto, Donald Knuth criou o conceito de _literal programing_ o qual é semelhante a um caderno de anotações digital. Com a programação literal são anotadas as informações sobre os procedimentos e o que acontece no projeto, escritas de uma forma esplicativa ao longo dos trechos com códigos, sendo a liguagem computacional com uma tradução para a linguagem humana. Assim torando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área. 
 
 [//]: # tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).
 
 # Métodos e materiais
 
-No presente projeto foram utilizadas as seguintes metodologias.*melhorar*
+No presente projeto em principio foram reorganizados os dados do projeto original para facilitar a sua manipulação através do software. Os dados brutos foram obtidos através de testes e controle de armadilhas e variáveis em teste em campo do biomulching e também de um teste realizado em condições de laboratório para verificar como o principio ativo do biomulching, a essencia de pimenta, poderia se comportar em um teste com menos controle das variáveis como no caso do teste em condições de campo. 
+posteriormente foram inseridos os dados e então analisádos juntamente com o conceito de _literal programing_. Para a parte dos resultados foram gerados gráficos e análises estatisticas conforme cada caso. 
 
-[//]: # aqui tu podes colocar um esquema que ilustra desde a coleta de dados manual, inserção de dados na planilha, 
+Segue um fluxograma do trabalho desenvolvido durante o projeto de pesquisa:
+
+![Fluxograma da metodologia](""C:/Users/Mateus Colombo/Documents/BIOTEC/3º semestre/Atividade orientada I/Slide1.JPG")
 
 ## Teste em condições controladas da essência e do biomulching
 
@@ -57,10 +62,12 @@ Material utilizado:
 
 A proposta é a comparação entre a ação de um bioinseticida comercial, o extrato da pimenta, bio-mulching e a contraprova. Para assim verificar os efeitos e a eficiência do novo método.
 Foram colocadas em cada vidro um papel toalha no fundo, juntamente com folhas de couve frescas sem pulgões. Após os pulgões foram coletados de couves e passados aproximadamente 150 pulgões para cada vidro. Então os vidros foram distribuídos da seguinte forma:
-- 1 bioinseticida comercial (10 ml, sendo 5ml repelente a base de icaridina e 5ml de água);
-- 1 o extrato da pimenta (10ml da essência na concentração de 5000ppm);
-- 1 bioplástico (protótipo 4, com 10ml de água);
-- 2 contraprova (só com 10 ml de água);
+
+- 1 bioinseticida comercial (10 ml, sendo 5ml repelente a base de icaridina e 5ml de água)
+- 1 extrato de pimenta (10ml da essência na concentração de 5000ppm)
+- 1 bioplástico (protótipo 4, com 10ml de água)
+- 2 contraprova (só com 10 ml de água)
+
 Manteve-se a temperatura em torno de 25°C, com observações nos intervalos de 30min, 1h, 2h, 12h, 24h, 48h e 116h, após o início do teste.
 
 ## Teste do biomulching em plantação de couve
@@ -106,22 +113,14 @@ Aferição da massa total (caule e folhas) e consumível (folhas saudáveis) das
 - Porte das plantas:
 Medição de altura nas semanas, 9, 11 e 12, além disso foi aferido o tamanho máximo médio das folhas ao final experimento.
 
+- Degradação do bio-mulching: 
+Medição semanal da área com presença do biomulching.
+
 - Quantidade de pulgões alados , outros insetos e inimigos naturais:
 Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick (Rezende, 2007). As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
 As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de capacidade, pintadas internamente de amarelo. Em cada bandeja foi colocado 500 ml de água e 2 gotas de detergente, para quebrar a tensão superficial, foram cobertos por uma proteção de organza para evitar perda de material em caso de transbordamento e foram instaladas na altura do dossel das plantas. O controle foi feito a cada 3 dias sendo utilizadas duas armadilhas por canteiro.
 
-#![Alt text]("P_20181222_201917.jpg")
-
-```{r include=FALSE}
-
-
-
-#![Caption for the picture.](/path/to/image.png)
-
-```
-- Degradação do bio-mulching: 
-Medição semanal da área com presença do biomulching.
-
+![Plantação teste]("P_20181222_201917.jpg")
 
 ## Pré tratamento dos dados do projeto do biomulching
 
@@ -138,13 +137,13 @@ library(tidyverse)
 library(readxl)
 library(lubridate)
 
- #carregar os pacotes necessários
-
 ```{r pacotes, include=FALSE}
+#carrega os pacotes necessários.
 library(tidyverse)
 library(readxl)
 library(lubridate)
 
+#cria legenda dos tratamentos para o teste em plantação de couve.
 tribble (
   ~Código, ~Prevenção,
   "G", "Biomulching",
@@ -154,8 +153,6 @@ tribble (
   "X", "Lona Preta") -> df.legenda
 
 ```
- 
- #Carregar conjuntos de dados
 
 ### Presença de outros agentes prejudiciais
  
@@ -231,7 +228,7 @@ bind_rows(
 
 ### Dados a respeito das condições climáticas ao longo do período experimental
  
- Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.clima":
+ Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.clima":
  
  -Temperatura ao longo do período experimental;
 
@@ -270,9 +267,10 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ### Quantidade de plantas invasoras ao longo do período experimental
  
- Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.plantas_invasoras":
+ Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.plantas_invasoras":
  
- -Número de plantas invasoras presentes em cada canteiros ao longo do período experimental.
+ -Número de plantas invasoras presentes em cada canteiros ao longo do período experimental:
+ Foi criada uma tibble para adicionar os dias em que foram realizadas as medições a cada semana. 
  
 ```{r invasoras, include=FALSE}
 tibble (semana = 1:11) %>%
@@ -295,12 +293,17 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ### Dados das plantas de couve
 
-- altura das couves
-- massa folhar total das couves ao final do periodo experimental
-- massa folhar comestível das couves ao final do periodo experimental
-- tamanho médio máximo das folhas de couve
+Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.dados_plantas":
 
-
+ -Altura das couves:
+ Corresponde aos valores obtidos em três medições da altura de cada couve nos diferentes tratamentos. Inicialmente estes valores foram lidos separados do restante e após alguns ajustes na organização das colunas e nomenclatura, estes foram adicionados em um grupo junto com os valores das outras variáveis.
+ 
+ -Massa folhar total das couves ao final do periodo experimental;
+ 
+ -Massa folhar comestível das couves ao final do periodo experimental;
+ 
+ -Tamanho médio máximo das folhas de couve:
+ Corresponde ao valor médio máxima das folhas de cada couve em cada um dos diferentes tratamentos ao final do período experimental. 
 
 ```{r plantas, include=FALSE}
 
@@ -338,8 +341,11 @@ bind_rows(
 
 ```
 
-## Degradação do protótipo de biomulching
+### Degradação do protótipo de biomulching
  
+Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.degradação":
+
+ -Percentual total da área degradada a cada semana durante o período experimental:
  Foram alterados os valores de Percentual de degração para valor em porcentagem de degradação dividindo o valor original por 100. Após foram retidas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
 
 ```{r degradação, include=FALSE}
@@ -352,10 +358,13 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 ```
  
-## dados experimento em condições controladas
+### Dados do experimento em condições controladas
 
--pulgões vivos
--pulgões mortos
+Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.controlado":
+
+ -Quantidade de pulgões vivos ao longo do tempo;
+ 
+ -Quantidade de pulgões mortos ao longo do tempo.
 
 Legenda:
 
@@ -365,9 +374,7 @@ B = Biomulching
 I = Icaridina
 E = Essência de pimenta
 
-
-O que está sendo feito: Geração da legenda "df.controlado.legenda", carregamento dos dados, alterações...
-
+Inicialmente foi criado uma legenda para os dados com o intuito de melhorar a interpretação dos dados ao gerar os gráficos. Depois os dados foram reorganizados de forma que os dados de cada tratamento fossem reunidos em uma coluna.
 
 ```{r controlado, include=FALSE}
 tribble (~Código, ~Tratamento,
@@ -400,15 +407,12 @@ bind_rows(
 
 # Resultados
 
-A partir dos dados obtidos geramos o seguinte resultado da análise dos dados:
-
+A partir a obtenção, reorganização e ajustes e importação dos dados para o Rstudio, seguimos com a seguinte análise de resultados para as diferentes hipóteses e conjunto de dados de interesse. Para tanto os dados são apresentados na forma de gráficos.
 
 ## Pimenta como prevenção
 
 A essência de pimenta por si só, auxilia no controle dos pulgões?
 E de moscas e lagartas?
-
-
 
 ```{r grafico 1, echo=TRUE}
 df.armadilhas %>%
@@ -597,7 +601,7 @@ t.test(dados$G[[1]], dados$T[[1]])
 ```
 
 
-```{r}
+```{r eval=FALSE, include=FALSE}
 
 df.dados_plantas%>%
   #filter(Código == "G")%>%
