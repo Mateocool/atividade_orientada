@@ -411,42 +411,56 @@ A partir a obtenção, reorganização e ajustes e importação dos dados para o
 
 ## Pimenta como prevenção
 
-A essência de pimenta por si só, auxilia no controle dos pulgões?
-E de moscas e lagartas?
+A essência de pimenta por si só, auxilia no controle dos pulgões? E de moscas e lagartas?
 
-```{r grafico 1, echo=TRUE}
+```{r grafico 1, echo=FALSE}
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
   ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
   geom_line() +
   geom_point() +
   ylim(0, NA) +
-  geom_smooth()
+  geom_smooth()+
+  ggtitle("Quantidade de pulgões capturados nas armadilhas nos diferentes tratamentos" )
 
 df.armadilhas %>%
   # Vamos filtrar observações com a essência de pimenta
-  filter(Código %in% c("S","T")) %>% 
+  filter(Código %in% c("P","T")) %>% 
   # Vamos filtrar observações com os pulgões
   filter(Agente == "Pulgões") %>%
   ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
   geom_line() +
   geom_point() +
   ylim(0, NA) +
-  geom_smooth(method="lm")
+  geom_smooth(method="lm")+
+  ggtitle("Número de pulgões no canteiro de contraprova X pimenta")
+
+df.armadilhas %>%
+  # Vamos filtrar observações com as moscas
+  filter(Agente == "mosca") %>%
+  ggplot(aes(x = Prevenção, y = Quantidade))+
+  geom_bar(stat = "identity")+
+  ggtitle("Número total de moscas em cada canteiro")
+
+df.armadilhas %>%
+  # Vamos filtrar observações com as lagartas
+  filter(Agente == "lagarta") %>%
+  ggplot(aes(x = Prevenção, y = Quantidade))+
+  geom_bar(stat = "identity")+
+  ggtitle("Número total de lagartas em cada canteiro")
 
 ```
+Conforme evidencia o gráfico 2, não há diferença visivel em relação ao uso da essencia de pimenta para o combate de pulgões. Contudo veríficamos no gráfico 1 uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões. Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com biomulching, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
 
-
-Observando o gráfico 1, ...
 
 ## Biomulching como controle de pragas
 
-O biomulching contribui para reduzir a população de pulgões?
+O biomulching contribui para reduzir a população de pulgões? E de moscas e lagartas?
 O biomulching contribui para reduzir a população de outros insetos?
 O biomulching afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
 
 
-```{r grafico 2, include=FALSE}
+```{r grafico 2, echo=FALSE}
 df.armadilhas %>%
   # Vamos filtrar observações com outros
   filter(Agente %in% c("Outros")) %>%
@@ -456,9 +470,16 @@ df.armadilhas %>%
   ylim(0, NA)+
   ggtitle("Quantidade de outros insetos capturados nas armadilhas ao longo do tempo")
 
-
+df.armadilhas %>%
+  # Vamos filtrar observações com naturais
+  filter(Agente %in% c("Naturais")) %>%
+  ggplot(aes(x = Prevenção, y = Quantidade)) +
+  geom_bar(stat = "identity")+
+  ggtitle("Quantidade total de inimigos naturais capturados nas armadilhas")
 
 ```
+Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o biomulching contribui para a redução do número de outros insetos. Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com biomulching foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
+
 
 ## Eficiência dos tratamentos
 
