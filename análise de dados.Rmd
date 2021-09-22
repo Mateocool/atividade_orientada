@@ -409,7 +409,31 @@ bind_rows(
 
 A partir a obtenção, reorganização e ajustes e importação dos dados para o Rstudio, seguimos com a seguinte análise de resultados para as diferentes hipóteses e conjunto de dados de interesse. Para tanto os dados são apresentados na forma de gráficos.
 
-## Pimenta como prevenção
+## Resultado do teste em condições controladas
+
+
+```{r}
+df.controlado %>%
+  #filter(Tratamento == "C") %>%
+  filter(`Tempo (h)` != 0) %>%
+  pivot_wider(names_from="Estado", values_from="Quantidade") %>%
+  print %>%
+  mutate(populacao = vivos+mortos) %>%
+  group_by(Tratamento) %>%
+  mutate(crescimento = populacao - min(populacao)) %>%
+  ggplot(aes(x=`Tempo (h)`, y = crescimento, color=Tratamento))+
+  geom_line() +
+  geom_point() +
+  ylim(0, NA) +
+  scale_y_continuous(breaks = seq(0, 2000, by = 20))
+
+
+
+```
+
+## Teste em plantação de couve
+
+### Pimenta como prevenção
 
 A essência de pimenta por si só, auxilia no controle dos pulgões? E de moscas e lagartas?
 
@@ -453,7 +477,7 @@ df.armadilhas %>%
 Conforme evidencia o gráfico 2, não há diferença visivel em relação ao uso da essencia de pimenta para o combate de pulgões. Contudo veríficamos no gráfico 1 uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões. Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com biomulching, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
 
 
-## Biomulching como controle de pragas
+### Biomulching como controle de pragas
 
 O biomulching contribui para reduzir a população de pulgões? E de moscas e lagartas?
 O biomulching contribui para reduzir a população de outros insetos?
@@ -481,36 +505,33 @@ df.armadilhas %>%
 Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o biomulching contribui para a redução do número de outros insetos. Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com biomulching foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
 
 
-## Eficiência dos tratamentos
-
-Há diferença entre os tratamentos, se sim qual foi o com maior redução aparente da população de pulgões e qual teve menor redução aparente? (realizar análises estatísticas dos resultados)
-
-A partir dos dados obtidos vamos analisálos com a seguinte equação:
-
+### Eficiência dos tratamentos
 
 Qual a eficiência dos tratamentos?
 
-Através da utilização da fórmula de Abbot, foi calculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle.
+Há diferença entre os tratamentos, se sim qual foi o com maior redução aparente da população de pulgões e qual teve menor redução aparente?
 
-```{r grafico 3, include=FALSE}
-#df.armadilhas%>%
- # tibble(~Prevenção, ~Eficiência
-  #       
-  #       )->df.eficiencia
+A partir dos dados obtidos vamos analisálos com a seguinte equação:
 
-#df.eficiencia%>%
- # ggplt()
+E % = ((T-Tr)/T)*100
+onde:
+T = testemunha
+Tr = tratamento
 
 
+Através da utilização da fórmula de Abbott foi calculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle.
+
+```{r grafico 3, eval=FALSE, include=FALSE}
+df.armadilhas
 
 
 ```
 
-## Biomulching como cobertura
+### Biomulching como cobertura
 
-Quanto tempo leva para ser degradado?
+#### Quanto tempo leva para ser degradado?
 
-```{r grafico 4}
+```{r grafico 4, echo=FALSE}
 
 df.degradaçao %>%
   ggplot(aes(x = Dia, y = `Porcentagem de degradação`))+
@@ -525,9 +546,9 @@ df.degradaçao %>%
 Conforme vemos no gráfico, houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o biomulching degradado em mais de 80%. Posteriormente serão analizadas as possiveis influencias externas que produziram este resultado.
 
 
-Quais os tratamentos que melhor impediram o crescimento das plantas invasoras?
+#### Quais os tratamentos que melhor impediram o crescimento das plantas invasoras?
 
-```{r include=FALSE}
+```{r echo=FALSE}
 df.plantas_invasoras %>%
   #mutate(`Nº de plantas invasora (0,25m²)` = ((Quantidade*0.25)/(0.5*2.5)))%>%
   ggplot(aes(x = Dia, y = Quantidade, color = Prevenção))+
@@ -537,9 +558,16 @@ df.plantas_invasoras %>%
   ggtitle("Presença de plantas invasoras ao longo do tempo")
 
 
+
 ```
 
-Dentre os tratamentos quais tiver o melhor controle da umidade do solo, o biomulching apresenta um resultado semelhante ao mulching plástico?
+Os números de plantas invasoras determinados no solo sem cobertura e com coberturas foram de uma maneira geral controlados significativamente pelo tipo de cobertura utilizado no cultivo da cultura. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
+
+Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de plástico e bio-mulching durante o período de teste, nota-se que o plástico reduziu a infestação das plantas invasoras em 85% e o bio-mulching em 67%. O fato de o bio-mulching ter tido um desempenho inferior, deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra o gráfico anterior. O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
+
+[//] #esses valores em porcentagem foram obtidos por regra de três com o valor de controle como referência.
+
+#### O biomulching apresenta um controle da umidade do solo semelhante ao mulching plástico?
 
  *precisa calcular as médias de cada prevenção ao longo do tempo para então gerar cinco dados os quais serão plotados.*
 
@@ -560,7 +588,9 @@ df.umidade_solo%>%
 
 
 
-## Desenvolvimento das plantas
+### Desenvolvimento das plantas 
+
+[//]: #precisa separar melhor as perguntas de acordo com o que está sendo feito.
 
 Existe diferença no crescimento e rendimento na produção de couve? Se sim, quais os tratamentos mais significativos.
 Qual o rendimento médio de produção de massa comestível?
@@ -572,22 +602,21 @@ Qual o tamanho máximo médio das folhas? *isso é bom ou ruim?*
 O biomulching estimula ou inibe o crescimento da couve?
 A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
 
-```{r include=FALSE}
+```{r echo=FALSE}
 df.dados_plantas%>%
   #filter(Código == "G")%>%
   filter(Observação == "massa total (g)")%>%
   ggplot(aes(x = Planta, y = Valor))+
     geom_bar(stat = "identity")+
-  facet_grid(.~Código)+
+  facet_wrap(.~Código)+
   ggtitle("Massa total (g) de cada canteiro")
 ```
 
 
 Vamos averiguar a questão do tamanho médio
 
-```{r}
+```{r echo=FALSE}
 df.dados_plantas%>%
-  #filter(Código == "G")%>%
     print %>%
   filter(grepl("tamanho", Observação)) %>%
   group_by(Código) %>%
@@ -603,11 +632,12 @@ df.dados_plantas%>%
   ylab("Altura Média [cm]") +
   xlab("Identificador do Canteiro") +
     ggtitle("Tamanho médio das folhas de couve em cada canteiro")
+
 ```
 
 O gráfico indica que não há diferença estatística no tamanho das cauves entre os diferentes canteiros. Mesmo assim, fizemos o teste estatístico student-t  para confirmar par a par se existe ou não tal diferença:
 
-```{r}
+```{r teste t}
 df.dados_plantas%>%
   #filter(Código == "G")%>%
     print %>%
@@ -622,64 +652,8 @@ t.test(dados$G[[1]], dados$T[[1]])
 ```
 
 
-```{r eval=FALSE, include=FALSE}
 
-df.dados_plantas%>%
-  #filter(Código == "G")%>%
-    print %>%
-  filter(grepl("tamanho", Observação)) %>%
-  #filter(Observação == "tamanho")%>%
-
-  ggplot(aes(x = Planta, y = Valor))+
-  geom_bar(stat = "identity")+
-
-
-
-
-```
-
-
-## Resultado do teste em condições controladas
-
-
-
-
-filter(`Tempo (h)` %in% c("0.5")) %>%
-stat = "identity"
-
-```{
-
- df.controlado %>% 
-   filter(Estado %in% c("vivos")) %>% 
-  ggplot(aes(x = `Tempo (h)`, y = Quantidade, color = Tratamento))+
-  geom_bar(stat = "identity")+
-  facet_grid(.~Tratamento)
-  
-```
-
-
-
-```{r}
-df.controlado %>%
-  #filter(Tratamento == "C") %>%
-  filter(`Tempo (h)` != 0) %>%
-  pivot_wider(names_from="Estado", values_from="Quantidade") %>%
-  print %>%
-  mutate(populacao = vivos+mortos) %>%
-  group_by(Tratamento) %>%
-  mutate(crescimento = populacao - min(populacao)) %>%
-  ggplot(aes(x=`Tempo (h)`, y = crescimento, color=Tratamento))+
-  geom_line() +
-  geom_point() +
-  ylim(0, NA) +
-  scale_y_continuous(breaks = seq(0, 2000, by = 20))
-
-
-
-```
-
-
-# Novas perguntas
+## Novas perguntas
 
 utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
 
@@ -733,12 +707,8 @@ Em relação ao canteiro que utilizou a essência de pimenta no controle e o bio
 
 # Conclusões
 
-além de todo o tabalho com o Rstudio
 
 
-também criamos um repositório git para o projeto onde foram registrados todos os passos ao longo do desenvolvimento do trabalho.
-
-estamos testando o repositório git local para ver se está funcionando certo.
 
 # Referências
 
