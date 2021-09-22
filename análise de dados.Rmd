@@ -11,8 +11,8 @@ output:
  
 **Resumo**
 
-[//]: # (Atualizar o resumo para esse novo projeto - questões de reprodutibilidade da análise de dados)
-O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.
+<!-- # (Atualizar o resumo para esse novo projeto - questões de reprodutibilidade da análise de dados)
+O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.) -->
 
 # Introdução
 
@@ -28,7 +28,7 @@ Com todos estes problemas ocasionados pelo uso incorreto de pesticidas, evidenci
 
 Uma outra alternativa aos agrotóxicos é a técnica de /mulching/, na qual consiste na cobertura do solo com algum material como folhas secas, jornal, TNT ou com o uso de lonas plásticas, as quais podem ser biodegradáveis ou não. O uso do mulching auxilia em múltiplos fatores durante o cultivo como o controle da umidade do solo, dos nutrientes, da temperatura do solo, de infestações de insetos e como uma barreira para o desenvolvimento de plantas invasoras (NETO, 2016), (CHIELLINI, 2002). Todos os fatores juntos promovem um crescimento das plantas mais rápido gerando maiores rendimentos e o produto é mais facilmente colido e limpo (CHIELLINI, 2002). Entretanto, esta técnica também apresenta suas desvantagens, como normalmente são utilizados mulchings plásticos, estes após um certo período começam e se rasgar e a se degradar em pequenos pedaços que permanecem dispersos no solo, assim perdendo sua utilidade. Este fato faz necessária a remoção do mulching, a qual pode ser difícil de ser realizada se este já estiver bastante degradado, e após a remoção ainda existirão os resíduos plásticos, que não são reciclados devido a presença de altas quantidades de terra e outros contaminantes como pesticidas (CHIELLINI, 2002).
 
-[//]: # vamos averiguar se podemos melhor gerenciar as referências bibliográficas
+<!-- # (vamos averiguar se podemos melhor gerenciar as referências bibliográficas) -->
 
 Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o biomulching com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de _Capsicum frutensis_ para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
 
@@ -36,7 +36,8 @@ Um ponto importante durante o desenvolvimento de um projeto de pesquisa é a cor
 
 Já para a parte de organização e descrição dos processos do projeto, Donald Knuth criou o conceito de _literal programing_ o qual é semelhante a um caderno de anotações digital. Com a programação literal são anotadas as informações sobre os procedimentos e o que acontece no projeto, escritas de uma forma esplicativa ao longo dos trechos com códigos, sendo a liguagem computacional com uma tradução para a linguagem humana. Assim torando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área. 
 
-[//]: # tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).
+
+<!-- # (tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).) -->
 
 # Métodos e materiais
 
@@ -45,7 +46,7 @@ posteriormente foram inseridos os dados e então analisádos juntamente com o co
 
 Segue um fluxograma do trabalho desenvolvido durante o projeto de pesquisa:
 
-![Fluxograma da metodologia]("Slide1.JPG")
+![Fluxograma da metodologia](Slide1.JPG)
 
 ## Teste em condições controladas da essência e do biomulching
 
@@ -120,7 +121,7 @@ Medição semanal da área com presença do biomulching.
 Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick (Rezende, 2007). As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
 As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de capacidade, pintadas internamente de amarelo. Em cada bandeja foi colocado 500 ml de água e 2 gotas de detergente, para quebrar a tensão superficial, foram cobertos por uma proteção de organza para evitar perda de material em caso de transbordamento e foram instaladas na altura do dossel das plantas. O controle foi feito a cada 3 dias sendo utilizadas duas armadilhas por canteiro.
 
-![Plantação teste]("P_20181222_201917.jpg")
+![Plantação teste](P_20181222_201917.jpg)
 
 ## Pré tratamento dos dados do projeto do biomulching
 
@@ -564,7 +565,7 @@ Os números de plantas invasoras determinados no solo sem cobertura e com cobert
 
 Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de plástico e bio-mulching durante o período de teste, nota-se que o plástico reduziu a infestação das plantas invasoras em 85% e o bio-mulching em 67%. O fato de o bio-mulching ter tido um desempenho inferior, deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra o gráfico anterior. O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
 
-[//] #esses valores em porcentagem foram obtidos por regra de três com o valor de controle como referência.
+<!-- # (esses valores em porcentagem foram obtidos por regra de três com o valor de controle como referência.) -->
 
 #### O biomulching apresenta um controle da umidade do solo semelhante ao mulching plástico?
 
@@ -589,7 +590,7 @@ df.umidade_solo%>%
 
 ### Desenvolvimento das plantas 
 
-[//]: #precisa separar melhor as perguntas de acordo com o que está sendo feito.
+<!-- # (precisa separar melhor as perguntas de acordo com o que está sendo feito.) -->
 
 Existe diferença no crescimento e rendimento na produção de couve? Se sim, quais os tratamentos mais significativos.
 Qual o rendimento médio de produção de massa comestível?
