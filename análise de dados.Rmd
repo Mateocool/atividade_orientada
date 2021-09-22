@@ -45,7 +45,7 @@ posteriormente foram inseridos os dados e então analisádos juntamente com o co
 
 Segue um fluxograma do trabalho desenvolvido durante o projeto de pesquisa:
 
-![Fluxograma da metodologia](""C:/Users/Mateus Colombo/Documents/BIOTEC/3º semestre/Atividade orientada I/Slide1.JPG")
+![Fluxograma da metodologia]("Slide1.JPG")
 
 ## Teste em condições controladas da essência e do biomulching
 
@@ -426,7 +426,6 @@ df.controlado %>%
   geom_point() +
   ylim(0, NA) +
   scale_y_continuous(breaks = seq(0, 2000, by = 20))
-
 
 
 ```
