@@ -3,16 +3,18 @@ title: Avaliação de biomulching com agregação de extrato de _Capsicum frutes
   cobertura de solo e agente de controle de pragas em _Brassica oleracea_
 author: "Mateus Colombo"
 output:
-  word_document: default
-  pdf_document: default
+  bookdown::html_document2:
+    fig_caption: yes
   html_document:
     df_print: paged
+  pdf_document: default
+  word_document: default
 ---
  
 **Resumo**
 
-<!-- # (Atualizar o resumo para esse novo projeto - questões de reprodutibilidade da análise de dados)
-O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.) -->
+<!-- # (Atualizar o resumo para esse novo projeto - questões de reprodutibilidade da análise de dados) -->
+O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.)
 
 # Introdução
 
@@ -413,7 +415,7 @@ A partir a obtenção, reorganização e ajustes e importação dos dados para o
 ## Resultado do teste em condições controladas
 
 
-```{r}
+```{r fig1}
 df.controlado %>%
   #filter(Tratamento == "C") %>%
   filter(`Tempo (h)` != 0) %>%
@@ -428,24 +430,46 @@ df.controlado %>%
   ylim(0, NA) +
   scale_y_continuous(breaks = seq(0, 2000, by = 20))
 
-
 ```
 
 ## Teste em plantação de couve
 
-### Pimenta como prevenção
+### Presença de pragas, outros insetos e inimigos naturais na plantação de couve
 
-A essência de pimenta por si só, auxilia no controle dos pulgões? E de moscas e lagartas?
+A essência de pimento por si só, auxilia no controle dos pulgões?
+O biomulching contribui para reduzir a população de pulgões? E de moscas e lagartas?
+O biomulching contribui para reduzir a população de outros insetos?
+O biomulching afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
 
-```{r grafico 1, echo=FALSE}
+```{r pulgões, echo=FALSE, fig.cap="Figura 1. Fonte o autor"}
+
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
-  ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
+  ggplot(aes(x = Dia, y = Quantidade, color = Prevenção)) +
   geom_line() +
   geom_point() +
   ylim(0, NA) +
-  geom_smooth()+
   ggtitle("Quantidade de pulgões capturados nas armadilhas nos diferentes tratamentos" )
+
+```
+
+Conforme observação da Figura \@ref(fig:pulgões), há uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões.
+
+```{r outros, echo=FALSE}
+df.armadilhas %>%
+  # Vamos filtrar observações com outros
+  filter(Agente %in% c("Outros")) %>%
+  ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
+  geom_line() +
+  geom_point() +
+  ylim(0, NA)+
+  ggtitle("Quantidade de outros insetos capturados nas armadilhas ao longo do tempo")
+
+```
+
+Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o biomulching contribui para a redução do número de outros insetos.
+
+```{r pimenta, echo=FALSE, fig.cap= "Figura 2"}
 
 df.armadilhas %>%
   # Vamos filtrar observações com a essência de pimenta
@@ -459,40 +483,24 @@ df.armadilhas %>%
   geom_smooth(method="lm")+
   ggtitle("Número de pulgões no canteiro de contraprova X pimenta")
 
-df.armadilhas %>%
-  # Vamos filtrar observações com as moscas
-  filter(Agente == "mosca") %>%
-  ggplot(aes(x = Prevenção, y = Quantidade))+
-  geom_bar(stat = "identity")+
-  ggtitle("Número total de moscas em cada canteiro")
+```
+
+Conforme evidencia a figura \@ref(fig:pimenta), não há diferença visivel em relação ao uso da essencia de pimenta para o combate de pulgões.
+
+```{r moscas, echo=FALSE, fig.cap= "Figura 3"}
 
 df.armadilhas %>%
-  # Vamos filtrar observações com as lagartas
-  filter(Agente == "lagarta") %>%
-  ggplot(aes(x = Prevenção, y = Quantidade))+
-  geom_bar(stat = "identity")+
-  ggtitle("Número total de lagartas em cada canteiro")
+  # Vamos filtrar observações com as moscas e lagartas
+  filter(Agente %in% c("mosca", "lagarta")) %>%
+  ggplot(aes(x = Prevenção, y = Quantidade, fill=Agente))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  ggtitle("Número total de lagartas e moscas em cada canteiro")
 
 ```
-Conforme evidencia o gráfico 2, não há diferença visivel em relação ao uso da essencia de pimenta para o combate de pulgões. Contudo veríficamos no gráfico 1 uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões. Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com biomulching, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
 
+Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com biomulching, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
 
-### Biomulching como controle de pragas
-
-O biomulching contribui para reduzir a população de pulgões? E de moscas e lagartas?
-O biomulching contribui para reduzir a população de outros insetos?
-O biomulching afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
-
-
-```{r grafico 2, echo=FALSE}
-df.armadilhas %>%
-  # Vamos filtrar observações com outros
-  filter(Agente %in% c("Outros")) %>%
-  ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
-  geom_line() +
-  geom_point() +
-  ylim(0, NA)+
-  ggtitle("Quantidade de outros insetos capturados nas armadilhas ao longo do tempo")
+```{r naturais, echo=FALSE}
 
 df.armadilhas %>%
   # Vamos filtrar observações com naturais
@@ -500,9 +508,9 @@ df.armadilhas %>%
   ggplot(aes(x = Prevenção, y = Quantidade)) +
   geom_bar(stat = "identity")+
   ggtitle("Quantidade total de inimigos naturais capturados nas armadilhas")
-
 ```
-Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o biomulching contribui para a redução do número de outros insetos. Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com biomulching foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
+
+Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com biomulching foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
 
 
 ### Eficiência dos tratamentos
@@ -521,17 +529,29 @@ Tr = tratamento
 
 Através da utilização da fórmula de Abbott foi calculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle.
 
-```{r grafico 3, eval=FALSE, include=FALSE}
-df.armadilhas
+```{r grafico 3}
+
+df.armadilhas %>%
+filter(Agente == "Pulgões") %>%
+#filter(Prevenção == "Pimenta") %>%
+group_by(Prevenção) %>%
+summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
+df.temp %>% filter(Prevenção != "Contraprova") %>%
+mutate(Contraprova = valor.contraprova) %>%
+mutate(E = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+arrange(-E)
 
 
 ```
+
+
 
 ### Biomulching como cobertura
 
 #### Quanto tempo leva para ser degradado?
 
-```{r grafico 4, echo=FALSE}
+```{r degradação, echo=FALSE, fig.cap= "fig X"}
 
 df.degradaçao %>%
   ggplot(aes(x = Dia, y = `Porcentagem de degradação`))+
@@ -540,10 +560,9 @@ df.degradaçao %>%
   geom_smooth(method="lm")+
   scale_y_continuous(breaks = seq(0, 1, by = 0.1))+
   ggtitle("Degradação do Biomulching ao longo do tempo")
-  
 
 ``` 
-Conforme vemos no gráfico, houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o biomulching degradado em mais de 80%. Posteriormente serão analizadas as possiveis influencias externas que produziram este resultado.
+Conforme vemos no gráfico \@ref(fig:degradação), houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o biomulching degradado em mais de 80%. Posteriormente serão analizadas as possiveis influencias externas que produziram este resultado.
 
 
 #### Quais os tratamentos que melhor impediram o crescimento das plantas invasoras?
