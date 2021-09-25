@@ -449,8 +449,33 @@ df.armadilhas %>%
   geom_line() +
   geom_point() +
   ylim(0, NA) +
-  ggtitle("Quantidade de pulgões capturados nas armadilhas nos diferentes tratamentos" )
+  ggtitle("Quantidade de pulgões capturados nas armadilhas nos diferentes tratamentos")
 
+```
+
+```{r}
+df.armadilhas %>%
+  filter(Agente == "Pulgões")->dados_pulgoes
+
+aov(Quantidade~Código, data= dados_pulgoes) -> pulgoes_anova
+
+summary(pulgoes_anova)
+
+TukeyHSD(pulgoes_anova)
+
+plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 2)
+```
+
+```{r}
+
+medias <- with(dados_pulgoes,tapply(Quantidade,Prevenção,mean)) 
+erro <- with(dados_pulgoes,tapply(Quantidade,Prevenção,function(x) sqrt(var(x)/length(x))))
+
+x <- barplot(medias,beside=T,ylim=c(0,25),ylab="Quantidade",xlab="Prevenção")
+       arrows(x0=x,y0=medias-erro,
+       x1=x,y1=medias+erro,
+       angle=90,length=0.14,code=3)
+       
 ```
 
 Conforme observação da Figura \@ref(fig:pulgões), há uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões.
@@ -464,6 +489,16 @@ df.armadilhas %>%
   geom_point() +
   ylim(0, NA)+
   ggtitle("Quantidade de outros insetos capturados nas armadilhas ao longo do tempo")
+
+```
+
+```{r}
+
+df.armadilhas %>%
+  # Vamos filtrar observações com outros
+  filter(Agente %in% c("Outros")) -> dados_outros
+  
+anova(lm(Quantidade~Prevenção, data = dados_outros))
 
 ```
 
