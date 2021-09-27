@@ -145,6 +145,7 @@ library(lubridate)
 library(tidyverse)
 library(readxl)
 library(lubridate)
+library(multcompView)
 
 #cria legenda dos tratamentos para o teste em plantação de couve.
 tribble (
@@ -264,7 +265,9 @@ read_xlsx("Dados Biomulching para análise.xlsx",
   mutate(`diferença (g)` = `massa umida (g)` - `massa final (g)`)%>%
   mutate(`água/100g` = (`diferença (g)`*100)/`massa umida (g)`)%>%
   mutate(`percentual corrigido` = ((`água/100g`*0.9778)-2.6095)*0.01)%>%
-  mutate(`percentual corrigido` = as.numeric(`percentual corrigido`))-> df.umidade_solo
+  mutate(`percentual corrigido` = as.numeric(`percentual corrigido`))%>%
+  rename(Código = Prevenção) %>%
+  left_join (df.legenda, by="Código")-> df.umidade_solo
 
 ```
 
@@ -428,9 +431,14 @@ df.controlado %>%
   geom_line() +
   geom_point() +
   ylim(0, NA) +
-  scale_y_continuous(breaks = seq(0, 2000, by = 20))
+  scale_y_continuous(breaks = seq(0, 2000, by = 20)) +
+  ggtitle("Número de pulgões vivos ao longo do tempo") +
+  ylab("Número de pulgões vivos")
 
 ```
+
+
+
 
 ## Teste em plantação de couve
 
@@ -457,14 +465,16 @@ df.armadilhas %>%
 df.armadilhas %>%
   filter(Agente == "Pulgões")->dados_pulgoes
 
-aov(Quantidade~Código, data= dados_pulgoes) -> pulgoes_anova
+aov(lm(Quantidade~Código, data= dados_pulgoes)) -> pulgoes_anova
 
 summary(pulgoes_anova)
 
-TukeyHSD(pulgoes_anova)
+TukeyHSD(pulgoes_anova) ->TUKEY
 
 plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 2)
 ```
+
+
 
 ```{r}
 
@@ -488,7 +498,8 @@ df.armadilhas %>%
   geom_line() +
   geom_point() +
   ylim(0, NA)+
-  ggtitle("Quantidade de outros insetos capturados nas armadilhas ao longo do tempo")
+  ggtitle("Quantidade de outros insetos capturados nas armadilhas ao longo do tempo") +
+  ylab("Número de outros insetos")
 
 ```
 
@@ -497,8 +508,14 @@ df.armadilhas %>%
 df.armadilhas %>%
   # Vamos filtrar observações com outros
   filter(Agente %in% c("Outros")) -> dados_outros
-  
-anova(lm(Quantidade~Prevenção, data = dados_outros))
+
+aov(Quantidade~Código, data= dados_outros) -> outros_anova
+
+summary(outros_anova)
+
+TukeyHSD(outros_anova)
+
+plot(TukeyHSD(outros_anova, conf.level=.95), las = 2)
 
 ```
 
@@ -529,7 +546,8 @@ df.armadilhas %>%
   filter(Agente %in% c("mosca", "lagarta")) %>%
   ggplot(aes(x = Prevenção, y = Quantidade, fill=Agente))+
   geom_bar(stat = "identity", width=.5, position = "dodge")+
-  ggtitle("Número total de lagartas e moscas em cada canteiro")
+  ggtitle("Número total de lagartas e moscas em cada canteiro")+
+  ylab("Quantidade de moscas e lagartas")
 
 ```
 
@@ -602,18 +620,18 @@ Conforme vemos no gráfico \@ref(fig:degradação), houve um pico de degradaçã
 
 #### Quais os tratamentos que melhor impediram o crescimento das plantas invasoras?
 
-```{r echo=FALSE}
-df.plantas_invasoras %>%
-  #mutate(`Nº de plantas invasora (0,25m²)` = ((Quantidade*0.25)/(0.5*2.5)))%>%
-  ggplot(aes(x = Dia, y = Quantidade, color = Prevenção))+
+```{r invasoras, echo=FALSE}
+df.plantas_invasoras%>%
+  filter(grepl("2019-03-11", Dia)) %>%
+  ggplot(aes(x = Prevenção, y = Quantidade, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
   geom_point()+
-  geom_line()+
-  scale_y_continuous(breaks = seq(0, 200, by = 20))+
-  ggtitle("Presença de plantas invasoras ao longo do tempo")
-
-
+  scale_y_continuous(breaks = seq(0, 100, by = 20))+
+  ggtitle("Número de plantas invasoras em cada canteiro")+
+  ylab("Quantidade de plantas invasoras em 1,25m²")
 
 ```
+
 
 Os números de plantas invasoras determinados no solo sem cobertura e com coberturas foram de uma maneira geral controlados significativamente pelo tipo de cobertura utilizado no cultivo da cultura. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
 
@@ -628,14 +646,20 @@ Comparando os números de plantas invasoras determinados no solo sem cobertura e
 
 
 ```{r echo=FALSE}
-
 df.umidade_solo%>%
-  ggplot(aes(x = Dia, y = `percentual corrigido`, color = Prevenção))+
-  geom_line()+
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Massa.Média = mean(`percentual corrigido`),
+            Massa.SD = sd(`percentual corrigido`),
+            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
   geom_point()+
-  ylim(0, NA)+
-  scale_y_continuous(breaks = seq(0, 0.4, by = 0.01))+
-  ggtitle("Percentual de umidade do solo ao longo do tempo")
+  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
+                    ymax = Massa.Média + Massa.SE), width = 0.2) +
+  ggtitle("Percentual médio de umidade do em cada canteiro")+
+  ylab("Percentual (%)")
+
   
 ```
 
@@ -656,36 +680,61 @@ Qual o tamanho máximo médio das folhas? *isso é bom ou ruim?*
 O biomulching estimula ou inibe o crescimento da couve?
 A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
 
-```{r echo=FALSE}
+
+```{r}
 df.dados_plantas%>%
-  #filter(Código == "G")%>%
   filter(Observação == "massa total (g)")%>%
-  ggplot(aes(x = Planta, y = Valor))+
-    geom_bar(stat = "identity")+
-  facet_wrap(.~Código)+
-  ggtitle("Massa total (g) de cada canteiro")
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Massa.Média = mean(Valor),
+            Massa.SD = sd(Valor),
+            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
+                    ymax = Massa.Média + Massa.SE), width = 0.2) +
+  ggtitle("Massa total média de cada canteiro")+
+  ylab("Massa (g)")
+
+```
+
+```{r}
+df.dados_plantas%>%
+  filter(Observação == "massa comestível (g)")%>%
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Massa.Média = mean(Valor),
+            Massa.SD = sd(Valor),
+            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
+                    ymax = Massa.Média + Massa.SE), width = 0.2) +
+  ggtitle("Massa comestível média de cada canteiro")+
+  ylab("Massa (g)")
 ```
 
 
-Vamos averiguar a questão do tamanho médio
 
 ```{r echo=FALSE}
 df.dados_plantas%>%
     print %>%
   filter(grepl("tamanho", Observação)) %>%
-  group_by(Código) %>%
+  group_by(Prevenção) %>%
   summarize(N=n(),
-            Altura.Média = mean(Valor),
-            Altura.SD = sd(Valor),
-            Altura.SE = 3 * Altura.SD / sqrt(N)) %>%
-  ggplot(aes(x = Código, y = Altura.Média)) +
+            Tamanho.Média = mean(Valor),
+            Tamanho.SD = sd(Valor),
+            Tamanho.SE = 3 * Tamanho.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Tamanho.Média)) +
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
   geom_point() +
-  geom_errorbar(aes(ymin = Altura.Média - Altura.SE,
-                    ymax = Altura.Média + Altura.SE), width = 0.2) +
+  geom_errorbar(aes(ymin = Tamanho.Média - Tamanho.SE,
+                    ymax = Tamanho.Média + Tamanho.SE), width = 0.2) +
   ylim(0, NA) +
-  ylab("Altura Média [cm]") +
-  xlab("Identificador do Canteiro") +
-    ggtitle("Tamanho médio das folhas de couve em cada canteiro")
+  ylab("Tamanho Médio (cm)") +
+  ggtitle("Tamanho médio das folhas de couve em cada canteiro")
 
 ```
 
@@ -693,17 +742,38 @@ O gráfico indica que não há diferença estatística no tamanho das cauves ent
 
 ```{r teste t}
 df.dados_plantas%>%
-  #filter(Código == "G")%>%
-    print %>%
-  filter(grepl("tamanho", Observação)) %>%
-  filter(Código %in% c("G", "T")) %>%
-  select(Código, Valor) %>%
-  pivot_wider(names_from="Código", values_from = "Valor") -> dados
+  filter(grepl("tamanho", Observação)) -> dados_tamanho
 
-t.test(dados$G[[1]], dados$T[[1]])
+aov(Valor~Prevenção, data= dados_tamanho) -> tamanho_anova
 
+summary(tamanho_anova)
+
+TukeyHSD(tamanho_anova)
+
+plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 2)
 
 ```
+
+
+```{r}
+df.dados_plantas%>%
+  filter(Observação == "altura")%>%
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Altura.Média = mean(Valor),
+            Altura.SD = sd(Valor),
+            Altura.SE = 3 * Altura.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Altura.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  geom_errorbar(aes(ymin = Altura.Média - Altura.SE,
+                    ymax = Altura.Média + Altura.SE), width = 0.2) +
+  ggtitle("Altura média das couves em cada canteiro")+
+  ylab("Altura (cm)")
+```
+
+
+
 
 
 
