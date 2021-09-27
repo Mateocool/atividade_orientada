@@ -3,10 +3,10 @@ title: Avaliação de biomulching com agregação de extrato de _Capsicum frutes
   cobertura de solo e agente de controle de pragas em _Brassica oleracea_
 author: "Mateus Colombo"
 output:
-  bookdown::html_document2:
-    fig_caption: yes
   html_document:
     df_print: paged
+  bookdown::html_document2:
+    fig_caption: yes
   pdf_document: default
   word_document: default
 ---
@@ -417,10 +417,11 @@ A partir a obtenção, reorganização e ajustes e importação dos dados para o
 
 ## Resultado do teste em condições controladas
 
+Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas. Ficando com uma coloração amarelada e murcha.
+Também se verificou que nas amostras de controle e do tratamento com o biomulching ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões nas amostras conforme evidencia a figura abaixo (figura 1):
 
-```{r fig1}
+```{r lab, echo=FALSE, fig.cap="Figura 1. Fonte o autor, Porto Algre - RS, 2021"}
 df.controlado %>%
-  #filter(Tratamento == "C") %>%
   filter(`Tempo (h)` != 0) %>%
   pivot_wider(names_from="Estado", values_from="Quantidade") %>%
   print %>%
@@ -430,15 +431,28 @@ df.controlado %>%
   ggplot(aes(x=`Tempo (h)`, y = crescimento, color=Tratamento))+
   geom_line() +
   geom_point() +
-  ylim(0, NA) +
   scale_y_continuous(breaks = seq(0, 2000, by = 20)) +
   ggtitle("Número de pulgões vivos ao longo do tempo") +
   ylab("Número de pulgões vivos")
-
 ```
+Quanto ao tratamento com o biomulching, este não teve resultado semelhante quando comparados aos tratamentos com a essência de pimenta e icaridina. O que pode-se relacionar ao fato de o biomulching não ter se degradado completamente, ou a outros fatores ainda desconhecidos. Contudo mostra certa redução do número de pulgões quando comparado com as amostras de controle.
 
+Também se verificou a eficiência de cada método através da fórmula de Abbott, sendo os resultados apresentados na tabela abaixo:
 
+E % = ((T-Tr)/T)*100
+onde:
+T = testemunha*
+Tr = tratamento
 
+*Sabendo que a soma dos controles é de 245, e a média é igual a 122,5.
+
+```{r echo=FALSE}
+df.controlado %>%
+  filter(`Tempo (h)` == "116") %>%
+  filter(Estado %in% c("vivos")) %>%
+  filter(Tratamento %in% c("Biomulching", "Icaridina", "Essência de Pimenta")) %>%
+  mutate("Eficiência (%)" = round((122.5 - Quantidade)/122.5*100, 0))
+```
 
 ## Teste em plantação de couve
 
@@ -604,7 +618,7 @@ arrange(-E)
 
 #### Quanto tempo leva para ser degradado?
 
-```{r degradação, echo=FALSE, fig.cap= "fig X"}
+```{r degradabilidade, echo=FALSE, fig.cap= "fig X"}
 
 df.degradaçao %>%
   ggplot(aes(x = Dia, y = `Porcentagem de degradação`))+
@@ -620,7 +634,7 @@ Conforme vemos no gráfico \@ref(fig:degradação), houve um pico de degradaçã
 
 #### Quais os tratamentos que melhor impediram o crescimento das plantas invasoras?
 
-```{r invasoras, echo=FALSE}
+```{r pestes, echo=FALSE}
 df.plantas_invasoras%>%
   filter(grepl("2019-03-11", Dia)) %>%
   ggplot(aes(x = Prevenção, y = Quantidade, fill = Prevenção))+
