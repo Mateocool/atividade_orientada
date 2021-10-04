@@ -13,10 +13,20 @@ output:
  
 **Resumo**
 
-<!-- # (Atualizar o resumo para esse novo projeto - questões de reprodutibilidade da análise de dados) -->
-O presente projeto foi desenvolvido com o objetivo de amenizar os problemas provocados ao meio ambiente e à saúde das pessoas causados pelo uso de defensivos agrícolas, os agrotóxicos, em plantações, criando um método de controle de pragas. A ideia incide na criação de um mulching para cobertura do solo, biodegradável, agregando extratos naturais de plantas como a pimenta, o alho, o alecrim e a sálvia, que apresentam em suas essências e óleos essências compostos com atividade repelente e inseticida. Este biomulching ao se decompor libera estas substâncias, inibindo a aproximação de insetos. Por meio de testes foi comprovada a ação inseticida das plantas, sendo que a essência de pimenta foi a que apresentou melhores resultados. Quanto aos protótipos, a substituição do amido, convencionalmente usado no preparo de bioplásticos, por cascas de laranja, apresentou maior vida útil e por meio destes obtiveram-se indícios do possível efeito inseticida/repelente sobre pulgões. Dentre os pontos positivos, temos há ressaltar: a facilidade da sua aplicação, os benefícios para as plantas obtidos com o uso do biomulching e os menores impactos ao meio ambiente e à saúde das pessoas.)
+O presente projeto foi desenvolvido com o objetivo de avaliar um novo método de controle de pragas, o biomulching. Este consiste em uma cobertura para solo produzida a base de casca de laranja, com a agregação de extratos de pimenta malagueta _Capsicum frutensis_, o qual apresenta em sua essência compostos com atividade repelente e inseticida. Por meio de testes foi verificada a eficiência da essência de pimenta e do biomulching contra pragas em couve, _Brassica oleracea_, em comparação com outros tratamentos e mulchings de coberturas de solo, tanto em condições de laboratório como em condições de campo. Os dados obtidos foram analisados seguindo o conceito de literal programming e utilizando pacotes da linguagem R no software Rstudio com o intuito de melhorar a reprodutibilidade da análise. O biomulching obteve um resultado semelhante a outros tipos de mulching quanto a sua função como cobertura de solo, entretanto não é possível afirmar se existem benefícios em relação ao combate de insetos por meio da agregação de essência de pimenta malagueta. Todavia, o projeto contribui para a construção de uma agricultura mais sustentável diminuindo os impactos ao meio ambiente e a saúde humana.
 
 # Introdução
+
+Com a preocupação cada vez maior por uma alimentação saudável e segura por parte da sociedade, o presente projeto avalia um possível novo método de proteger as plantas, diante do problema do uso indiscriminado de agrotóxicos em plantações, os quais se mal manuseados e aplicados excessivamente podem trazer inúmeros prejuízos à saúde humana e ao meio ambiente.
+
+Dentre os malefícios destes, ao meio ambiente pode-se citar a contaminação do solo, água, ar, diminuição da biodiversidade, pragas resistentes, entre outros, além de tamanhos prejuízos à saúde, como intoxicação, câncer e diversas outras doenças causadas pela longa exposição a estas substâncias (**referencia!**).
+
+Visando diminuir o uso de agrotóxicos e contribuir para uma agricultura mais sustentável e segura, o projeto busca validar a técnica do biomulching com agregação de extratos de _Capsicumm Frutensis_ para o combate de pragas das _Brassicas_, especificamente, pulgões, lagartas e moscas brancas em couves. Esta técnica se baseia na união de outras duas, a de mulching ou cobertura de solo e de bioinseticida.
+ 
+O uso de lonas para cobertura do solo é uma técnica bastante empregada atualmente, principalmente no cultivo de hortigranjeiros e na produção agroecológica pois seu uso traz benefícios como o controle da umidade e da temperatura do solo e impede o crescimento de plantas daninhas (**referencia!**). As essências de algumas plantas são usadas desde muitos séculos como defensivo agrícola e, atualmente, também como uma alternativa aos agrotóxicos comuns, sendo possível atingir as pragas sem trazer grandes danos às outras espécies presentes na natureza (**referencia!**). Em alguns casos, com a mesma eficiência dos agrotóxicos comuns, assim sendo mais seguro para o meio ambiente e a saúde humana. 
+
+A utilização de ferramentas computacionais durante o processo de pesquisa reduz os possíveis erros de manipulação de dados e contribui com a reprodutibilidade da metodologia empregada, assim aumentando a confiança nos resultados e conclusões obtidas através dos experimentos. Ademais, outra técnica a qual pode auxiliar durante o uso de tais ferramentas é a de _literal programming_, onde descrevemos o que está sendo feito juntamente com os código e algoritmos que executam funções com os dados (**referencia!**). Isso permite um maior detalhamento da metodologia e controle das variáveis, o que também contribui para aumentar o nível de confiança numa pesquisa.
+
 
 ## Justificativa/Problema
 
@@ -36,8 +46,7 @@ Visando instigar o desenvolvimento de novos métodos de controle de pragas na ag
 
 Um ponto importante durante o desenvolvimento de um projeto de pesquisa é a correta análise dos dados obtidos e descrição dos processos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes manualmente, o que poderia acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final poderiam consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo.Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos é a utilização de softwares e outros programas de análise tais como o Rstudio.
 
-Já para a parte de organização e descrição dos processos do projeto, Donald Knuth criou o conceito de _literal programing_ o qual é semelhante a um caderno de anotações digital. Com a programação literal são anotadas as informações sobre os procedimentos e o que acontece no projeto, escritas de uma forma esplicativa ao longo dos trechos com códigos, sendo a liguagem computacional com uma tradução para a linguagem humana. Assim torando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área. 
-
+Já para a parte de organização e descrição dos processos do projeto, Donald Knuth criou o conceito de _literal programing_ o qual é semelhante a um caderno de anotações digital. Com a programação literal são anotadas as informações sobre os procedimentos e o que acontece no projeto, escritas de uma forma esplicativa ao longo dos trechos com códigos, sendo a liguagem computacional com uma tradução para a linguagem humana. Assim torando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área (**referencia!**). 
 
 <!-- # (tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).) -->
 
@@ -48,7 +57,7 @@ posteriormente foram inseridos os dados e então analisádos juntamente com o co
 
 Segue um fluxograma do trabalho desenvolvido durante o projeto de pesquisa:
 
-![Fluxograma da metodologia](Slide1.JPG)
+![Fluxograma da metodologia](Slide2.JPG)
 
 ## Teste em condições controladas da essência e do biomulching
 
@@ -418,7 +427,7 @@ A partir a obtenção, reorganização e ajustes e importação dos dados para o
 ## Resultado do teste em condições controladas
 
 Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas. Ficando com uma coloração amarelada e murcha.
-Também se verificou que nas amostras de controle e do tratamento com o biomulching ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões nas amostras conforme evidencia a figura abaixo (figura 1):
+Também se verificou que nas amostras de controle e do tratamento com o biomulching ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões nas amostras conforme evidencia a figura abaixo (Figura 1):
 
 ```{r lab, echo=FALSE, fig.cap="Figura 1. Fonte o autor, Porto Algre - RS, 2021"}
 df.controlado %>%
@@ -450,6 +459,13 @@ Tr = tratamento
 df.controlado %>%
   filter(`Tempo (h)` == "116") %>%
   filter(Estado %in% c("vivos")) %>%
+  filter(grepl("Contraprova", Tratamento)) %>%
+  pull(Quantidade) %>% mean %>% print -> media_contraprova
+
+
+df.controlado %>%
+  filter(`Tempo (h)` == "116") %>%
+  filter(Estado %in% c("vivos")) %>%
   filter(Tratamento %in% c("Biomulching", "Icaridina", "Essência de Pimenta")) %>%
   mutate("Eficiência (%)" = round((122.5 - Quantidade)/122.5*100, 0))
 ```
@@ -463,7 +479,7 @@ O biomulching contribui para reduzir a população de pulgões? E de moscas e la
 O biomulching contribui para reduzir a população de outros insetos?
 O biomulching afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
 
-```{r pulgões, echo=FALSE, fig.cap="Figura 1. Fonte o autor"}
+```{r pulgões, echo=FALSE, fig.cap="Figura 2. Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
@@ -475,7 +491,7 @@ df.armadilhas %>%
 
 ```
 
-```{r}
+```{r pulgoes_anova, echo=FALSE, fig.cap="Figura 3. Fonte o autor, Porto Algre - RS, 2021"}
 df.armadilhas %>%
   filter(Agente == "Pulgões")->dados_pulgoes
 
@@ -483,14 +499,12 @@ aov(lm(Quantidade~Código, data= dados_pulgoes)) -> pulgoes_anova
 
 summary(pulgoes_anova)
 
-TukeyHSD(pulgoes_anova) ->TUKEY
+TukeyHSD(pulgoes_anova)
 
 plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 2)
 ```
 
-
-
-```{r}
+```{r, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Algre - RS, 2021"}
 
 medias <- with(dados_pulgoes,tapply(Quantidade,Prevenção,mean)) 
 erro <- with(dados_pulgoes,tapply(Quantidade,Prevenção,function(x) sqrt(var(x)/length(x))))
@@ -504,7 +518,7 @@ x <- barplot(medias,beside=T,ylim=c(0,25),ylab="Quantidade",xlab="Prevenção")
 
 Conforme observação da Figura \@ref(fig:pulgões), há uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões.
 
-```{r outros, echo=FALSE}
+```{r outros, echo=FALSE, fig.cap="Figura 5. Fonte o autor, Porto Algre - RS, 2021"}
 df.armadilhas %>%
   # Vamos filtrar observações com outros
   filter(Agente %in% c("Outros")) %>%
@@ -517,7 +531,7 @@ df.armadilhas %>%
 
 ```
 
-```{r}
+```{r, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
   # Vamos filtrar observações com outros
@@ -535,7 +549,7 @@ plot(TukeyHSD(outros_anova, conf.level=.95), las = 2)
 
 Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o biomulching contribui para a redução do número de outros insetos.
 
-```{r pimenta, echo=FALSE, fig.cap= "Figura 2"}
+```{r pimenta, echo=FALSE, fig.cap="Figura 7. Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
   # Vamos filtrar observações com a essência de pimenta
@@ -892,4 +906,13 @@ git remote add origin https://github.com/Mateocool/nome do repositório git //cr
 git remote -v // confere os repositórios criados
 git push -u origin master // puxa o arquivo mestre para a nuvem (colocar credenciais da conta)
 git push // puxa o arquivo para o repositório na nuvem (atualiza na nuvem)
+
+
+
+
+
+
+
+
+
 
