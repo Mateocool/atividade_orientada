@@ -1,5 +1,5 @@
 ---
-title: Avaliação de biomulching com agregação de extrato de _Capsicum frutescens_ como
+title: Avaliação de _biomulching_ com agregação de extrato de _Capsicum frutescens_ como
   cobertura de solo e agente de controle de pragas em _Brassica oleracea_
 author: "Mateus Colombo"
 output:
@@ -11,9 +11,16 @@ output:
   word_document: default
 ---
  
-**Resumo**
+ 
+**Resumo:** O presente projeto foi desenvolvido com o objetivo de avaliar um novo método de controle de pragas, o _biomulching_. Este método consiste em uma cobertura para solo produzida a base de casca de laranja, com a agregação de extratos de pimenta malagueta _Capsicum frutensis_, o qual apresenta em sua essência compostos com atividade repelente e inseticida. Por meio de testes foi verificada a eficiência da essência de pimenta e do _biomulching_ contra pragas em couve, _Brassica oleracea_, em comparação com outros tratamentos e mulchings de coberturas de solo, tanto em condições de laboratório como em condições de campo. Os dados obtidos foram analisados seguindo o conceito de literal programming e utilizando pacotes da linguagem R no software Rstudio com o intuito de melhorar a reprodutibilidade da análise. O _biomulching_ obteve um resultado semelhante a outros tipos de mulching quanto a sua função como cobertura de solo, entretanto não é possível afirmar se existem benefícios em relação ao combate de insetos por meio da agregação de essência de pimenta malagueta. Todavia, o projeto contribui para a construção de uma agricultura mais sustentável diminuindo os impactos ao meio ambiente e a saúde humana.
 
-O presente projeto foi desenvolvido com o objetivo de avaliar um novo método de controle de pragas, o biomulching. Este consiste em uma cobertura para solo produzida a base de casca de laranja, com a agregação de extratos de pimenta malagueta _Capsicum frutensis_, o qual apresenta em sua essência compostos com atividade repelente e inseticida. Por meio de testes foi verificada a eficiência da essência de pimenta e do biomulching contra pragas em couve, _Brassica oleracea_, em comparação com outros tratamentos e mulchings de coberturas de solo, tanto em condições de laboratório como em condições de campo. Os dados obtidos foram analisados seguindo o conceito de literal programming e utilizando pacotes da linguagem R no software Rstudio com o intuito de melhorar a reprodutibilidade da análise. O biomulching obteve um resultado semelhante a outros tipos de mulching quanto a sua função como cobertura de solo, entretanto não é possível afirmar se existem benefícios em relação ao combate de insetos por meio da agregação de essência de pimenta malagueta. Todavia, o projeto contribui para a construção de uma agricultura mais sustentável diminuindo os impactos ao meio ambiente e a saúde humana.
+**Palavras-chave:** Agrotóxico. _Biomulching_. Inseticida natural. Cobertura para o solo.
+
+
+_**Abstract:** The present project was developed with the aim of evaluating a new pest control method, the biomulching. This method consists of a ground cover produced from orange peel, with the addition of extracts of chilli pepper Capsicum frutensis, which has in its essence compounds with repellent and insecticidal activity. Tests were made to verify the efficiency of pepper essence and biomulching against cabbage pests, Brassica oleracea, in comparison with other treatments and mulchings of soil covers, both in laboratory and field conditions. The data obtained were analyzed following the concept of literal programming and using R language packages in the Rstudio software in order to improve the reproducibility of the analysis. The biomulching obtained a similar result to other types of mulching regarding its function as a ground covering, however it is not possible to affirm whether there are benefits in relation to the combat of insects through the aggregation of chili pepper essence. However, the project contributes to the construction of a more sustainable agriculture, reducing impacts on the environment and human health._
+
+_**Keywords:** Pesticide. Biomulching. Natural insecticide. Ground cover._
+
 
 # Introdução
 
@@ -21,7 +28,7 @@ Com a preocupação cada vez maior por uma alimentação saudável e segura por 
 
 Dentre os malefícios destes, ao meio ambiente pode-se citar a contaminação do solo, água, ar, diminuição da biodiversidade, pragas resistentes, entre outros, além de tamanhos prejuízos à saúde, como intoxicação, câncer e diversas outras doenças causadas pela longa exposição a estas substâncias (**referencia!**).
 
-Visando diminuir o uso de agrotóxicos e contribuir para uma agricultura mais sustentável e segura, o projeto busca validar a técnica do biomulching com agregação de extratos de _Capsicumm Frutensis_ para o combate de pragas das _Brassicas_, especificamente, pulgões, lagartas e moscas brancas em couves. Esta técnica se baseia na união de outras duas, a de mulching ou cobertura de solo e de bioinseticida.
+Visando diminuir o uso de agrotóxicos e contribuir para uma agricultura mais sustentável e segura, o projeto busca validar a técnica do _biomulching_ com agregação de extratos de _Capsicumm Frutensis_ para o combate de pragas das _Brassicas_, especificamente, pulgões, lagartas e moscas brancas em couves. Esta técnica se baseia na união de outras duas, a de mulching ou cobertura de solo e de bioinseticida.
  
 O uso de lonas para cobertura do solo é uma técnica bastante empregada atualmente, principalmente no cultivo de hortigranjeiros e na produção agroecológica pois seu uso traz benefícios como o controle da umidade e da temperatura do solo e impede o crescimento de plantas daninhas (**referencia!**). As essências de algumas plantas são usadas desde muitos séculos como defensivo agrícola e, atualmente, também como uma alternativa aos agrotóxicos comuns, sendo possível atingir as pragas sem trazer grandes danos às outras espécies presentes na natureza (**referencia!**). Em alguns casos, com a mesma eficiência dos agrotóxicos comuns, assim sendo mais seguro para o meio ambiente e a saúde humana. 
 
@@ -42,7 +49,7 @@ Uma outra alternativa aos agrotóxicos é a técnica de /mulching/, na qual cons
 
 <!-- # (vamos averiguar se podemos melhor gerenciar as referências bibliográficas) -->
 
-Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o biomulching com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de _Capsicum frutensis_ para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
+Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o _biomulching_ com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de _Capsicum frutensis_ para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
 
 Um ponto importante durante o desenvolvimento de um projeto de pesquisa é a correta análise dos dados obtidos e descrição dos processos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes manualmente, o que poderia acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final poderiam consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo.Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos é a utilização de softwares e outros programas de análise tais como o Rstudio.
 
@@ -52,14 +59,14 @@ Já para a parte de organização e descrição dos processos do projeto, Donald
 
 # Métodos e materiais
 
-No presente projeto em principio foram reorganizados os dados do projeto original para facilitar a sua manipulação através do software. Os dados brutos foram obtidos através de testes e controle de armadilhas e variáveis em teste em campo do biomulching e também de um teste realizado em condições de laboratório para verificar como o principio ativo do biomulching, a essencia de pimenta, poderia se comportar em um teste com menos controle das variáveis como no caso do teste em condições de campo. 
+No presente projeto em principio foram reorganizados os dados do projeto original para facilitar a sua manipulação através do software. Os dados brutos foram obtidos através de testes e controle de armadilhas e variáveis em teste em campo do _biomulching_ e também de um teste realizado em condições de laboratório para verificar como o principio ativo do _biomulching_, a essencia de pimenta, poderia se comportar em um teste com menos controle das variáveis como no caso do teste em condições de campo. 
 posteriormente foram inseridos os dados e então analisádos juntamente com o conceito de _literal programing_. Para a parte dos resultados foram gerados gráficos e análises estatisticas conforme cada caso. 
 
 Segue um fluxograma do trabalho desenvolvido durante o projeto de pesquisa:
 
 ![Fluxograma da metodologia](Slide2.JPG)
 
-## Teste em condições controladas da essência e do biomulching
+## Teste em condições controladas da essência e do _biomulching_
 
 O seguinte teste foi baseado na metodologia de Santos e Silva, 2015.
 
@@ -82,19 +89,23 @@ Foram colocadas em cada vidro um papel toalha no fundo, juntamente com folhas de
 
 Manteve-se a temperatura em torno de 25°C, com observações nos intervalos de 30min, 1h, 2h, 12h, 24h, 48h e 116h, após o início do teste.
 
-## Teste do biomulching em plantação de couve
+## Teste do _biomulching_ em plantação de couve
 
 Primeiramente o solo foi preparado com um mês de antecedência do início do teste, sendo feita a retirada de plantas invasoras, a aeração e aração do solo, com cerca de 20cm de profundidade. Após o solo foi adubado com cinzas, restos de alimentos, cal e esterco. Então foram dispostos cinco canteiros de aproximadamente 0,5m X 2,5m, totalizando cerca de 15m², nos quais foram plantados cinco pés de couve (_Brassica oleracea_) no espaçamento de 50cm X 1m em cada canteiro. Foram plantadas 25 mudas de couve, as quais haviam sido cultivadas a partir de ramos de outras plantas. 
 
 Legenda:
 
-G = Canteiro com Biomulching
+G = Canteiro com _biomulching_
+
 T = Canteiro de contraprova
+
 P = Canteiro com aplicação de essência de pimenta
+
 S = Canteiro com lona plástica amarela
+
 X = Canteiro com lona plástica preta
 
-Para a cobertura do canteiro com o biomulching, foram utilizados  pedaços pequenos do protótipo de biomulching produzido a base de casa de laranja e outros componentes com a agregação de extrato de pimenta malagueta (_Capsicum frutencis_), totalizando a área de 1m². Depois de produzidos foram armazenados em sacos plásticos até o momento de aplicação na plantação, quando foram dispostos sobre o solo um ao lado de outro, entre as couves, formando a área de cobertura de 1m². Também foram dispostas as coberturas de mulching amarelo e preto sobre os canteiros S e X, respectivamente.
+Para a cobertura do canteiro com o _biomulching_, foram utilizados  pedaços pequenos do protótipo de _biomulching_ produzido a base de casa de laranja e outros componentes com a agregação de extrato de pimenta malagueta (_Capsicum frutencis_), totalizando a área de 1m². Depois de produzidos foram armazenados em sacos plásticos até o momento de aplicação na plantação, quando foram dispostos sobre o solo um ao lado de outro, entre as couves, formando a área de cobertura de 1m². Também foram dispostas as coberturas de mulching amarelo e preto sobre os canteiros S e X, respectivamente.
 O controle deste teste foi realizado do dia 17 de dezembro de 2018 até o dia 11 de março de 2019, totalizando o período de 84 dias.
 
 O controle do experimento foi baseado no trabalho de (NETO, 2016)., sendo feitas algumas alterações conforme a disponibilidade dos equipamentos presentes no laboratório e a praticidade durante o experimento em campo.
@@ -126,7 +137,7 @@ Aferição da massa total (caule e folhas) e consumível (folhas saudáveis) das
 Medição de altura nas semanas, 9, 11 e 12, além disso foi aferido o tamanho máximo médio das folhas ao final experimento.
 
 - Degradação do bio-mulching: 
-Medição semanal da área com presença do biomulching.
+Medição semanal da área com presença do _biomulching_.
 
 - Quantidade de pulgões alados , outros insetos e inimigos naturais:
 Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick (Rezende, 2007). As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
@@ -134,9 +145,9 @@ As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de cap
 
 ![Plantação teste](P_20181222_201917.jpg)
 
-## Pré tratamento dos dados do projeto do biomulching
+## Pré tratamento dos dados do projeto do _biomulching_
 
-Nesta etapa os dados coletados do projeto de desenvolvimento do biomulching, os quais estavam em tabelas no formato xlsx, foram organizados com o objetivo de facilidar a leitura das tabela pelo programa Rstudio. Para tanto, criaram-se novas tabelas organizando os dados em colunas continuas e com cada célula corespondendo a uma unica observação. Removeran-se informações referentes a plotagem de gráficos e outras não pertinentes aos dados brutos. Mantiveram-se a separação dos dados entre as pastas já existentes no arquivo.
+Nesta etapa os dados coletados do projeto de desenvolvimento do _biomulching_, os quais estavam em tabelas no formato xlsx, foram organizados com o objetivo de facilidar a leitura das tabela pelo programa Rstudio. Para tanto, criaram-se novas tabelas organizando os dados em colunas continuas e com cada célula corespondendo a uma unica observação. Removeran-se informações referentes a plotagem de gráficos e outras não pertinentes aos dados brutos. Mantiveram-se a separação dos dados entre as pastas já existentes no arquivo.
 
 
 ## Importação e organização dos dados para o Rstudio
@@ -145,21 +156,20 @@ Para transferir os dados para o Rstudio utilizou-se o comando "read_xlsx" do pac
 
  Foram utilizados os seguintes pacotes de linguagem R para a importação e organização dos dados: 
 
-library(tidyverse)
-library(readxl)
-library(lubridate)
+library(tidyverse);
+library(readxl);
+library(lubridate).
 
 ```{r pacotes, include=FALSE}
 #carrega os pacotes necessários.
 library(tidyverse)
 library(readxl)
 library(lubridate)
-library(multcompView)
 
 #cria legenda dos tratamentos para o teste em plantação de couve.
 tribble (
   ~Código, ~Prevenção,
-  "G", "Biomulching",
+  "G", "_biomulching_",
   "T", "Contraprova",
   "P", "Pimenta",
   "S", "Lona Amarela",
@@ -167,7 +177,7 @@ tribble (
 
 ```
 
-### Presença de outros agentes prejudiciais
+### Presença de insetos na plantação de couve
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.armadilhas":
  
@@ -179,14 +189,20 @@ tribble (
 
  -Presença de outros agentes prejudiciais:
  Os dados correspondem a contagem de moscas e lagartas encotrados nas couves durante o periodo de 30 dias, um mês. A data de inicio da contagem foi o dia de inicio do experimento, a primeira contagem sendo realizada no 30º dia 16/01/2019), a segunda no 60º dia (15/02/2019) e o ultio no 83º dia (10/03/2019). Os dados obtidos eram sempre atualizados ao final dos 30 dias pois o número desses insetos era pequeno.
-
-
+ 
+  
+ Para a realização desta etapa primeiramente foram criadas as variáveis de semana e dia para adicionar aos dados das armadilhas. Também foi criada uma referência para os dias nos quais ocorreu a atualização da presença de outros agentes perjudiciais.
+ Então os dados correspondentes às moscas e lagartas foram inseridos, agregaram-se os valores de dia e mês, retirou-se a coluna do mês e adicionou-se a legenda para os códigos de cada prevenção.
+ Posteriormente foram inseridos os dados obtidos por meio das armadilhas, onde estavam os valores de pulgões, outros insetos e inimigos naturais. Juntaram-se todos os dados em um unico conjunto de dados e modificou-se a organização das colunas das prevenções para ocuparem apenas uma coluna. Removeram-se as referências sem valores e a coluna das semanas. Então foi adicionada a legenda para os diferentes códigos das prevenções e finalmente adicionou-se os valores de moscas e lagartas para formar apenas um conjunto de dados com todos os agentes.
+ 
 ```{r pragas, include=FALSE}
-read_xlsx("Dados Biomulching para análise.xlsx", 
+
+
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet="armadilhas", 
           range="A3:A26") -> df.semana
 
-read_xlsx("Dados Biomulching para análise.xlsx", 
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet="armadilhas", 
           range = "Q3:Q26") -> df.dia
 
@@ -195,7 +211,10 @@ tribble (~mês, ~Dia,
          "2", "2019-02-15",
          "3", "2019-03-11",) -> df.dia.mês
 
-read_xlsx("Dados Biomulching para análise.xlsx", 
+
+
+
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "plantas", 
           range = "A2:D17") %>%
   rename(Prevenção = `Canteiro`)%>%
@@ -210,19 +229,19 @@ read_xlsx("Dados Biomulching para análise.xlsx",
   left_join(df.legenda, by="Código")-> df.prejudiciais
 
 bind_rows( 
-    read_xlsx("Dados Biomulching para análise.xlsx", 
+    read_xlsx("Dados biomulching para análise.xlsx", 
               sheet = "armadilhas", 
               range = "B3:F26") %>% 
      mutate(Agente = "Pulgões") %>%
      bind_cols(df.semana, df.dia),
              
-    read_xlsx("Dados Biomulching para análise.xlsx", 
+    read_xlsx("Dados biomulching para análise.xlsx", 
               sheet = "armadilhas", 
               range = "G3:K26") %>%
       mutate(Agente = "Outros") %>%
       bind_cols(df.semana, df.dia),
     
-    read_xlsx("Dados Biomulching para análise.xlsx",
+    read_xlsx("Dados biomulching para análise.xlsx",
               sheet = "armadilhas", 
               range = "L3:P26") %>%
       mutate(Agente = "Naturais") %>%
@@ -259,16 +278,16 @@ bind_rows(
 
 ```{r clima, include=FALSE}
 
-read_xlsx("Dados Biomulching para análise.xlsx", 
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "umidade", 
           range = "I2:J87") %>%
   rename(umidade = `unidade`)%>%
   bind_cols(
-    read_xlsx("Dados Biomulching para análise.xlsx", 
+    read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "temperatura", 
           range = "B2:B87")) -> df.clima
 
-read_xlsx("Dados Biomulching para análise.xlsx", 
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "umidade", 
           range = "A2:D108")%>%
   mutate(`diferença (g)` = `massa umida (g)` - `massa final (g)`)%>%
@@ -285,7 +304,7 @@ read_xlsx("Dados Biomulching para análise.xlsx",
  Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.plantas_invasoras":
  
  -Número de plantas invasoras presentes em cada canteiros ao longo do período experimental:
- Foi criada uma tibble para adicionar os dias em que foram realizadas as medições a cada semana. 
+ Foi criada uma tibble para adicionar os dias em que foram realizadas as medições a cada semana. Adicionou-se a legenda dos diferentes tratamentos e removeu-se a coluna da semana.
  
 ```{r invasoras, include=FALSE}
 tibble (semana = 1:11) %>%
@@ -293,7 +312,7 @@ tibble (semana = 1:11) %>%
   bind_rows(tibble (semana = max(.$semana) + 1,
                     Dia = max(.$Dia) + days(4))) -> df.dia.semana
 
-read_xlsx("Dados Biomulching para análise.xlsx", 
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "degradação", 
           range = "K2:N62")%>%
   select(-`presença invasoras`)%>%
@@ -311,18 +330,18 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.dados_plantas":
 
  -Altura das couves:
- Corresponde aos valores obtidos em três medições da altura de cada couve nos diferentes tratamentos. Inicialmente estes valores foram lidos separados do restante e após alguns ajustes na organização das colunas e nomenclatura, estes foram adicionados em um grupo junto com os valores das outras variáveis.
+ Corresponde aos valores obtidos em três medições da altura de cada couve nos diferentes tratamentos. Inicialmente estes valores foram lidos separados do restante e após alguns ajustes na organização das colunas e nomenclatura, estes foram adicionados em um grupo junto com os valores das outras variáveis. A referência "altura" foi substituido por "valor"
  
- -Massa folhar total das couves ao final do periodo experimental;
+ -Massa folhar total das couves ao final do periodo experimental: A referência "massa total (g)" foi substituido por "valor" para facilitar na união dos dados em um unico conjunto.
  
- -Massa folhar comestível das couves ao final do periodo experimental;
+ -Massa folhar comestível das couves ao final do periodo experimental: A referência "massa comestivel (g)" foi substituido por "valor" para facilitar na união dos dados em um unico conjunto.
  
  -Tamanho médio máximo das folhas de couve:
- Corresponde ao valor médio máxima das folhas de cada couve em cada um dos diferentes tratamentos ao final do período experimental. 
+ Corresponde ao valor médio máxima das folhas de cada couve em cada um dos diferentes tratamentos ao final do período experimental. A referência "tamanho" foi substituido por "valor" para facilitar na união dos dados em um unico conjunto.
 
 ```{r plantas, include=FALSE}
 
-read_xlsx("Dados Biomulching para análise.xlsx", 
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "degradação",
           range = "E2:H74")%>%
   rename(Valor = altura)%>%
@@ -333,17 +352,17 @@ read_xlsx("Dados Biomulching para análise.xlsx",
 
 
 bind_rows( 
-  read_xlsx("Dados Biomulching para análise.xlsx", 
+  read_xlsx("Dados biomulching para análise.xlsx", 
             sheet = "solo", 
             range = "E2:G26") %>%
     mutate(Observação = "massa total (g)"),
              
-  read_xlsx("Dados Biomulching para análise.xlsx", 
+  read_xlsx("Dados biomulching para análise.xlsx", 
             sheet = "solo",
             range = "I2:K26") %>%
     mutate(Observação = "massa comestível (g)"),
   
-  read_xlsx("Dados Biomulching para análise.xlsx", 
+  read_xlsx("Dados biomulching para análise.xlsx", 
             sheet = "solo", 
             range = "A2:C26") %>%
     mutate(Observação = "tamanho (cm)")%>%
@@ -356,7 +375,7 @@ bind_rows(
 
 ```
 
-### Degradação do protótipo de biomulching
+### Degradação do protótipo de _biomulching_
  
 Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.degradação":
 
@@ -364,7 +383,7 @@ Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.
  Foram alterados os valores de Percentual de degração para valor em porcentagem de degradação dividindo o valor original por 100. Após foram retidas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
 
 ```{r degradação, include=FALSE}
-read_xlsx("Dados Biomulching para análise.xlsx", 
+read_xlsx("Dados biomulching para análise.xlsx", 
           sheet = "degradação", 
           range = "A2:C14")%>%
   mutate(`Porcentagem de degradação` = `Percentual de degradação`/100)%>%
@@ -383,24 +402,24 @@ Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.
 
 Legenda:
 
-C = Controle 1
-C+ = Controle 2
-B = Biomulching
-I = Icaridina
-E = Essência de pimenta
+- C = Controle 1
+- C+ = Controle 2
+- B = _biomulching_
+- I = Icaridina
+- E = Essência de pimenta
 
-Inicialmente foi criado uma legenda para os dados com o intuito de melhorar a interpretação dos dados ao gerar os gráficos. Depois os dados foram reorganizados de forma que os dados de cada tratamento fossem reunidos em uma coluna.
+Inicialmente foi criado uma legenda com o intuito de melhorar a interpretação dos dados ao gerar os gráficos. Depois os dados foram reorganizados de forma que os diferentes tratamentos fossem reunidos em uma coluna.
 
 ```{r controlado, include=FALSE}
 tribble (~Código, ~Tratamento,
          "C", "Contraprova #1",
          "C+", "Contraprova #2",
-         "B", "Biomulching",
+         "B", "_biomulching_",
          "I", "Icaridina",
          "E", "Essência de Pimenta") -> df.controlado.legenda
 
 bind_rows(
-  read_xlsx("Dados Biomulching para análise.xlsx", 
+  read_xlsx("Dados biomulching para análise.xlsx", 
             sheet = "controlado", 
             range = "A2:F11") %>%
     mutate(Estado = "vivos") %>%
@@ -408,7 +427,7 @@ bind_rows(
                names_to="Tratamento",
                values_to="Quantidade"),
   
-  read_xlsx("Dados Biomulching para análise.xlsx", 
+  read_xlsx("Dados biomulching para análise.xlsx", 
             sheet = "controlado", 
             range = "I2:N11") %>%
     mutate(Estado = "mortos") %>%
@@ -424,60 +443,165 @@ bind_rows(
 
 A partir a obtenção, reorganização e ajustes e importação dos dados para o Rstudio, seguimos com a seguinte análise de resultados para as diferentes hipóteses e conjunto de dados de interesse. Para tanto os dados são apresentados na forma de gráficos.
 
-## Resultado do teste em condições controladas
+## Teste em condições controladas
 
-Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas. Ficando com uma coloração amarelada e murcha.
-Também se verificou que nas amostras de controle e do tratamento com o biomulching ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões nas amostras conforme evidencia a figura abaixo (Figura 1):
+Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas, ficando com uma coloração amarelada e murcha.
+Também se verificou que nas amostras de controle e do tratamento com o _biomulching_ ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões vivos nas amostras conforme evidencia a figura abaixo (Figura 1):
 
 ```{r lab, echo=FALSE, fig.cap="Figura 1. Fonte o autor, Porto Algre - RS, 2021"}
+
 df.controlado %>%
-  filter(`Tempo (h)` != 0) %>%
   pivot_wider(names_from="Estado", values_from="Quantidade") %>%
-  print %>%
   mutate(populacao = vivos+mortos) %>%
   group_by(Tratamento) %>%
   mutate(crescimento = populacao - min(populacao)) %>%
-  ggplot(aes(x=`Tempo (h)`, y = crescimento, color=Tratamento))+
+  ggplot(aes(x=`Tempo (h)`, y = vivos, color=Tratamento))+
   geom_line() +
   geom_point() +
-  scale_y_continuous(breaks = seq(0, 2000, by = 20)) +
-  ggtitle("Número de pulgões vivos ao longo do tempo") +
-  ylab("Número de pulgões vivos")
+  scale_y_continuous(breaks = seq(0, 200, by = 20)) +
+  ggtitle("Crescimento da pupulção de pulgões em cada tratamento ao longo do tempo") +
+  ylab("Número de pulgões vivos") +
+  scale_x_continuous(breaks = seq(0, 200, by = 12))
+
 ```
-Quanto ao tratamento com o biomulching, este não teve resultado semelhante quando comparados aos tratamentos com a essência de pimenta e icaridina. O que pode-se relacionar ao fato de o biomulching não ter se degradado completamente, ou a outros fatores ainda desconhecidos. Contudo mostra certa redução do número de pulgões quando comparado com as amostras de controle.
+Quanto ao tratamento com o _biomulching_, este não teve resultado semelhante quando comparados aos tratamentos com a essência de pimenta e icaridina. O que pode se relacionar ao fato de o _biomulching_ não ter se degradado completamente, ou a outros fatores ainda desconhecidos. Contudo mostra certa redução do número de pulgões quando comparado com as amostras de controle.
 
 Também se verificou a eficiência de cada método através da fórmula de Abbott, sendo os resultados apresentados na tabela abaixo:
 
-E % = ((T-Tr)/T)*100
+Fórmula de Abbott:
+
+E % = ((T-Tr)/T)x100
+
 onde:
-T = testemunha*
+
+T = média dos valores de contraprova
+
 Tr = tratamento
 
-*Sabendo que a soma dos controles é de 245, e a média é igual a 122,5.
-
-```{r echo=FALSE}
+```{r echo=FALSE, fig.cap="Tabela 1. Fonte o autor, Porto Algre - RS, 2021"}
 df.controlado %>%
   filter(`Tempo (h)` == "116") %>%
   filter(Estado %in% c("vivos")) %>%
   filter(grepl("Contraprova", Tratamento)) %>%
-  pull(Quantidade) %>% mean %>% print -> media_contraprova
+  pull(Quantidade) %>% mean -> media_contraprova
 
 
 df.controlado %>%
   filter(`Tempo (h)` == "116") %>%
   filter(Estado %in% c("vivos")) %>%
-  filter(Tratamento %in% c("Biomulching", "Icaridina", "Essência de Pimenta")) %>%
+  filter(Tratamento %in% c("_biomulching_", "Icaridina", "Essência de Pimenta")) %>%
   mutate("Eficiência (%)" = round((122.5 - Quantidade)/122.5*100, 0))
 ```
 
 ## Teste em plantação de couve
 
+### Condições climáticas
+
+Os dados relativos à temperatura média e a umidade relativa do ar registrada diariamente às 14:00hrs durante o período de realização do estudo (17 de dezembro de 2018 a 11 de março de 2019), são apresentados nas Figuras 2 e 3. A temperatura média do ar durante o período experimental foi de 25,22°C.
+
+```{r echo=FALSE, fig.cap="Figura 2. Fonte: Estação Meteorológica do aeroclube, Garibaldi - RS, 2018/2019"}
+df.clima%>%
+  ggplot(aes(x = dia, y = temperatura))+
+  geom_point()+
+  geom_line()+
+  ylim(0, NA) +
+  #scale_y_continuous(breaks = seq(0, 40, by = 2))+
+  ggtitle("Temperatura do ar às 14:00hrs ao longo do período experimental") +
+  xlab("Dia") +
+  ylab("Temperatura")
+
+#df.clima %>%
+ # select(temperatura)%>%
+  #summarise(mean(temperatura)) -> temperatura_média
+```
+
+Quanto à umidade relativa do ar, está esteve elevada em algumas semanas e baixa em outras, o que consequentemente afetava a umidade do solo. Sua média foi de 77%.
+
+```{r echo=FALSE, fig.cap="Figura 3. Fonte: Estação Meteorológica do aeroclube, Garibaldi - RS, 2018/2019"}
+
+df.clima%>%
+  ggplot(aes(x = dia, y = umidade))+
+  geom_point()+
+  geom_line()+
+  ylim(0, NA) +
+  ggtitle("Umidade relativa do ar às 14:00hrs ao longo do período experimental") +
+  xlab("Dia") +
+  ylab("Umidade")
+
+#df.clima %>%
+#  select(umidade)%>%
+#  summarise(mean(umidade)) -> umidade_média
+
+```
+### Umidade do solo
+
+Conforme a figura 4, os valores de umidade do solo alternaram entre a faixa de cerca de 10% até cerca de 27% e, não é possivel verificar se há alguma diferença na umidade do solo entre os canteiros. Contudo é possivel observar que ouveram varios momentos com oscilações em todos os canteiros, tanto nos com cobertura do solo quanto naqueles sem cobertura, o que pode estar relacionado com a umidade relativa do ar do periodo em questão. O canteiro com menos oscilações foi o com cobertura de lona preta e o com menor amplitude foi o canteiro do _biomulching_.
+
+Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principalmente de cascas de laranja, estas conseguem absorver a umidade do ambiente e mantê-la por mais tempo. Enquanto o mulching convencional de plástico é impermeável, caso não aconteça uma boa irrigação, nem escassa e nem em excesso, haverá maior variação na umidade do solo, alternando entre periodos com menor umidade ou maior umidade.
+
+```{r fig4, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Algre - RS, 2021"}
+df.umidade_solo %>%
+  ggplot(aes(x =Dia, y = `percentual corrigido`, color = Dia))+
+  geom_point()+
+  geom_line()+
+  facet_wrap(~Prevenção, nrow=1)+
+  ylim(0, NA)+
+  ggtitle("Percentual da umidade do solo através do tempo")+
+  ylab("Percentual de umidade")
+
+```
+Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura 5, onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
+
+```{r gig5, echo=FALSE, fig.cap="Figura 5. Teste Tukey para umidade do solo. Fonte o autor, Porto Algre - RS, 2021"}
+
+aov(lm(`percentual corrigido`~Código, data= df.umidade_solo)) -> solo_anova
+
+#resume o resultado da anova
+#summary(solo_anova)
+
+#imprime o teste Tukey
+#TukeyHSD(solo_anova)
+
+plot(TukeyHSD(solo_anova, conf.level=.95), las = 2)
+
+```
+
+### Presença de plantas invasoras
+
+```{r fig6, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Algre - RS, 2021"}
+df.plantas_invasoras%>%
+  filter(grepl("2019-03-11", Dia)) %>%
+  ggplot(aes(x = Prevenção, y = Quantidade, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  scale_y_continuous(breaks = seq(0, 100, by = 20))+
+  ggtitle("Número de plantas invasoras em cada canteiro")+
+  ylab("Quantidade de plantas invasoras em 1,25m²")
+
+```
+
+
+Os números de plantas invasoras determinados no solo sem cobertura e com coberturas foram de uma maneira geral controlados significativamente pelo tipo de cobertura utilizado no cultivo da cultura. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
+
+Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de plástico e bio-mulching durante o período de teste, nota-se que o plástico reduziu a infestação das plantas invasoras em 85% e o bio-mulching em 67%. O fato de o bio-mulching ter tido um desempenho inferior, deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra o gráfico anterior. O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
+
+<!-- # (esses valores em porcentagem foram obtidos por regra de três com o valor de controle como referência.) -->
+
+
+
+
+
+
+
+
+
+
 ### Presença de pragas, outros insetos e inimigos naturais na plantação de couve
 
 A essência de pimento por si só, auxilia no controle dos pulgões?
-O biomulching contribui para reduzir a população de pulgões? E de moscas e lagartas?
-O biomulching contribui para reduzir a população de outros insetos?
-O biomulching afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
+O _biomulching_ contribui para reduzir a população de pulgões? E de moscas e lagartas?
+O _biomulching_ contribui para reduzir a população de outros insetos?
+O _biomulching_ afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
 
 ```{r pulgões, echo=FALSE, fig.cap="Figura 2. Fonte o autor, Porto Algre - RS, 2021"}
 
@@ -547,7 +671,7 @@ plot(TukeyHSD(outros_anova, conf.level=.95), las = 2)
 
 ```
 
-Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o biomulching contribui para a redução do número de outros insetos.
+Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o _biomulching_ contribui para a redução do número de outros insetos.
 
 ```{r pimenta, echo=FALSE, fig.cap="Figura 7. Fonte o autor, Porto Algre - RS, 2021"}
 
@@ -579,7 +703,7 @@ df.armadilhas %>%
 
 ```
 
-Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com biomulching, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
+Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com _biomulching_, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
 
 ```{r naturais, echo=FALSE}
 
@@ -591,7 +715,7 @@ df.armadilhas %>%
   ggtitle("Quantidade total de inimigos naturais capturados nas armadilhas")
 ```
 
-Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com biomulching foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
+Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com _biomulching_ foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
 
 
 ### Eficiência dos tratamentos
@@ -628,7 +752,7 @@ arrange(-E)
 
 
 
-### Biomulching como cobertura
+### _biomulching_ como cobertura
 
 #### Quanto tempo leva para ser degradado?
 
@@ -640,56 +764,11 @@ df.degradaçao %>%
   geom_line()+
   geom_smooth(method="lm")+
   scale_y_continuous(breaks = seq(0, 1, by = 0.1))+
-  ggtitle("Degradação do Biomulching ao longo do tempo")
+  ggtitle("Degradação do _biomulching_ ao longo do tempo")
 
 ``` 
-Conforme vemos no gráfico \@ref(fig:degradação), houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o biomulching degradado em mais de 80%. Posteriormente serão analizadas as possiveis influencias externas que produziram este resultado.
+Conforme vemos no gráfico \@ref(fig:degradação), houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o _biomulching_ degradado em mais de 80%. Posteriormente serão analizadas as possiveis influencias externas que produziram este resultado.
 
-
-#### Quais os tratamentos que melhor impediram o crescimento das plantas invasoras?
-
-```{r pestes, echo=FALSE}
-df.plantas_invasoras%>%
-  filter(grepl("2019-03-11", Dia)) %>%
-  ggplot(aes(x = Prevenção, y = Quantidade, fill = Prevenção))+
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point()+
-  scale_y_continuous(breaks = seq(0, 100, by = 20))+
-  ggtitle("Número de plantas invasoras em cada canteiro")+
-  ylab("Quantidade de plantas invasoras em 1,25m²")
-
-```
-
-
-Os números de plantas invasoras determinados no solo sem cobertura e com coberturas foram de uma maneira geral controlados significativamente pelo tipo de cobertura utilizado no cultivo da cultura. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
-
-Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de plástico e bio-mulching durante o período de teste, nota-se que o plástico reduziu a infestação das plantas invasoras em 85% e o bio-mulching em 67%. O fato de o bio-mulching ter tido um desempenho inferior, deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra o gráfico anterior. O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
-
-<!-- # (esses valores em porcentagem foram obtidos por regra de três com o valor de controle como referência.) -->
-
-#### O biomulching apresenta um controle da umidade do solo semelhante ao mulching plástico?
-
- *precisa calcular as médias de cada prevenção ao longo do tempo para então gerar cinco dados os quais serão plotados.*
-
-
-
-```{r echo=FALSE}
-df.umidade_solo%>%
-  group_by(Prevenção)%>%
-  summarize(N=n(),
-            Massa.Média = mean(`percentual corrigido`),
-            Massa.SD = sd(`percentual corrigido`),
-            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
-  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point()+
-  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
-                    ymax = Massa.Média + Massa.SE), width = 0.2) +
-  ggtitle("Percentual médio de umidade do em cada canteiro")+
-  ylab("Percentual (%)")
-
-  
-```
 
 
 
@@ -705,7 +784,7 @@ Qual o canteiro que mais produziu? (isso significa, qual teve a maior quantidade
 
 Qual o tamanho máximo médio das folhas? *isso é bom ou ruim?*
 
-O biomulching estimula ou inibe o crescimento da couve?
+O _biomulching_ estimula ou inibe o crescimento da couve?
 A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
 
 
@@ -810,30 +889,12 @@ df.dados_plantas%>%
 utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
 
 
-Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? E como estava o ritmo de degradação do biomulching durante esses períodos?
+Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? E como estava o ritmo de degradação do _biomulching_ durante esses períodos?
 
 Agora ao contrário, o que acontece em dias frios e úmidos?
 
 Qual o período de maior crescimento de plantas invasoras?
 
-```{R}
-df.clima%>%
-  ggplot(aes(x = dia, y = temperatura))+
-  geom_point()+
-  geom_line()+
-  ylim(0, NA)+
-  scale_y_continuous(breaks = seq(0, 40, by = 2))+
-  ggtitle("Temperatura ao longo do período experimental")
-
-df.clima%>%
-  ggplot(aes(x = dia, y = umidade))+
-  geom_point()+
-  geom_area()+
-  ggtitle("Umidade relativa do ar ao longo do período experimental")
-
-
-
-```
 
 A localização das plantas interfere na presença de pulgões?
 
@@ -843,11 +904,11 @@ A cor da cobertura e a umidade do solo tem alguma relação?
 
 A cor afeta o crescimento?
 
-Quanto tempo o biomulching leva para se degradar?
+Quanto tempo o _biomulching_ leva para se degradar?
 
 Existe algum fator externo que pode ter afetado os resultados e estou me esquecendo? Se sim, qual?
 
-Em relação ao canteiro que utilizou a essência de pimenta no controle e o biomulching, ouve alguma diferença? Eles tiveram desempenhos semelhantes?
+Em relação ao canteiro que utilizou a essência de pimenta no controle e o _biomulching_, ouve alguma diferença? Eles tiveram desempenhos semelhantes?
 
 ```{r}
 
@@ -906,7 +967,6 @@ git remote add origin https://github.com/Mateocool/nome do repositório git //cr
 git remote -v // confere os repositórios criados
 git push -u origin master // puxa o arquivo mestre para a nuvem (colocar credenciais da conta)
 git push // puxa o arquivo para o repositório na nuvem (atualiza na nuvem)
-
 
 
 
