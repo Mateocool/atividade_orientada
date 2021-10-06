@@ -550,6 +550,7 @@ df.clima%>%
 #  summarise(mean(umidade)) -> umidade_média
 
 ```
+
 ### Umidade do solo
 
 Conforme a figura 4, os valores de umidade do solo alternaram entre a faixa de cerca de 10% até cerca de 27% e, não é possivel verificar se há alguma diferença na umidade do solo entre os canteiros. Contudo é possivel observar que ouveram varios momentos com oscilações em todos os canteiros, tanto nos com cobertura do solo quanto naqueles sem cobertura, o que pode estar relacionado com a umidade relativa do ar do periodo em questão. O canteiro com menos oscilações foi o com cobertura de lona preta e o com menor amplitude foi o canteiro do _biomulching_.
@@ -558,13 +559,14 @@ Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principa
 
 ```{r fig4, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Alegre - RS, 2021"}
 df.umidade_solo %>%
-  ggplot(aes(x =Dia, y = `percentual corrigido`, color = Dia))+
+  ggplot(aes(x =Dia, y = `percentual corrigido`))+
   geom_point()+
   geom_line()+
   facet_wrap(~Prevenção, nrow=1)+
   ylim(0, NA)+
   ggtitle("Percentual da umidade do solo através do tempo")+
-  ylab("Percentual de umidade")
+  ylab("Percentual de umidade") +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, vjust=1)) 
 
 ```
 Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura 5, onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
