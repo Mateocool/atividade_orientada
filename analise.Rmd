@@ -530,6 +530,7 @@ df.clima%>%
  # select(temperatura)%>%
   #summarise(mean(temperatura)) -> temperatura_média
 ```
+
 #### Umidade
 
 Quanto à umidade relativa do ar, está esteve elevada em algumas semanas e baixa em outras, o que consequentemente afetava a umidade do solo. Sua média foi de 77%.
