@@ -196,13 +196,13 @@ tribble (
  Posteriormente foram inseridos os dados obtidos por meio das armadilhas, onde estavam os valores de pulgões, outros insetos e inimigos naturais. Juntaram-se todos os dados em um unico conjunto de dados e modificou-se a organização das colunas das prevenções para ocuparem apenas uma coluna. Removeram-se as referências sem valores e a coluna das semanas. Então foi adicionada a legenda para os diferentes códigos das prevenções e finalmente adicionou-se os valores de moscas e lagartas para formar apenas um conjunto de dados com todos os agentes.
  
 ```{r pragas, include=FALSE}
+data.filename <- "Dados biomulching para análise.xlsx"
 
-
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet="armadilhas", 
           range="A3:A26") -> df.semana
 
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet="armadilhas", 
           range = "Q3:Q26") -> df.dia
 
@@ -214,7 +214,7 @@ tribble (~mês, ~Dia,
 
 
 
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet = "plantas", 
           range = "A2:D17") %>%
   rename(Prevenção = `Canteiro`)%>%
@@ -229,19 +229,19 @@ read_xlsx("Dados biomulching para análise.xlsx",
   left_join(df.legenda, by="Código")-> df.prejudiciais
 
 bind_rows( 
-    read_xlsx("Dados biomulching para análise.xlsx", 
+    read_xlsx(data.filename,
               sheet = "armadilhas", 
               range = "B3:F26") %>% 
      mutate(Agente = "Pulgões") %>%
      bind_cols(df.semana, df.dia),
              
-    read_xlsx("Dados biomulching para análise.xlsx", 
+    read_xlsx(data.filename,
               sheet = "armadilhas", 
               range = "G3:K26") %>%
       mutate(Agente = "Outros") %>%
       bind_cols(df.semana, df.dia),
     
-    read_xlsx("Dados biomulching para análise.xlsx",
+    read_xlsx(data.filename,
               sheet = "armadilhas", 
               range = "L3:P26") %>%
       mutate(Agente = "Naturais") %>%
@@ -278,16 +278,16 @@ bind_rows(
 
 ```{r clima, include=FALSE}
 
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet = "umidade", 
           range = "I2:J87") %>%
   rename(umidade = `unidade`)%>%
   bind_cols(
-    read_xlsx("Dados biomulching para análise.xlsx", 
+    read_xlsx(data.filename,
           sheet = "temperatura", 
           range = "B2:B87")) -> df.clima
 
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet = "umidade", 
           range = "A2:D108")%>%
   mutate(`diferença (g)` = `massa umida (g)` - `massa final (g)`)%>%
@@ -312,7 +312,7 @@ tibble (semana = 1:11) %>%
   bind_rows(tibble (semana = max(.$semana) + 1,
                     Dia = max(.$Dia) + days(4))) -> df.dia.semana
 
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet = "degradação", 
           range = "K2:N62")%>%
   select(-`presença invasoras`)%>%
@@ -341,7 +341,7 @@ Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.
 
 ```{r plantas, include=FALSE}
 
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet = "degradação",
           range = "E2:H74")%>%
   rename(Valor = altura)%>%
@@ -352,17 +352,17 @@ read_xlsx("Dados biomulching para análise.xlsx",
 
 
 bind_rows( 
-  read_xlsx("Dados biomulching para análise.xlsx", 
+  read_xlsx(data.filename,
             sheet = "solo", 
             range = "E2:G26") %>%
     mutate(Observação = "massa total (g)"),
              
-  read_xlsx("Dados biomulching para análise.xlsx", 
+  read_xlsx(data.filename,
             sheet = "solo",
             range = "I2:K26") %>%
     mutate(Observação = "massa comestível (g)"),
   
-  read_xlsx("Dados biomulching para análise.xlsx", 
+  read_xlsx(data.filename,
             sheet = "solo", 
             range = "A2:C26") %>%
     mutate(Observação = "tamanho (cm)")%>%
@@ -383,7 +383,7 @@ Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.
  Foram alterados os valores de Percentual de degração para valor em porcentagem de degradação dividindo o valor original por 100. Após foram retidas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
 
 ```{r degradação, include=FALSE}
-read_xlsx("Dados biomulching para análise.xlsx", 
+read_xlsx(data.filename,
           sheet = "degradação", 
           range = "A2:C14")%>%
   mutate(`Porcentagem de degradação` = `Percentual de degradação`/100)%>%
@@ -419,7 +419,7 @@ tribble (~Código, ~Tratamento,
          "E", "Essência de Pimenta") -> df.controlado.legenda
 
 bind_rows(
-  read_xlsx("Dados biomulching para análise.xlsx", 
+  read_xlsx(data.filename,
             sheet = "controlado", 
             range = "A2:F11") %>%
     mutate(Estado = "vivos") %>%
@@ -427,7 +427,7 @@ bind_rows(
                names_to="Tratamento",
                values_to="Quantidade"),
   
-  read_xlsx("Dados biomulching para análise.xlsx", 
+  read_xlsx(data.filename,
             sheet = "controlado", 
             range = "I2:N11") %>%
     mutate(Estado = "mortos") %>%
