@@ -448,7 +448,7 @@ A partir a obtenção, reorganização e ajustes e importação dos dados para o
 Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas, ficando com uma coloração amarelada e murcha.
 Também se verificou que nas amostras de controle e do tratamento com o _biomulching_ ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões vivos nas amostras conforme evidencia a figura abaixo (Figura 1):
 
-```{r lab, echo=FALSE, fig.cap="Figura 1. Fonte o autor, Porto Algre - RS, 2021"}
+```{r lab, echo=FALSE, fig.cap="Figura 1. Fonte o autor, Porto Alegre - RS, 2021"}
 
 df.controlado %>%
   pivot_wider(names_from="Estado", values_from="Quantidade") %>%
@@ -478,7 +478,7 @@ T = média dos valores de contraprova
 
 Tr = tratamento
 
-```{r echo=FALSE, fig.cap="Tabela 1. Fonte o autor, Porto Algre - RS, 2021"}
+```{r echo=FALSE, fig.cap="Tabela 1. Fonte o autor, Porto Alegre - RS, 2021"}
 df.controlado %>%
   filter(`Tempo (h)` == "116") %>%
   filter(Estado %in% c("vivos")) %>%
@@ -497,6 +497,8 @@ df.controlado %>%
 
 ### Condições climáticas
 
+#### Temperatura
+
 Os dados relativos à temperatura média e a umidade relativa do ar registrada diariamente às 14:00hrs durante o período de realização do estudo (17 de dezembro de 2018 a 11 de março de 2019), são apresentados nas Figuras 2 e 3. A temperatura média do ar durante o período experimental foi de 25,22°C.
 
 ```{r echo=FALSE, fig.cap="Figura 2. Fonte: Estação Meteorológica do aeroclube, Garibaldi - RS, 2018/2019"}
@@ -514,6 +516,7 @@ df.clima%>%
  # select(temperatura)%>%
   #summarise(mean(temperatura)) -> temperatura_média
 ```
+#### Umidade
 
 Quanto à umidade relativa do ar, está esteve elevada em algumas semanas e baixa em outras, o que consequentemente afetava a umidade do solo. Sua média foi de 77%.
 
@@ -539,7 +542,7 @@ Conforme a figura 4, os valores de umidade do solo alternaram entre a faixa de c
 
 Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principalmente de cascas de laranja, estas conseguem absorver a umidade do ambiente e mantê-la por mais tempo. Enquanto o mulching convencional de plástico é impermeável, caso não aconteça uma boa irrigação, nem escassa e nem em excesso, haverá maior variação na umidade do solo, alternando entre periodos com menor umidade ou maior umidade.
 
-```{r fig4, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Algre - RS, 2021"}
+```{r fig4, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Alegre - RS, 2021"}
 df.umidade_solo %>%
   ggplot(aes(x =Dia, y = `percentual corrigido`, color = Dia))+
   geom_point()+
@@ -552,7 +555,7 @@ df.umidade_solo %>%
 ```
 Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura 5, onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
 
-```{r gig5, echo=FALSE, fig.cap="Figura 5. Teste Tukey para umidade do solo. Fonte o autor, Porto Algre - RS, 2021"}
+```{r gig5, echo=FALSE, fig.cap="Figura 5. Teste Tukey para umidade do solo. Fonte o autor, Porto Alegre - RS, 2021"}
 
 aov(lm(`percentual corrigido`~Código, data= df.umidade_solo)) -> solo_anova
 
@@ -568,28 +571,167 @@ plot(TukeyHSD(solo_anova, conf.level=.95), las = 2)
 
 ### Presença de plantas invasoras
 
-```{r fig6, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Algre - RS, 2021"}
-df.plantas_invasoras%>%
+A presença de plantas invasoras nos canteiros foi, de uma maneira geral, controlada significativamente pelo tipo de cobertura utilizado no canteiro. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
+
+```{r fig6, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Alegre - RS, 2021"}
+df.plantas_invasoras %>%
   filter(grepl("2019-03-11", Dia)) %>%
   ggplot(aes(x = Prevenção, y = Quantidade, fill = Prevenção))+
   geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point()+
-  scale_y_continuous(breaks = seq(0, 100, by = 20))+
-  ggtitle("Número de plantas invasoras em cada canteiro")+
+  scale_y_continuous(breaks = seq(0, 1000, by = 20))+
+  ggtitle("Número total de plantas invasoras em cada canteiro")+
   ylab("Quantidade de plantas invasoras em 1,25m²")
+
+df.plantas_invasoras %>%
+  #filter(grepl("2019-03-11", Dia)) %>%
+  ggplot(aes(x = Dia, y = Quantidade, color = Prevenção))+
+  geom_point()+
+  geom_line()+
+  scale_y_continuous(breaks = seq(0, 1000, by = 20))+
+  ggtitle("Número total de plantas invasoras em cada canteiro")+
+  ylab("Quantidade de plantas invasoras em 1,25m²")
+
+```
+```{r  echo=FALSE, fig.cap="Tabela 2. Fonte o autor, Porto Alegre - RS, 2021"}
+
+df.plantas_invasoras %>%
+  filter(grepl("2019-03-11", Dia)) %>%
+  filter(Prevenção%in% c("Contraprova", "Pimenta")) %>%
+  pull(Quantidade) %>% mean -> media_semcobert
+
+df.plantas_invasoras %>%
+  filter(grepl("2019-03-11", Dia)) %>%
+  filter(Prevenção%in% c("_biomulching_", "Lona Preta", "Lona Amarela")) %>%
+  mutate("Eficiência (%)" = 100- round((100*`Quantidade`)/media_semcobert, 0)) %>%
+  select(-"Código", -"Quantidade", -"Dia")
+
+```
+
+Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de lona amarela, lona preta e bio-mulching, nota-se que a lona preta reduziu a infestação das plantas invasoras em 89%, a lona amarela em 75% e o _biomulching_ em 61%. O fato de o bio-mulching ter tido um desempenho inferior deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra a Figura 7. O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
+
+```{r degradabilidade, echo=FALSE, fig.cap="Figura 7. Fonte o autor, Porto Alegre - RS, 2021"}
+
+df.degradaçao %>%
+  ggplot(aes(x = Dia, y = `Porcentagem de degradação`))+
+  geom_point()+
+  geom_line()+
+  scale_y_continuous(breaks = seq(0, 1, by = 0.1))+
+  ggtitle("Degradação do Biomulching ao longo do tempo")
+
+``` 
+
+Conforme vemos no gráfico \@ref(fig:degradabilidade), houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o _biomulching_ degradado em mais de 80%.
+
+
+
+
+
+
+### Desenvolvimento das plantas 
+
+<!-- # (precisa separar melhor as perguntas de acordo com o que está sendo feito.) -->
+
+Existe diferença no crescimento e rendimento na produção de couve? Se sim, quais os tratamentos mais significativos.
+Qual o rendimento médio de produção de massa comestível?
+
+Qual o canteiro que mais produziu? (isso significa, qual teve a maior quantidade de massa total)
+
+Qual o tamanho máximo médio das folhas? *isso é bom ou ruim?*
+
+O _biomulching_ estimula ou inibe o crescimento da couve?
+A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
+
+
+```{r}
+df.dados_plantas%>%
+  filter(Observação == "massa total (g)")%>%
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Massa.Média = mean(Valor),
+            Massa.SD = sd(Valor),
+            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
+                    ymax = Massa.Média + Massa.SE), width = 0.2) +
+  ggtitle("Massa total média de cada canteiro")+
+  ylab("Massa (g)")
+
+```
+
+```{r}
+df.dados_plantas%>%
+  filter(Observação == "massa comestível (g)")%>%
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Massa.Média = mean(Valor),
+            Massa.SD = sd(Valor),
+            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
+                    ymax = Massa.Média + Massa.SE), width = 0.2) +
+  ggtitle("Massa comestível média de cada canteiro")+
+  ylab("Massa (g)")
+```
+
+
+
+```{r echo=FALSE}
+df.dados_plantas%>%
+    print %>%
+  filter(grepl("tamanho", Observação)) %>%
+  group_by(Prevenção) %>%
+  summarize(N=n(),
+            Tamanho.Média = mean(Valor),
+            Tamanho.SD = sd(Valor),
+            Tamanho.SE = 3 * Tamanho.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Tamanho.Média)) +
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point() +
+  geom_errorbar(aes(ymin = Tamanho.Média - Tamanho.SE,
+                    ymax = Tamanho.Média + Tamanho.SE), width = 0.2) +
+  ylim(0, NA) +
+  ylab("Tamanho Médio (cm)") +
+  ggtitle("Tamanho médio das folhas de couve em cada canteiro")
+
+```
+
+O gráfico indica que não há diferença estatística no tamanho das cauves entre os diferentes canteiros. Mesmo assim, fizemos o teste estatístico student-t  para confirmar par a par se existe ou não tal diferença:
+
+```{r teste t}
+df.dados_plantas%>%
+  filter(grepl("tamanho", Observação)) -> dados_tamanho
+
+aov(Valor~Prevenção, data= dados_tamanho) -> tamanho_anova
+
+summary(tamanho_anova)
+
+TukeyHSD(tamanho_anova)
+
+plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 2)
 
 ```
 
 
-Os números de plantas invasoras determinados no solo sem cobertura e com coberturas foram de uma maneira geral controlados significativamente pelo tipo de cobertura utilizado no cultivo da cultura. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
-
-Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de plástico e bio-mulching durante o período de teste, nota-se que o plástico reduziu a infestação das plantas invasoras em 85% e o bio-mulching em 67%. O fato de o bio-mulching ter tido um desempenho inferior, deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra o gráfico anterior. O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
-
-<!-- # (esses valores em porcentagem foram obtidos por regra de três com o valor de controle como referência.) -->
-
-
-
-
+```{r}
+df.dados_plantas%>%
+  filter(Observação == "altura")%>%
+  group_by(Prevenção)%>%
+  summarize(N=n(),
+            Altura.Média = mean(Valor),
+            Altura.SD = sd(Valor),
+            Altura.SE = 3 * Altura.SD / sqrt(N)) %>%
+  ggplot(aes(x = Prevenção, y = Altura.Média, fill = Prevenção))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  geom_point()+
+  geom_errorbar(aes(ymin = Altura.Média - Altura.SE,
+                    ymax = Altura.Média + Altura.SE), width = 0.2) +
+  ggtitle("Altura média das couves em cada canteiro")+
+  ylab("Altura (cm)")
+```
 
 
 
@@ -603,7 +745,7 @@ O _biomulching_ contribui para reduzir a população de pulgões? E de moscas e 
 O _biomulching_ contribui para reduzir a população de outros insetos?
 O _biomulching_ afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
 
-```{r pulgões, echo=FALSE, fig.cap="Figura 2. Fonte o autor, Porto Algre - RS, 2021"}
+```{r pulgões, echo=FALSE, fig.cap="Figura 2. Fonte o autor, Porto Alegre - RS, 2021"}
 
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
@@ -752,141 +894,16 @@ arrange(-E)
 
 
 
-### _biomulching_ como cobertura
-
-#### Quanto tempo leva para ser degradado?
-
-```{r degradabilidade, echo=FALSE, fig.cap= "fig X"}
-
-df.degradaçao %>%
-  ggplot(aes(x = Dia, y = `Porcentagem de degradação`))+
-  geom_point()+
-  geom_line()+
-  geom_smooth(method="lm")+
-  scale_y_continuous(breaks = seq(0, 1, by = 0.1))+
-  ggtitle("Degradação do _biomulching_ ao longo do tempo")
-
-``` 
-Conforme vemos no gráfico \@ref(fig:degradação), houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o _biomulching_ degradado em mais de 80%. Posteriormente serão analizadas as possiveis influencias externas que produziram este resultado.
-
-
-
-
-
-### Desenvolvimento das plantas 
-
-<!-- # (precisa separar melhor as perguntas de acordo com o que está sendo feito.) -->
-
-Existe diferença no crescimento e rendimento na produção de couve? Se sim, quais os tratamentos mais significativos.
-Qual o rendimento médio de produção de massa comestível?
-
-Qual o canteiro que mais produziu? (isso significa, qual teve a maior quantidade de massa total)
-
-Qual o tamanho máximo médio das folhas? *isso é bom ou ruim?*
-
-O _biomulching_ estimula ou inibe o crescimento da couve?
-A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
-
-
-```{r}
-df.dados_plantas%>%
-  filter(Observação == "massa total (g)")%>%
-  group_by(Prevenção)%>%
-  summarize(N=n(),
-            Massa.Média = mean(Valor),
-            Massa.SD = sd(Valor),
-            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
-  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point()+
-  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
-                    ymax = Massa.Média + Massa.SE), width = 0.2) +
-  ggtitle("Massa total média de cada canteiro")+
-  ylab("Massa (g)")
-
-```
-
-```{r}
-df.dados_plantas%>%
-  filter(Observação == "massa comestível (g)")%>%
-  group_by(Prevenção)%>%
-  summarize(N=n(),
-            Massa.Média = mean(Valor),
-            Massa.SD = sd(Valor),
-            Massa.SE = 3 * Massa.SD / sqrt(N)) %>%
-  ggplot(aes(x = Prevenção, y = Massa.Média, fill = Prevenção))+
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point()+
-  geom_errorbar(aes(ymin = Massa.Média - Massa.SE,
-                    ymax = Massa.Média + Massa.SE), width = 0.2) +
-  ggtitle("Massa comestível média de cada canteiro")+
-  ylab("Massa (g)")
-```
-
-
-
-```{r echo=FALSE}
-df.dados_plantas%>%
-    print %>%
-  filter(grepl("tamanho", Observação)) %>%
-  group_by(Prevenção) %>%
-  summarize(N=n(),
-            Tamanho.Média = mean(Valor),
-            Tamanho.SD = sd(Valor),
-            Tamanho.SE = 3 * Tamanho.SD / sqrt(N)) %>%
-  ggplot(aes(x = Prevenção, y = Tamanho.Média)) +
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point() +
-  geom_errorbar(aes(ymin = Tamanho.Média - Tamanho.SE,
-                    ymax = Tamanho.Média + Tamanho.SE), width = 0.2) +
-  ylim(0, NA) +
-  ylab("Tamanho Médio (cm)") +
-  ggtitle("Tamanho médio das folhas de couve em cada canteiro")
-
-```
-
-O gráfico indica que não há diferença estatística no tamanho das cauves entre os diferentes canteiros. Mesmo assim, fizemos o teste estatístico student-t  para confirmar par a par se existe ou não tal diferença:
-
-```{r teste t}
-df.dados_plantas%>%
-  filter(grepl("tamanho", Observação)) -> dados_tamanho
-
-aov(Valor~Prevenção, data= dados_tamanho) -> tamanho_anova
-
-summary(tamanho_anova)
-
-TukeyHSD(tamanho_anova)
-
-plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 2)
-
-```
-
-
-```{r}
-df.dados_plantas%>%
-  filter(Observação == "altura")%>%
-  group_by(Prevenção)%>%
-  summarize(N=n(),
-            Altura.Média = mean(Valor),
-            Altura.SD = sd(Valor),
-            Altura.SE = 3 * Altura.SD / sqrt(N)) %>%
-  ggplot(aes(x = Prevenção, y = Altura.Média, fill = Prevenção))+
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  geom_point()+
-  geom_errorbar(aes(ymin = Altura.Média - Altura.SE,
-                    ymax = Altura.Média + Altura.SE), width = 0.2) +
-  ggtitle("Altura média das couves em cada canteiro")+
-  ylab("Altura (cm)")
-```
-
-
-
-
 
 
 ## Novas perguntas
 
 utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
+
+
+### Biomulching como cobertura
+
+Vamos analisar a performace geral do biomulching como cobertura do solo. Para ser considerada uma boa cobertura como mímido, esta deve auxiliar no controle da umidade do solo e reduzir o crescimento de plantas daninhas durante o periódo de cultivo da couve. Uma hipótese que será estuda a seguir é de que a degradação do biomulching sofre interferência das condições climáticas. Para testar essa hipótese iremos correlacionar os dados obtidos da degração do biomulching com os dados das condições climáticas para verificar se as interpéries aumentam a velocidade de degradação
 
 
 Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? E como estava o ritmo de degradação do _biomulching_ durante esses períodos?
@@ -904,18 +921,8 @@ A cor da cobertura e a umidade do solo tem alguma relação?
 
 A cor afeta o crescimento?
 
-Quanto tempo o _biomulching_ leva para se degradar?
-
-Existe algum fator externo que pode ter afetado os resultados e estou me esquecendo? Se sim, qual?
 
 Em relação ao canteiro que utilizou a essência de pimenta no controle e o _biomulching_, ouve alguma diferença? Eles tiveram desempenhos semelhantes?
-
-```{r}
-
-
-
-
-```
 
 
 # Conclusões
