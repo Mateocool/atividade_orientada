@@ -21,6 +21,10 @@ biblio-style: "apalike"
 link-citations: true
 ---
  
+
+```{r include=FALSE}
+Sys.setlocale("LC_TIME", "pt_BR.utf8")
+```
  
 **Resumo:** O presente projeto foi desenvolvido com o objetivo de avaliar um novo método de controle de pragas, o _biomulching_. Este método consiste em uma cobertura para solo produzida a base de casca de laranja, com a agregação de extratos de pimenta malagueta _Capsicum frutensis_, o qual apresenta em sua essência compostos com atividade repelente e inseticida. Por meio de testes foi verificada a eficiência da essência de pimenta e do _biomulching_ contra pragas em couve, _Brassica oleracea_, em comparação com outros tratamentos e mulchings de coberturas de solo, tanto em condições de laboratório como em condições de campo. Os dados obtidos foram analisados seguindo o conceito de literal programming e utilizando pacotes da linguagem R no software Rstudio com o intuito de melhorar a reprodutibilidade da análise. O _biomulching_ obteve um resultado semelhante a outros tipos de mulching quanto a sua função como cobertura de solo, entretanto não é possível afirmar se existem benefícios em relação ao combate de insetos por meio da agregação de essência de pimenta malagueta. Todavia, o projeto contribui para a construção de uma agricultura mais sustentável diminuindo os impactos ao meio ambiente e a saúde humana.
 
