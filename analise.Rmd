@@ -3,12 +3,18 @@ title: Avaliação de _biomulching_ com agregação de extrato de _Capsicum frut
   cobertura de solo e agente de controle de pragas em _Brassica oleracea_
 author: "Mateus Colombo"
 output:
-  pdf_document: default
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
   bookdown::html_document2:
     fig_caption: yes
   html_document:
     df_print: paged
   word_document: default
+lang: pt-br
+fontsize: 11pt
+geometry: margin=1in
 ---
  
  
