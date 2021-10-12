@@ -47,7 +47,7 @@ A utilização de ferramentas computacionais durante o processo de pesquisa redu
 
 ## Justificativa/Problema
 
-O Brasil é um dos maiores produtores agrícolas do mundo e um dos que mais utiliza agrotóxicos. De acordo com a ANVISA, 51% dos alimentos contêm resíduos de agrotóxicos, isso sem considerar o glifosato, o pesticida mais utilizado no mundo. Hoje, dos 50 agrotóxicos mais utilizados no país 28 são proibidos em outros países, fora os que são contrabandeados e entram ilegalmente no país. (Campanha Nacional Contra os Agrotóxicos e Pela Vida, 2019). 
+O Brasil é um dos maiores produtores agrícolas do mundo e um dos que mais utiliza agrotóxicos. De acordo com a ANVISA, 51% dos alimentos contêm resíduos de agrotóxicos, isso sem considerar o glifosato, o pesticida mais utilizado no mundo. Hoje, dos 50 agrotóxicos mais utilizados no país 28 são proibidos em outros países, fora os que são contrabandeados e entram ilegalmente no país. [@agrotoxicomata]. 
 
 Um fato o qual não se pode negar é de que os agrotóxicos afetam a vida como um todo [@hirt2020healthy]. De uma maneira positiva auxiliando no combate de pragas e protegendo as plantações contra perdas econômicas, sendo como uma forma de segurança para os produtores. Contudo, estes também irão afetar todos os outros seres vivos presentes no meio, os quais são benéficos para as plantas, para os seres humano e a natureza como um todo.
 
@@ -615,7 +615,7 @@ df.plantas_invasoras %>%
 
 df.plantas_invasoras %>%
   filter(grepl("2019-03-11", Dia)) %>%
-  filter(Prevenção%in% c("_biomulching_", "Lona Preta", "Lona Amarela")) %>%
+  filter(Prevenção%in% c("Biomulching", "Lona Preta", "Lona Amarela")) %>%
   mutate("Eficiência (%)" = 100- round((100*`Quantidade`)/media_semcobert, 0)) %>%
   select(-"Código", -"Quantidade", -"Dia") %>%
   print()
@@ -644,7 +644,7 @@ As plantas se desenvolveram com saúde e bem viçosas. Apenas uma planta morreu,
 
 #### Altura média das couves
 
-A altura média das couves pode se conferida na figura abaixo /@ref[fig:fig8]:
+A altura média das couves pode se conferida na figura abaixo \@ref[fig:fig8]:
 
 Pode-se ver que não houveram grandes diferenças em relação à altura das couves. Sendo o canteiro de pimenta o com a maior média de altura, seguido do _biomulching_, lona amarela, contraprova e lona preta. A baixa estatura das plantas em X pode ser devido ao fato de elas terem sido plantadas duas semanas após as demais. Outro fator que contribuiu para alguns canteiros terem se desenvolvido mais, foi o tempo de insolação, um parâmetro não aferido neste experimento. Os canteiros de lona amarela, pimenta, e contraprova recebiam mais horas de sol que em comparação com 0s de _biomulching_ e lona preta.
 
@@ -671,7 +671,7 @@ Também foi verificado que, como as plantas do canteiro de _biomulching_ consegu
 
 #### Tamanho médio máximo das folhas de couve
 
-Conforme mostra a figura /@ref[fig:fig9], o canteiro de pimenta também foi o com o maior o tamanho médio máximos das folhas, com 32,2 cm, seguido de _biomulching, lona amarela, contraprova e lona preta.
+Conforme mostra a figura \@ref[fig:fig9], o canteiro de pimenta também foi o com o maior o tamanho médio máximos das folhas, com 32,2 cm, seguido de _biomulching, lona amarela, contraprova e lona preta.
 
 ```{r fig9, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 df.dados_plantas%>%
@@ -743,7 +743,7 @@ Pode-se notar que mesmo o canteiro de contraprova ter sido o mais infestado por 
 
 Os canteiros de lona amarela e pimenta foram os que mais produziram massa total, contudo, boa parte da planta eram caules e folhas infestadas por pulgões, assim não sendo as com maior massa comestível.
 
-O rendimento de cada couve foi calculado a partir da relação de sua massa total (caule e folhas) pela massa consumível (folhas saudáveis e boas). Segue abaixo o rendimento dos pés de couve em cada canteiro /@ref[fig:tab3].
+O rendimento de cada couve foi calculado a partir da relação de sua massa total (caule e folhas) pela massa consumível (folhas saudáveis e boas). Segue abaixo o rendimento dos pés de couve em cada canteiro \@ref[fig:tab3].
 
 ```{r tab3, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
@@ -758,15 +758,32 @@ A média geral de rendimento do experimento foi de 40,9%
 
 ### Presença de pragas, outros insetos e inimigos naturais na plantação de couve
 
+Em relação à incidência de pragas e outros insetos, o controle foi feito com o uso das armadilhas, e com a observação das plantas. 
 
+#### Moscas e lagartas
 
+Foi registrada a presença de lagartas em todos os canteiros, em sua maioria da espécie _Ascia monuste_ (Curuquerê da couve). Nos canteiros de contraprova, pimenta, _biomulching_ e lona preta foram contadas pelo menos duas lagartas em cada canteiro, e na lona amarela foram contadas seis lagartas, as quais comeram as folhas de couves dificultando o seu desenvolvimento. Ademais das lagartas, foi observada a presença de moscas brancas, _Bemisia tabaci_, durante as primeiras semanas de desenvolvimento das plantas. Não há indícios de que a presença de moscas foi prejudicial ao desenvolvimento das plantas. Na \@ref[fig:moscas] é possível observar os valores obtidos para moscas e lagartas.
 
-A essência de pimento por si só, auxilia no controle dos pulgões?
-O _biomulching_ contribui para reduzir a população de pulgões? E de moscas e lagartas?
-O _biomulching_ contribui para reduzir a população de outros insetos?
-O _biomulching_ afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
+```{r moscas, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
-```{r pulgões, echo=FALSE, fig.cap="Figura 2. Fonte o autor, Porto Alegre - RS, 2021"}
+df.armadilhas %>%
+  # Vamos filtrar observações com as moscas e lagartas
+  filter(Agente %in% c("mosca", "lagarta")) %>%
+  ggplot(aes(x = Prevenção, y = Quantidade, fill=Agente))+
+  geom_bar(stat = "identity", width=.5, position = "dodge")+
+  ggtitle("Número total de lagartas e moscas em cada canteiro")+
+  ylab("Quantidade de moscas e lagartas")
+
+```
+Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros juntamente com o canteiro de _biomulching_, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
+
+#### Pulgões
+
+Em relação aos pulgões, foram encontrados em sua maioria _Brevicoryne brassicae_, além de também terem sido encontradas outras duas espécies descritas na bibliografia as quais são comuns na cultura da colve, _Myzus persicae_ e _Lipaphis erisinii_. As três espécies foram identificadas em todos os canteiros.
+
+A quantidade de pulgões alados capturados nas armadilhas ao longo do tempo pode ser conferida na figura abaixo \@ref[fig:pulgões]:
+
+```{r pulgões, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
@@ -774,36 +791,71 @@ df.armadilhas %>%
   geom_line() +
   geom_point() +
   ylim(0, NA) +
-  ggtitle("Quantidade de pulgões capturados nas armadilhas nos diferentes tratamentos")
+  ggtitle("Quantidade de pulgões alados capturados nas armadilhas")
 
 ```
+De acordo com os dados obtidos, o canteiro de contraprova foi o qual teve maior incidência de pulgões alados capturados nas armadilhas, seguido por pimenta, _biomulching_, lona preta e lona amarela. O canteiro de pimenta, o qual foi aplicado a essência de pimenta, não teve uma quantidade menor de pulgões devido ao fato de ser ter feito a aplicação da essência da pimenta apenas durante uma semana no final do 1º mês, o que não foi o suficiente. O canteiro de lona amarela teve menos pulgões capturados nas armadilhas que todos os outros tratamento durante quase todo o período do teste. O que pode ser devido principalmente a coloração amarela do mulching utilizado neste canteiro, o que refletia mais luz por baixo das folhas. Entretanto conforme verificado anteriormente na questão sobre a massa produzida por este canteiro, uma parcela considerável não pôde ser consumida devida a alta infestação de colônias de pulgões nas folhas das plantas. Isso gera uma inconsistencia dos dados obtidos, o que precisa ser revisado pois a utilização da lona amarela pode ter afetado o princípio de funcionamento das armadilhas, as quais se baseia na reflexão da cor amarela para atrair insetos.
 
-```{r pulgoes_anova, echo=FALSE, fig.cap="Figura 3. Fonte o autor, Porto Algre - RS, 2021"}
+O canteiro com _biomulching_ não apresentou a menor quantidade de pulgões quando comparado a lona amarela e a lona preta. Como o canteiro de lona preta foi plantado duas semanas após os demais, este provavelmente poderia superar o número de pulgões do canteiro com _biomulching_, tanto que houveram diversas contagens em que os valores da lona preta foram superiores ao do _biomulching_, conforme evidencia-se na \@ref[fig:pulgões].
+
+Para verificar a confiabilidade dos dados e se há ou não diferenças entre os tratamentos, foi calculado o valor médio de pulgões por dia capturados nos diferentes canteiros \@ref[fig:tab4].
+
+```{r tab4, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021" }
+dados_pulgoes %>%
+  group_by(Prevenção) %>%
+  #filter(Prevenção == "Contraprova") %>%
+  mutate(UltimoDia = lag(Dia)) %>%
+  filter(!is.na(UltimoDia)) %>%
+  mutate(DiffDias = as.integer(Dia - UltimoDia)) %>%
+  mutate(Q = Quantidade/DiffDias) %>%
+  select(Agente, Dia, Prevenção, Q) %>%
+  summarize(Media = mean(Q)) %>%
+  print -> df.media_pulgoes_dia
+```
+
+Após, os dados de pulgões por dia foram analisados estatisticamente por meio de análise de variância e teste de Tukey. O resultado do teste de Tukey pode ser conferido na \@ref[fig:pulgoes_anova]. Conforme o teste de Tukey, observa-se que há diferenças estatísticas entre o canteiro S (lona amarela) e os demais canteiros. Como relatado anteriormente, ponto que necessita de maiores estudos para compreender a razão deste fenomeno. Em relação aos demais canteiros, não há diferenças estatísticas entre os valores encontrados a 95% de confiança. Ou seja, não podemos dizer se há benefícios utilizando algum tratamento ou não quando comparados com a contraprova e entre si mesmos.
+
+```{r pulgoes_anova, echo=FALSE, fig.cap="Teste de Tukey para pulgões. Fonte o autor, Porto Algre - RS, 2021"}
 df.armadilhas %>%
   filter(Agente == "Pulgões")->dados_pulgoes
 
-aov(lm(Quantidade~Código, data= dados_pulgoes)) -> pulgoes_anova
+dados_pulgoes %>%
+  group_by(Prevenção) %>%
+  #filter(Prevenção == "Contraprova") %>%
+  mutate(UltimoDia = lag(Dia)) %>%
+  filter(!is.na(UltimoDia)) %>%
+  mutate(DiffDias = as.integer(Dia - UltimoDia)) %>%
+  mutate(PulgoesPorDia = Quantidade/DiffDias) %>%
+  select(Agente, Dia, Código, Prevenção, PulgoesPorDia) -> df.dados_pulgoes_por_dia
 
-summary(pulgoes_anova)
 
-TukeyHSD(pulgoes_anova)
+aov(lm(PulgoesPorDia~Código, data= df.dados_pulgoes_por_dia)) -> pulgoes_anova
+
+#summary(pulgoes_anova)
+#TukeyHSD(pulgoes_anova) -> TUKEY
 
 plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 2)
 ```
 
-```{r, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Algre - RS, 2021"}
-
-medias <- with(dados_pulgoes,tapply(Quantidade,Prevenção,mean)) 
-erro <- with(dados_pulgoes,tapply(Quantidade,Prevenção,function(x) sqrt(var(x)/length(x))))
-
-x <- barplot(medias,beside=T,ylim=c(0,25),ylab="Quantidade",xlab="Prevenção")
-       arrows(x0=x,y0=medias-erro,
-       x1=x,y1=medias+erro,
-       angle=90,length=0.14,code=3)
-       
+```{r eval=FALSE, include=FALSE}
+dados_pulgoes %>%
+  group_by(Prevenção) %>%
+  #filter(Prevenção == "Contraprova") %>%
+  mutate(UltimoDia = lag(Dia)) %>%
+  filter(!is.na(UltimoDia)) %>%
+  mutate(DiffDias = as.integer(Dia - UltimoDia)) %>%
+  mutate(Q = Quantidade/DiffDias) %>%
+  select(Agente, Dia, Prevenção, Q) %>%
+  ggplot(aes(x=Q, fill=Prevenção)) +
+  geom_histogram() +
+  facet_wrap(~Prevenção, ncol=1) +
+  xlim(0, NA) +
+  geom_vline(data=df.media_pulgoes_dia, aes(xintercept=Media))
 ```
+ 
+#### Outros insetos não identificados
 
-Conforme observação da Figura \@ref(fig:pulgões), há uma diferença significativa no tratamento que utilizou o mulching convencional amarelo, o qual teve a menor contagem do número de pulgões.
+A quantidade de outros insetos capturados nas armadilhas pode ser observada na \ref[fig:outros]. Os pontos apresentados possuem certa similaridade com os da \ref[fig:pulgoes], pois possuem picos e regiões de queda parecidas e também se verifica que com o passar do tempo a quantidade de insetos capturados aumenta. A lona amarela, teve um resultado parecido com o do número de pulões e também mostrou um menor número de outros insetos.
 
 ```{r outros, echo=FALSE, fig.cap="Figura 5. Fonte o autor, Porto Algre - RS, 2021"}
 df.armadilhas %>%
@@ -817,87 +869,49 @@ df.armadilhas %>%
   ylab("Número de outros insetos")
 
 ```
+Analisando a \ref[fig:outros_anova], pode-se visualizar uma tendencia para uma diferença maior no canteiro com lona amarela em relação aos demais canteiros, contudo não é possivil dizer que há diferenças significativas. Ou seja, não é possivél afirmar se o _biomulching_ nem o uso da essencia de pimenta contribui para a redução do número de outros insetos, bem como de pulgões.
 
-```{r, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Algre - RS, 2021"}
+```{r outros_anova, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
   # Vamos filtrar observações com outros
   filter(Agente %in% c("Outros")) -> dados_outros
 
 aov(Quantidade~Código, data= dados_outros) -> outros_anova
-
-summary(outros_anova)
-
-TukeyHSD(outros_anova)
+#summary(outros_anova)
+#TukeyHSD(outros_anova)
 
 plot(TukeyHSD(outros_anova, conf.level=.95), las = 2)
 
 ```
 
-Analisando o gráfico do número de outros insetos, pode-se visualizar uma tendencia para um menor numero no canteiro com lona amarela, nos demais canteiros não é possivil distinguir se há diferenças. Ou seja, não é possivél afirmar se o _biomulching_ contribui para a redução do número de outros insetos.
+#### Inimigos naturais
 
-```{r pimenta, echo=FALSE, fig.cap="Figura 7. Fonte o autor, Porto Algre - RS, 2021"}
-
-df.armadilhas %>%
-  # Vamos filtrar observações com a essência de pimenta
-  filter(Código %in% c("P","T")) %>% 
-  # Vamos filtrar observações com os pulgões
-  filter(Agente == "Pulgões") %>%
-  ggplot(aes(x = Dia, y = Quantidade, color=Prevenção)) +
-  geom_line() +
-  geom_point() +
-  ylim(0, NA) +
-  geom_smooth(method="lm")+
-  ggtitle("Número de pulgões no canteiro de contraprova X pimenta")
-
-```
-
-Conforme evidencia a figura \@ref(fig:pimenta), não há diferença visivel em relação ao uso da essencia de pimenta para o combate de pulgões.
-
-```{r moscas, echo=FALSE, fig.cap= "Figura 3"}
-
-df.armadilhas %>%
-  # Vamos filtrar observações com as moscas e lagartas
-  filter(Agente %in% c("mosca", "lagarta")) %>%
-  ggplot(aes(x = Prevenção, y = Quantidade, fill=Agente))+
-  geom_bar(stat = "identity", width=.5, position = "dodge")+
-  ggtitle("Número total de lagartas e moscas em cada canteiro")+
-  ylab("Quantidade de moscas e lagartas")
-
-```
-
-Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros mais o canteiro com _biomulching_, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
+Sobre a presença de inimigos naturais, não foi registrado um grande número destes. Como pode-se ver na \@ref[fig:naturais], o canteiro que mais teve incidência de inimigos naturais nas armadilhas foi do _biomulching_. Por mais que este canteiro estivesse sobre tratamento, seu uso não influenciou de forma significativa na presença, nem na mortalidade de inimigos naturais.
 
 ```{r naturais, echo=FALSE}
 
 df.armadilhas %>%
   # Vamos filtrar observações com naturais
   filter(Agente %in% c("Naturais")) %>%
-  ggplot(aes(x = Prevenção, y = Quantidade)) +
-  geom_bar(stat = "identity")+
+  ggplot(aes(x = Prevenção, y = Quantidade, fill = Prevenção)) +
+  geom_bar(stat = "identity", width=.5)+
   ggtitle("Quantidade total de inimigos naturais capturados nas armadilhas")
 ```
 
-Sobre a presença de inimigos naturais, não foi registrado um grande número destes. O canteiro com _biomulching_ foi o que teve maior presença de inimigos naturais, assim mostrando que não afeta negativamente estes organismos.
-
-
 ### Eficiência dos tratamentos
 
-Qual a eficiência dos tratamentos?
-
-Há diferença entre os tratamentos, se sim qual foi o com maior redução aparente da população de pulgões e qual teve menor redução aparente?
-
-A partir dos dados obtidos vamos analisálos com a seguinte equação:
+Após a análise dos resultados foi cálculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle utilizando a fórmula de Abbott, a qual pode ser conferida na seguinte equação:
 
 E % = ((T-Tr)/T)*100
+
 onde:
 T = testemunha
 Tr = tratamento
 
-
-Através da utilização da fórmula de Abbott foi calculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle.
-
 ```{r grafico 3}
+
+#adicionar a efiencia contra os outros grupos tudo na mesma tabela
 
 df.armadilhas %>%
 filter(Agente == "Pulgões") %>%
@@ -913,7 +927,7 @@ arrange(-E)
 
 ```
 
-
+O canteiro S foi o que teve um menor número de pulgões na contagem das armadilhas, atingindo uma eficiencia de 64%, seguido de G e X com 24%, P e T. Contudo também foi observada quantidade aproximada de pulgões nas plantas e a diferênça de pulgões entre os canteiros, não foi significativa ao final dos 84 dias de testes. Até o final do segundo mês, sim existia uma diferênça, que a partir deste momento foi diminuindo.
 
 
 
@@ -922,15 +936,13 @@ arrange(-E)
 utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
 
 
-
-
-Qual o rendimento médio de produção de massa comestível?
-
-Qual o canteiro que mais produziu? (isso significa, qual teve a maior quantidade de massa total)
-
 O _biomulching_ estimula ou inibe o crescimento da couve?
 A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
 
+A essência de pimento por si só, auxilia no controle dos pulgões?
+O _biomulching_ contribui para reduzir a população de pulgões? E de moscas e lagartas?
+O _biomulching_ contribui para reduzir a população de outros insetos?
+O _biomulching_ afeta a presença de inimigos naturais? Se sim, negativamente ou positivamente?
 
 ### Biomulching como cobertura
 
@@ -958,7 +970,25 @@ Em relação ao canteiro que utilizou a essência de pimenta no controle e o _bi
 
 # Conclusões
 
+**falta revisar**
 
+A utilização de essências para a proteção das plantações e a utilização de bioplásticos como cobertura de solo já existe a algumas décadas, contudo não se encontrou nenhuma referência da existência de uma biocobertura com a agregação de essência com a finalidade de proteger as plantas, na internet, em livros, em revistas ou artigos científicos.
+
+O objetivo do projeto foi atingido parcialmente. O objetivo de estudar as quatro plantas, alecrim, alho, sálvia e pimenta, para verificar possíveis efeitos inseticidas sobre o pulgão encontrado na couve foi alcançado. Sendo que após os testes terem sido realizados comprovou-se que a essência de pimenta foi a qual apresentou melhores resultados na plantação de couve e com uma eficiência de 100% em condições controladas. Assim, portanto, sendo eficiente no combate de pulgões.
+
+Entretanto, em relação ao biomulching, este não apresentou os resultados desejáveis para o combate de pulgões e outras pragas das couves. Uma vez que nos primeiros testes, por causa da qualidade rudimentar dos protótipos compostos basicamente de materiais orgânicos não duraram o tempo ideal para acompanhar o crescimento da plantação. E nos últimos testes realizados em plantação de couve, o modelo de teste pode não ter contribuído para um resultado satisfatório do biomulching. Visto que os canteiros estavam bastante próximos uns dos outros, havia os que recebiam algum tratamento ao lado de outros que não estavam sendo tratados. Deste modo a presença de pulgões nas plantas próximas pode ter diminuído a eficiência do biomulching consideravelmente, bem como a ação da essência no canteiro P. Contudo ainda é possível verificar certa diminuição na presença de pulgões no canteiro com o uso do biomulching, assim indicando certa ação sobre os pulgões.
+
+Sendo, o protótipo bioplástico 4, o qual obteve uma maior durabilidade, cerca de três meses, e apresentou os melhores resultados, com boas características físicas quando comparado aos outros protótipos compostos com casca de laranja, assim tornando-se o melhor protótipo já produzido, para o biomulching.
+
+Por mais que não se tenha conseguido obter resultados os quais contribuíssem a comprovar as vantagens geradas pela agregação do extrato de pimenta no biomulching, os resultados atingidos são promissores. E este traz, por si só, benefícios e vantagens sobre o mulching convencional. Pois não gera resíduos e não é necessária sua retirada como o mulching convencional, evitando custos com o manejo e retirada dos resíduos. Apresentando resultados semelhantes ao mulching plástico, mantendo a umidade do solo, impedindo o crescimento de plantas invasoras e contribuindo para o crescimento da planta.
+
+Além de contribuir para o ciclo de nutrientes, auxiliando na volta dos nutrientes ao solo, com a utilização de um resíduo agroindustrial, a casca de laranja. Assim agregando valor neste resíduo.
+
+Se após mais testes ficar comprovado seu funcionamento e potencial para ser implantado em plantações com rendimento semelhante à dos agrotóxicos convencionais, este poderia ser uma nova opção para o combate de pragas. No qual o agricultor não terá de aplicar defensivos, pois já vão estar na plantação desde o início, na biocobertura, além de obter os mesmos benefícios da lona plástica.
+
+Assim o projeto também contribui para alcançar as seguintes metas dos Objetivos de Desenvolvimento Sustentável (ODS) da ONU: Objetivo 2: Acabar com a fome, alcançar a segurança alimentar e melhoria da nutrição e promover a agricultura sustentável, objetivo 12: Assegurar padrões de produção e de consumo sustentáveis, e o objetivo 15: Proteger, recuperar e promover o uso sustentável dos ecossistemas terrestres, gerir de forma sustentável as florestas, combater a desertificação, deter e reverter a degradação da terra e deter a perda de biodiversidade.
+
+A necessidade de criar um método de controle de pragas mais seguro, ecológico e sustentável que os agrotóxicos convencionais existe e é preciso! Pelo projeto nota-se que é possível a sua produção, trazendo assim maiores benefícios e facilidades, para quem produz, para o meio ambiente e para quem consome alimentos, estes que são a base da nossa existência.
 
 
 # Referências
