@@ -857,7 +857,7 @@ dados_pulgoes %>%
 
 A quantidade de outros insetos capturados nas armadilhas pode ser observada na \ref[fig:outros]. Os pontos apresentados possuem certa similaridade com os da \ref[fig:pulgoes], pois possuem picos e regiões de queda parecidas e também se verifica que com o passar do tempo a quantidade de insetos capturados aumenta. A lona amarela, teve um resultado parecido com o do número de pulões e também mostrou um menor número de outros insetos.
 
-```{r outros, echo=FALSE, fig.cap="Figura 5. Fonte o autor, Porto Algre - RS, 2021"}
+```{r outros, echo=FALSE, fig.cap="Fonte o autor, Porto Algre - RS, 2021"}
 df.armadilhas %>%
   # Vamos filtrar observações com outros
   filter(Agente %in% c("Outros")) %>%
@@ -871,7 +871,7 @@ df.armadilhas %>%
 ```
 Analisando a \ref[fig:outros_anova], pode-se visualizar uma tendencia para uma diferença maior no canteiro com lona amarela em relação aos demais canteiros, contudo não é possivil dizer que há diferenças significativas. Ou seja, não é possivél afirmar se o _biomulching_ nem o uso da essencia de pimenta contribui para a redução do número de outros insetos, bem como de pulgões.
 
-```{r outros_anova, echo=FALSE, fig.cap="Figura 6. Fonte o autor, Porto Algre - RS, 2021"}
+```{r outros_anova, echo=FALSE, fig.cap="Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
   # Vamos filtrar observações com outros
@@ -889,7 +889,7 @@ plot(TukeyHSD(outros_anova, conf.level=.95), las = 2)
 
 Sobre a presença de inimigos naturais, não foi registrado um grande número destes. Como pode-se ver na \@ref[fig:naturais], o canteiro que mais teve incidência de inimigos naturais nas armadilhas foi do _biomulching_. Por mais que este canteiro estivesse sobre tratamento, seu uso não influenciou de forma significativa na presença, nem na mortalidade de inimigos naturais.
 
-```{r naturais, echo=FALSE}
+```{r naturais, echo=FALSE, fig.cap="Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
   # Vamos filtrar observações com naturais
@@ -901,7 +901,7 @@ df.armadilhas %>%
 
 ### Eficiência dos tratamentos
 
-Após a análise dos resultados foi cálculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas e lagartas em relação ao canteiro de controle utilizando a fórmula de Abbott, a qual pode ser conferida na seguinte equação:
+Embora os resultados não apresentem diferênças significativas, foi cálculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas, lagartas e outros insetos em relação ao canteiro de controle utilizando a fórmula de Abbott, a qual pode ser conferida na seguinte equação:
 
 E % = ((T-Tr)/T)*100
 
@@ -909,27 +909,58 @@ onde:
 T = testemunha
 Tr = tratamento
 
-```{r grafico 3}
-
-#adicionar a efiencia contra os outros grupos tudo na mesma tabela
+```{r calculo_eficiencia, echo=FALSE, fig.cap="Eficiência contra diferentes pragas alvo. Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
 filter(Agente == "Pulgões") %>%
-#filter(Prevenção == "Pimenta") %>%
+group_by(Prevenção) %>%
+summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
+df.temp %>% filter(Prevenção != "Contraprova") %>%
+  mutate(Contraprova = valor.contraprova) %>%
+  mutate(`Eficiência pulgões (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+  select(-"Contraprova", - "Total") -> df.eficiencia
+  #mutate(`Praga alvo`= "Pulgões")-> df.eficiencia
+
+df.armadilhas %>%
+filter(Agente == "Outros") %>%
 group_by(Prevenção) %>%
 summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
 df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
 df.temp %>% filter(Prevenção != "Contraprova") %>%
 mutate(Contraprova = valor.contraprova) %>%
-mutate(E = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
-arrange(-E)
+mutate(`Eficiência outros (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+select(-"Contraprova", - "Total") ->df.eficiencia_outros
 
+df.armadilhas %>%
+filter(Agente == "mosca") %>%
+group_by(Prevenção) %>%
+summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
+df.temp %>% filter(Prevenção != "Contraprova") %>%
+mutate(Contraprova = valor.contraprova) %>%
+mutate(`Eficiência moscas (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+select(-"Contraprova", - "Total") ->df.eficiencia_moscas
+
+df.armadilhas %>%
+filter(Agente == "lagarta") %>%
+group_by(Prevenção) %>%
+summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
+df.temp %>% filter(Prevenção != "Contraprova") %>%
+  mutate(Contraprova = valor.contraprova) %>%
+  mutate(`Eficiência lagartas (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+  select(-"Contraprova", - "Total") %>%
+  left_join(df.eficiencia_moscas, by = "Prevenção") %>%
+  left_join(df.eficiencia, by = "Prevenção") %>%
+  left_join(df.eficiencia_outros, by = "Prevenção") %>%
+  arrange(-`Eficiência pulgões`)
 
 ```
 
-O canteiro S foi o que teve um menor número de pulgões na contagem das armadilhas, atingindo uma eficiencia de 64%, seguido de G e X com 24%, P e T. Contudo também foi observada quantidade aproximada de pulgões nas plantas e a diferênça de pulgões entre os canteiros, não foi significativa ao final dos 84 dias de testes. Até o final do segundo mês, sim existia uma diferênça, que a partir deste momento foi diminuindo.
+Conforme vemos na tabela acima,o canteiro de lona amarela foi o que teve o menor número de pulgões e de outros insetos na contagem das armadilhas, atingindo uma eficiencia de 64% e 48% respectivamente. Entretanto nas aferições de lagartas e moscas que foram realizdas diretamente nas plantas, a lona amarela foi o canteiro com os piores resultados, sendo equivalente em relação à moscas e pior em relação à lagartas quando comparado ao canteiro de contraprova.
 
-
+Os demais canteiros, como esperado, não apresentam grandes diferenças. Existe indícios de que a essência de pimenta pode ter reduzido a infestação de lagartas, mas não apresenta evidencias na redução de pulgões e outros insetos. O _biomulching_ reduziu a infestação de pulgões em 24%, porém não é eficiente contra a maioria dos outros insetos. 
 
 ## Novas perguntas
 
