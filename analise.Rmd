@@ -36,11 +36,11 @@ _**Keywords:** Pesticide. Biomulching. Natural insecticide. Ground cover._
 
 Com a preocupação cada vez maior por uma alimentação saudável e segura por parte da sociedade, o presente projeto avalia um possível novo método de proteger as plantas, diante do problema do uso indiscriminado de agrotóxicos em plantações, os quais se mal manuseados e aplicados excessivamente podem trazer inúmeros prejuízos à saúde humana e ao meio ambiente.
 
-Dentre os malefícios destes, ao meio ambiente pode-se citar a contaminação do solo, água, ar, diminuição da biodiversidade, pragas resistentes, entre outros, além de tamanhos prejuízos à saúde, como intoxicação, câncer e diversas outras doenças causadas pela longa exposição a estas substâncias (**referencia!**).
+Dentre os malefícios destes, ao meio ambiente pode-se citar a contaminação do solo, água, ar, diminuição da biodiversidade, pragas resistentes, entre outros, além de tamanhos prejuízos à saúde, como intoxicação, câncer e diversas outras doenças causadas pela longa exposição a estas substâncias [@KIM2017525].
 
 Visando diminuir o uso de agrotóxicos e contribuir para uma agricultura mais sustentável e segura, o projeto busca validar a técnica do _biomulching_ com agregação de extratos de _Capsicumm Frutensis_ para o combate de pragas das _Brassicas_, especificamente, pulgões, lagartas e moscas brancas em couves. Esta técnica se baseia na união de outras duas, a de mulching ou cobertura de solo e de bioinseticida.
  
-O uso de lonas para cobertura do solo é uma técnica bastante empregada atualmente, principalmente no cultivo de hortigranjeiros e na produção agroecológica pois seu uso traz benefícios como o controle da umidade e da temperatura do solo e impede o crescimento de plantas daninhas (**referencia!**). As essências de algumas plantas são usadas desde muitos séculos como defensivo agrícola e, atualmente, também como uma alternativa aos agrotóxicos comuns, sendo possível atingir as pragas sem trazer grandes danos às outras espécies presentes na natureza (**referencia!**). Em alguns casos, com a mesma eficiência dos agrotóxicos comuns, assim sendo mais seguro para o meio ambiente e a saúde humana. 
+O uso de lonas para cobertura do solo é uma técnica bastante empregada atualmente, principalmente no cultivo de hortigranjeiros e na produção agroecológica pois seu uso traz benefícios como o controle da umidade e da temperatura do solo e impede o crescimento de plantas daninhas [@chiellini2002environmentally]. As essências de algumas plantas são usadas desde muitos séculos como defensivo agrícola e, atualmente, também como uma alternativa aos agrotóxicos comuns, sendo possível atingir as pragas sem trazer grandes danos às outras espécies presentes na natureza (**referencia!**). Em alguns casos, com a mesma eficiência dos agrotóxicos comuns, assim sendo mais seguro para o meio ambiente e a saúde humana. 
 
 A utilização de ferramentas computacionais durante o processo de pesquisa reduz os possíveis erros de manipulação de dados e contribui com a reprodutibilidade da metodologia empregada, assim aumentando a confiança nos resultados e conclusões obtidas através dos experimentos. Ademais, outra técnica a qual pode auxiliar durante o uso de tais ferramentas é a de _literal programming_, onde descrevemos o que está sendo feito juntamente com os código e algoritmos que executam funções com os dados [@knuth1984literate]. Isso permite um maior detalhamento da metodologia e controle das variáveis, o que também contribui para aumentar o nível de confiança numa pesquisa.
 
@@ -49,23 +49,19 @@ A utilização de ferramentas computacionais durante o processo de pesquisa redu
 
 O Brasil é um dos maiores produtores agrícolas do mundo e um dos que mais utiliza agrotóxicos. De acordo com a ANVISA, 51% dos alimentos contêm resíduos de agrotóxicos, isso sem considerar o glifosato, o pesticida mais utilizado no mundo. Hoje, dos 50 agrotóxicos mais utilizados no país 28 são proibidos em outros países, fora os que são contrabandeados e entram ilegalmente no país. (Campanha Nacional Contra os Agrotóxicos e Pela Vida, 2019). 
 
-Um fato o qual não se pode negar é de que os agrotóxicos afetam a vida. De uma maneira positiva auxiliando no combate de pragas e protegendo as plantações contra perdas econômicas, sendo como uma forma de segurança para os produtores. Contudo, estes também irão afetar todos os outros seres vivos presentes no meio, os quais são benéficos para as plantas, para os seres humano e a natureza como um todo.
+Um fato o qual não se pode negar é de que os agrotóxicos afetam a vida como um todo [@hirt2020healthy]. De uma maneira positiva auxiliando no combate de pragas e protegendo as plantações contra perdas econômicas, sendo como uma forma de segurança para os produtores. Contudo, estes também irão afetar todos os outros seres vivos presentes no meio, os quais são benéficos para as plantas, para os seres humano e a natureza como um todo.
 
-Estas substâncias quando má administradas pelos produtores pode causar uma série de malefícios à saúde humana, como intoxicação, desordens hormonais, doenças neurológicas e até mesmo alguns tipos de câncer podem ser favorecidos pela exposição desprotegida e excessiva aos agrotóxicos, [@cassal2014agrotoxicos]. Além de tamanhos prejuízos à saúde, também há vários problemas ambientais que podem ser causados pelo uso indiscriminado destas substâncias. Entre elas estão a poluição do solo, da água, do ar, e consequentemente isso irá afetar os ecossistemas e a biodiversidade expostas a tais contaminantes (SOARES e PORTO, 2007), [@cassal2014agrotoxicos]. 
+Estas substâncias quando má administradas pelos produtores pode causar uma série de malefícios à saúde humana, como intoxicação, desordens hormonais, doenças neurológicas e até mesmo alguns tipos de câncer podem ser favorecidos pela exposição desprotegida e excessiva aos agrotóxicos, [@cassal2014agrotoxicos]. Além de tamanhos prejuízos à saúde, também há vários problemas ambientais que podem ser causados pelo uso indiscriminado destas substâncias. Entre elas estão a poluição do solo, da água, do ar, e consequentemente isso irá afetar os ecossistemas e a biodiversidade expostas a tais contaminantes [@soares2007agricultural], [@cassal2014agrotoxicos]. 
 
-Com todos estes problemas ocasionados pelo uso incorreto de pesticidas, evidencia-se uma necessidade por métodos alternativos aos agrotóxicos para promover uma agricultura mais saudável, sustentável e segura. Dentre as alternativas, está a utilização de bioinseticidas, óleos essenciais e extratos que estão presentes nas plantas aromáticas e podem apresentar atividade atraente, repelente, e até tóxica a insetos e microrganismos, (SALTO, 2004), (PICANÇO, 2010). Os produtos de plantas são considerados como menos problemáticos para o meio ambiente, devido a fácil decomposição, porém não deixam de ser componentes químicos, devendo seus efeitos serem estudados.  (SALTO, 2004). Entretanto, estes apresentam uma desvantagem em relação aos agrotóxicos convencionais, a necessidade do uso de maiores quantidades de princípio ativo e em maior número de aplicações. 
+Com todos estes problemas ocasionados pelo uso incorreto de pesticidas, evidencia-se uma necessidade por métodos alternativos aos agrotóxicos para promover uma agricultura mais saudável, sustentável e segura. Dentre as alternativas, está a utilização de bioinseticidas, óleos essenciais e extratos que estão presentes nas plantas aromáticas e podem apresentar atividade atraente, repelente, e até tóxica a insetos e microrganismos, [@saito2004plantas], [@picancco2010manejo]. Os produtos de plantas são considerados como menos problemáticos para o meio ambiente, devido a fácil decomposição, porém não deixam de ser componentes químicos, devendo seus efeitos serem estudados, [@saito2004plantas]. Entretanto, estes apresentam uma desvantagem em relação aos agrotóxicos convencionais, a necessidade do uso de maiores quantidades de princípio ativo e em maior número de aplicações. 
 
-Uma outra alternativa aos agrotóxicos é a técnica de /mulching/, na qual consiste na cobertura do solo com algum material como folhas secas, jornal, TNT ou com o uso de lonas plásticas, as quais podem ser biodegradáveis ou não. O uso do mulching auxilia em múltiplos fatores durante o cultivo como o controle da umidade do solo, dos nutrientes, da temperatura do solo, de infestações de insetos e como uma barreira para o desenvolvimento de plantas invasoras (NETO, 2016), (CHIELLINI, 2002). Todos os fatores juntos promovem um crescimento das plantas mais rápido gerando maiores rendimentos e o produto é mais facilmente colido e limpo (CHIELLINI, 2002). Entretanto, esta técnica também apresenta suas desvantagens, como normalmente são utilizados mulchings plásticos, estes após um certo período começam e se rasgar e a se degradar em pequenos pedaços que permanecem dispersos no solo, assim perdendo sua utilidade. Este fato faz necessária a remoção do mulching, a qual pode ser difícil de ser realizada se este já estiver bastante degradado, e após a remoção ainda existirão os resíduos plásticos, que não são reciclados devido a presença de altas quantidades de terra e outros contaminantes como pesticidas (CHIELLINI, 2002).
-
-<!-- # (vamos averiguar se podemos melhor gerenciar as referências bibliográficas) -->
+Uma outra alternativa aos agrotóxicos é a técnica de /mulching/, na qual consiste na cobertura do solo com algum material como folhas secas, jornal, TNT ou com o uso de lonas plásticas, as quais podem ser biodegradáveis ou não. O uso do mulching auxilia em múltiplos fatores durante o cultivo como o controle da umidade do solo, dos nutrientes, da temperatura do solo, de infestações de insetos e como uma barreira para o desenvolvimento de plantas invasoras [@netoavaliaccao], [@chiellini2002environmentally]. Todos os fatores juntos promovem um crescimento das plantas mais rápido gerando maiores rendimentos e o produto é mais facilmente colido e limpo [@chiellini2002environmentally]. Entretanto, esta técnica também apresenta suas desvantagens, como normalmente são utilizados mulchings plásticos, estes após um certo período começam e se rasgar e a se degradar em pequenos pedaços que permanecem dispersos no solo, assim perdendo sua utilidade. Este fato faz necessária a remoção do mulching, a qual pode ser difícil de ser realizada se este já estiver bastante degradado, e após a remoção ainda existirão os resíduos plásticos, que não são reciclados devido a presença de altas quantidades de terra e outros contaminantes como pesticidas [@chiellini2002environmentally].
 
 Visando instigar o desenvolvimento de novos métodos de controle de pragas na agricultura, o presente projeto irá revisar os dados obtidos em um trabalho desenvolvido pelo aluno Mateus Colombo durante o Ensino Médio com o uso de pacotes de linguagem R. Em seu trabalho foi criado o _biomulching_ com agregação de extratos de pimenta malagueta, uma técnica alternativa aos agrotóxicos que consiste como cobertura de solo e de prevenção de controle de pragas em couve. Esta técnica une o princípio da cobertura de solo com o dos bioinseticidas, criando um mulching biodegradável, a base de casca de laranja, com a agregação de extratos de _Capsicum frutensis_ para a liberação controlada de sustâncias inseticidas durante o cultivo. Assim hipoteticamente auxiliando as plantas para um melhor desenvolvimento e garantindo uma boa colheita sem prejuízos econômicos.
 
-Um ponto importante durante o desenvolvimento de um projeto de pesquisa é a correta análise dos dados obtidos e descrição dos processos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes manualmente, o que poderia acabar gerando desorganização e erros, (WICKHAM, H, 2016) , os quais ao final poderiam consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo.Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos é a utilização de softwares e outros programas de análise tais como o Rstudio.
+Um ponto importante durante o desenvolvimento de um projeto de pesquisa é a correta análise dos dados obtidos e descrição dos processos. No projeto original, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes manualmente, o que poderia acabar gerando desorganização e erros, [@wickham2016r], os quais ao final poderiam consequentemente gerar conclusões imprecisas e indefinidas sobre o objeto de estudo.Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de solucionar os problemas causados na análise de dados por erros humanos é a utilização de softwares e outros programas de análise tais como o Rstudio.
 
-Já para a parte de organização e descrição dos processos do projeto, Donald Knuth criou o conceito de _literal programing_ o qual é semelhante a um caderno de anotações digital. Com a programação literal são anotadas as informações sobre os procedimentos e o que acontece no projeto, escritas de uma forma esplicativa ao longo dos trechos com códigos, sendo a liguagem computacional com uma tradução para a linguagem humana. Assim torando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área (**referencia!**). 
-
-<!-- # (tu podes elaborar no sentido de apresentar o conceito de caderno de anotações digital com programação literal. No quesita da prog. literal, tu podes citar o trabalho do Donald Knuth (link da wikipedia: https://en.wikipedia.org/wiki/Literate_programming).) -->
+Já para a parte de organização e descrição dos processos do projeto, Donald Knuth criou o conceito de _literal programing_ o qual é semelhante a um caderno de anotações digital. Com a programação literal são anotadas as informações sobre os procedimentos e o que acontece no projeto, escritas de uma forma esplicativa ao longo dos trechos com códigos, sendo a liguagem computacional com uma tradução para a linguagem humana. Assim torando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área [@knuth1984literate]. 
 
 # Métodos e materiais
 
@@ -78,7 +74,7 @@ Segue um fluxograma do trabalho desenvolvido durante o projeto de pesquisa:
 
 ## Teste em condições controladas da essência e do _biomulching_
 
-O seguinte teste foi baseado na metodologia de Santos e Silva, 2015.
+O seguinte teste foi baseado na metodologia de [@santos2015extratos].
 
 Material utilizado:
  
@@ -118,7 +114,7 @@ X = Canteiro com lona plástica preta
 Para a cobertura do canteiro com o _biomulching_, foram utilizados  pedaços pequenos do protótipo de _biomulching_ produzido a base de casa de laranja e outros componentes com a agregação de extrato de pimenta malagueta (_Capsicum frutencis_), totalizando a área de 1m². Depois de produzidos foram armazenados em sacos plásticos até o momento de aplicação na plantação, quando foram dispostos sobre o solo um ao lado de outro, entre as couves, formando a área de cobertura de 1m². Também foram dispostas as coberturas de mulching amarelo e preto sobre os canteiros S e X, respectivamente.
 O controle deste teste foi realizado do dia 17 de dezembro de 2018 até o dia 11 de março de 2019, totalizando o período de 84 dias.
 
-O controle do experimento foi baseado no trabalho de (NETO, 2016)., sendo feitas algumas alterações conforme a disponibilidade dos equipamentos presentes no laboratório e a praticidade durante o experimento em campo.
+O controle do experimento foi baseado no trabalho de [@netoavaliaccao]., sendo feitas algumas alterações conforme a disponibilidade dos equipamentos presentes no laboratório e a praticidade durante o experimento em campo.
 
  Para o experimento foram analisadas as seguintes variáveis conforme descritas:
 
@@ -150,7 +146,10 @@ Medição de altura nas semanas, 9, 11 e 12, além disso foi aferido o tamanho m
 Medição semanal da área com presença do _biomulching_.
 
 - Quantidade de pulgões alados , outros insetos e inimigos naturais:
-Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick (Rezende, 2007). As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
+Para o monitoramento da população de pulgões alados e outros insetos foi utilizado o método de armadilha com bandejas de água desenvolvida por Moerick, [@resende2007amostragem]. As bandejas foram pintadas de amarelo, para atrair os insetos foi usado o estímulo visual da radiação amarela refletiva.
+
+![Armadilha utilizada no controle do número de pulgões alados](FOTO)
+
 As armadilhas foram confeccionadas usando bandejas plásticas com 1 litro de capacidade, pintadas internamente de amarelo. Em cada bandeja foi colocado 500 ml de água e 2 gotas de detergente, para quebrar a tensão superficial, foram cobertos por uma proteção de organza para evitar perda de material em caso de transbordamento e foram instaladas na altura do dossel das plantas. O controle foi feito a cada 3 dias sendo utilizadas duas armadilhas por canteiro.
 
 ![Plantação teste](P_20181222_201917.jpg)
@@ -179,7 +178,7 @@ library(lubridate)
 #cria legenda dos tratamentos para o teste em plantação de couve.
 tribble (
   ~Código, ~Prevenção,
-  "G", "_biomulching_",
+  "G", "Biomulching",
   "T", "Contraprova",
   "P", "Pimenta",
   "S", "Lona Amarela",
@@ -424,7 +423,7 @@ Inicialmente foi criado uma legenda com o intuito de melhorar a interpretação 
 tribble (~Código, ~Tratamento,
          "C", "Contraprova #1",
          "C+", "Contraprova #2",
-         "B", "_biomulching_",
+         "B", "Biomulching",
          "I", "Icaridina",
          "E", "Essência de Pimenta") -> df.controlado.legenda
 
@@ -499,7 +498,7 @@ df.controlado %>%
 df.controlado %>%
   filter(`Tempo (h)` == "116") %>%
   filter(Estado %in% c("vivos")) %>%
-  filter(Tratamento %in% c("_biomulching_", "Icaridina", "Essência de Pimenta")) %>%
+  filter(Tratamento %in% c("Biomulching", "Icaridina", "Essência de Pimenta")) %>%
   mutate("Eficiência (%)" = round((122.5 - Quantidade)/122.5*100, 0))
 ```
 
@@ -526,6 +525,7 @@ df.clima%>%
  # select(temperatura)%>%
   #summarise(mean(temperatura)) -> temperatura_média
 ```
+
 #### Umidade
 
 Quanto à umidade relativa do ar, está esteve elevada em algumas semanas e baixa em outras, o que consequentemente afetava a umidade do solo. Sua média foi de 77%.
@@ -546,6 +546,7 @@ df.clima%>%
 #  summarise(mean(umidade)) -> umidade_média
 
 ```
+
 ### Umidade do solo
 
 Conforme a figura 4, os valores de umidade do solo alternaram entre a faixa de cerca de 10% até cerca de 27% e, não é possivel verificar se há alguma diferença na umidade do solo entre os canteiros. Contudo é possivel observar que ouveram varios momentos com oscilações em todos os canteiros, tanto nos com cobertura do solo quanto naqueles sem cobertura, o que pode estar relacionado com a umidade relativa do ar do periodo em questão. O canteiro com menos oscilações foi o com cobertura de lona preta e o com menor amplitude foi o canteiro do _biomulching_.
@@ -946,43 +947,7 @@ ANVISA (Agencia Nacional de Vigilancia Sanitária), Programa de análise de res�
 
 Campanha Nacional Contra os Agrotóxicos e Pela Vida, 2019. Disponível em<https://contraosagrotoxicos.org/dados-sobreagrotoxicos/> , acessado em  30 ago. 2021.
 
-CARNEIRO, F. F.; et. al. (org.). Dossiê ABRASCO: Um alerta sobre os impactos dos agrotóxicos na saúde. Parte 1 - Agrotóxicos, Segurança Alimentar e Nutricional e Saúde. Rio de Janeiro: [s. n.], 2015.
-
-CHIELLINI, E.; et. al. Environmentally degradable polymeric materials (EDPM) in agricultural applications—an overview. POLIMERY, 47, nr 7—8, 2002.
-
-GRIGORI, P. Afinal, o Brasil é o maior consumidor de agrotóxico do mundo? Agência Pública, 2019.
-
-NETO, Paulo Fortes et al. Avaliação do bioplástico como cobertura do solo para o cultivo agrícola (projeto AGRISUS: 1351/14. 2016. 81 p. Projeto de pesquisa (Agronomia) – UNITAU, Taubaté/SP, [S. l.], 2016.
-
-SALTO, M. L. As plantas praguicidas: alternativa para o controle de pragas da agricultura. Embrapa – meio ambiente, Jaguariúna, abril 2004.
-
-SANTOS, C. A. B.; e Silva, A. P. M. Extratos vegetais de plantas daninhas contra o pulgão Aphis craccivora Koch 1854, no feijão Vigna Uniguiculata (L.) Walp. Revista Ibero-Americana de Ciências Ambientais. v. 6, n. 2, p. 69-75, 21 ago. 2015.
-
 SANTOS, J. Determinação da umidade do solo. Laboratório de Geotecnia e Pavimentação. UDESC. Disponível em: < https://www.udesc.br/arquivos/cct/id_cpmenu/1036/Apostila_Umidade_dos_solos_15816259409124_1036.pdf> acessado em 1 set. 2021.
-
-SOARES, W.L. e PORTO, M.F. Agricultural activity and environmental externality: an analysis of the use of pesticides in the Brazilian savannah. Ciência & Saúde Coletiva. 2007.
-
-REZENDE, A. L. S.; et al. Amostragem de pulgões alados utilizando bandeja d‘água e placa adesiva. Circular Técnica (Embrapa), Seropédica/RJ, 2007. <https://www.infoteca.cnptia.embrapa.br/bitstream/doc/625925/1/cit019.pdf>
-
-PICANÇO, M. C.; Manejo integrado de pragas. UFV, Viçosa, MG, 2010. Disponível em < https://www.ica.ufmg.br/wp-content/uploads/2017/06/apostila_entomologia_2010.pdf> acessado em 13 set. 2021.
-
-WICKHAM, H, e GROLEMUND, G. R for Data Science, visualize, model, transform, tidy, and import data. O’REILLY. 2016.
-
-git init // inicia a linha do tempo
-git add // adiciona ou atualiza mudanças para irem para a linha do tempo
-git commit // adiciona um ponto na linha do tempo
-git log // visualiza os pontos na linha do tempo
-git status // informa o estado das alterações do nosso projeto
-git show + número do comit // mostra as alterações daquele commit em específico
-git show // mostra as alterações do últimos commit
-
-para criar o repositório virtual:
-
-git remote add origin https://github.com/Mateocool/nome do repositório git //cria o repositório pela primeira vez
-git remote -v // confere os repositórios criados
-git push -u origin master // puxa o arquivo mestre para a nuvem (colocar credenciais da conta)
-git push // puxa o arquivo para o repositório na nuvem (atualiza na nuvem)
-
 
 
 
