@@ -555,13 +555,14 @@ Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principa
 
 ```{r fig4, echo=FALSE, fig.cap="Figura 4. Fonte o autor, Porto Alegre - RS, 2021"}
 df.umidade_solo %>%
-  ggplot(aes(x =Dia, y = `percentual corrigido`, color = Dia))+
+  ggplot(aes(x =Dia, y = `percentual corrigido`))+
   geom_point()+
   geom_line()+
   facet_wrap(~Prevenção, nrow=1)+
   ylim(0, NA)+
   ggtitle("Percentual da umidade do solo através do tempo")+
-  ylab("Percentual de umidade")
+  ylab("Percentual de umidade")+
+  theme(axis.text.x = element_text(angle = 50, hjust = 1, vjust=1))
 
 ```
 Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura 5, onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
@@ -948,11 +949,5 @@ ANVISA (Agencia Nacional de Vigilancia Sanitária), Programa de análise de res�
 Campanha Nacional Contra os Agrotóxicos e Pela Vida, 2019. Disponível em<https://contraosagrotoxicos.org/dados-sobreagrotoxicos/> , acessado em  30 ago. 2021.
 
 SANTOS, J. Determinação da umidade do solo. Laboratório de Geotecnia e Pavimentação. UDESC. Disponível em: < https://www.udesc.br/arquivos/cct/id_cpmenu/1036/Apostila_Umidade_dos_solos_15816259409124_1036.pdf> acessado em 1 set. 2021.
-
-
-
-
-
-
 
 
