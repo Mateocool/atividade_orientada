@@ -1,0 +1,70 @@
+---
+title: "Teste Apresentação"
+output: beamer_presentation
+author: Lucas, Mateus
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r include=FALSE}
+# Leitura de dados
+```
+
+## Introdução
+
+- Contexto
+- Ciência, como funciona o processo científico
+- Os elementos de base do método científico
+- (figura)
+
+## Reprodutibilidade 
+
+- É um pilar da ciência
+- Experimental
+- *Análise*
+
+## Estudo de caso: Biomulching
+
+- Motivação
+- Como havia sido feito o experimento em si
+- Como havia sido feito a *análise*
+  - Capturas de tela com Excel, com as tabelas
+  - Todo o processo de análise/interpretação dos resultados foi feito por ali
+
+## Visão crítica da *análise do estudo de biomulching*
+
+- Baseado na premissa que Excel tem problemas
+- A ideia é usar uma método de análise mais reprodutível, empregando
+  - Programação Literal
+  - Ferramentas modernas de análise de dados (baseadas na linguagem R)
+  
+## Métodos e Materias
+
+- Fluxograma (Slide2.JPG)
+
+## Resultados
+
+- Listar todos os questionamentos
+- Desses todos, tu selecionaste 2 para detalhar, por questões de tempo
+
+## Questionamento 1
+
+
+
+## Questionamento 2
+
+
+## Discussão
+
+1. Visão crítica da aplicação do método usando prog. literal e ferramentas modernas
+2. Visão crítica de quão possível foi reproduzir as conclusões da análise anterior
+
+## Conclusão
+
+- Todo esse trabalho está disponível no meu github, link
+  - Comentários e sugestões são bem-vindos
+- Relatório de pesquisa reprodutível focado no biomulching
+  - Link
+- Link para o teu site
