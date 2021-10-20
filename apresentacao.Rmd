@@ -1,7 +1,12 @@
 ---
 title: "Teste Apresentação"
-output: beamer_presentation
 author: Lucas, Mateus
+output:
+  beamer_presentation:
+    theme: "Seagull"
+    colortheme: "dolphin"
+    fonttheme: "structurebold"
+
 ---
 
 ```{r setup, include=FALSE}
@@ -12,10 +17,17 @@ knitr::opts_chunk$set(echo = FALSE)
 # Leitura de dados
 ```
 
-## Introdução
+# Introdução
 
 - Contexto
-- Ciência, como funciona o processo científico
+
+
+## Ciência 
+
+- Como funciona o processo científico
+
+---
+
 - Os elementos de base do método científico
 - (figura)
 
@@ -25,11 +37,19 @@ knitr::opts_chunk$set(echo = FALSE)
 - Experimental
 - *Análise*
 
-## Estudo de caso: Biomulching
+# Estudo de caso: Biomulching
 
-- Motivação
-- Como havia sido feito o experimento em si
-- Como havia sido feito a *análise*
+![Protótipo de Biomulching em plantação de couve](P_20181222_200022.jpg)
+
+## Motivação
+
+
+## Como havia sido feito o experimento em si
+
+![Plantação teste](P_20190209_185515.jpg)
+
+
+## Como havia sido feito a *análise*
   - Capturas de tela com Excel, com as tabelas
   - Todo o processo de análise/interpretação dos resultados foi feito por ali
 
@@ -37,29 +57,56 @@ knitr::opts_chunk$set(echo = FALSE)
 
 - Baseado na premissa que Excel tem problemas
 - A ideia é usar uma método de análise mais reprodutível, empregando
-  - Programação Literal
-  - Ferramentas modernas de análise de dados (baseadas na linguagem R)
-  
+
+## Programação Literal
+
+- o que é e como foi empregado no trabalho
+- exemplo
+
+
+## Ferramentas modernas de análise de dados (baseadas na linguagem R)
+
+- Quais são e quais foram utilizadas no trabalho
+- Tidyverse
+
+
 ## Métodos e Materias
 
-- Fluxograma (Slide2.JPG)
+---
 
-## Resultados
+![Fluxograma da metodologia](Slide2.JPG)
 
-- Listar todos os questionamentos
-- Desses todos, tu selecionaste 2 para detalhar, por questões de tempo
+# Objetivos
 
-## Questionamento 1
+## Objetivos
+
+- Principais questionamentos:
+
+  - O _Biomulching_ pode ser usado como cobertura de solo?
+  
+  - O _Biomulching_ auxilia no controle de pragas?
+
+# Resultados
 
 
+## Biomulching como cobertura de solo
 
-## Questionamento 2
+- funciona
 
 
-## Discussão
+## Biomulching no controle de pragas
 
-1. Visão crítica da aplicação do método usando prog. literal e ferramentas modernas
-2. Visão crítica de quão possível foi reproduzir as conclusões da análise anterior
+- não funciona
+
+
+# Discussão
+
+
+## Visão crítica da aplicação do método usando prog. literal e ferramentas modernas
+
+
+## Visão crítica de quão possível foi reproduzir as conclusões da análise anterior
+
 
 ## Conclusão
 
