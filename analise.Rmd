@@ -629,7 +629,28 @@ plot(TukeyHSD(solo_anova, conf.level=.95), las = 2)
 
 ```
 
+```{r eval=FALSE, include=FALSE}
+
+df.umidade_solo %>%
+  rename(dia = Dia) %>%
+  left_join(df.clima, by = "dia") -> df.multi_solo
+
+#aov(lm(`percentual corrigido`~Prevenção + temperatura + umidade, data= df.multi_solo)) -> solo_multianova
+
+#summary(solo_multianova)
+
+df.multi_solo %>%
+  ggplot(seals, aes(temperatura = long, umidade = lat)) +
+  geom_contour(aes(z = `percentual corrigido`))
+
+```
+
+
+
+
 ### Presença de plantas invasoras
+
+**Qual o período de maior crescimento de plantas invasoras?**
 
 A presença de plantas invasoras nos canteiros foi, de uma maneira geral, controlada significativamente pelo tipo de cobertura utilizado no canteiro. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
 
@@ -645,6 +666,25 @@ df.plantas_invasoras %>%
   ylab("Quantidade de plantas invasoras em 1,25m²")
 
 ```
+
+
+
+```{r include=FALSE}
+df.plantas_invasoras %>%
+  rename(dia = Dia) %>%
+  left_join(df.clima, by = "dia") -> df.multi_invasoras
+
+
+aov(lm(Quantidade~Prevenção + temperatura + umidade, data= df.multi_invasoras)) ->invasoras_anova
+
+summary(invasoras_anova)
+
+
+```
+
+
+
+
 
 ```{r tab2, echo=FALSE, fig.cap="Tabela 2. Fonte o autor, Porto Alegre - RS, 2021"}
 
@@ -665,6 +705,10 @@ df.plantas_invasoras %>%
 )
 
 ```
+
+### Degradação do _biomulching_
+
+**Em dias quentes e de pouca umidade como estava o ritmo de degradação do _biomulching_ durante esses períodos?**
 
 Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de lona amarela, lona preta e bio-mulching, nota-se que a lona preta reduziu a infestação das plantas invasoras em 89%, a lona amarela em 75% e o _biomulching_ em 61%. O fato de o _biomulching_ ter tido um desempenho inferior deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra a Figura \@ref(fig:degradabilidade). O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
 
@@ -745,7 +789,8 @@ aov(Valor~Código, data= dados_tamanho) -> tamanho_anova
 
 #summary(tamanho_anova)
 #TukeyHSD(tamanho_anova)
-plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 2)
+
+plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 1)
 
 ```
 #### Massa foliar das couves
@@ -830,6 +875,12 @@ Em relação as moscas, esta esteve presente em todos os canteiros, sendo em men
 
 #### Pulgões
 
+**A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?**
+
+**Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? Agora ao contrário, o que acontece em dias frios e úmidos?**
+
+**A cor da cobertura tem alguma relação com a presença de pulgões e outros insetos?**
+
 Em relação aos pulgões, foram encontrados em sua maioria _Brevicoryne brassicae_, além de também terem sido encontradas outras duas espécies descritas na bibliografia as quais são comuns na cultura da colve, _Myzus persicae_ e _Lipaphis erisinii_. As três espécies foram identificadas em todos os canteiros.
 
 A quantidade de pulgões alados capturados nas armadilhas ao longo do tempo pode ser conferida na figura abaixo, Figura \@ref(fig:pulgoes):
@@ -892,7 +943,7 @@ aov(lm(PulgoesPorDia~Código, data= df.dados_pulgoes_por_dia)) -> pulgoes_anova
 #summary(pulgoes_anova)
 #TukeyHSD(pulgoes_anova) -> TUKEY
 
-plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 2)
+plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 1)
 ```
 
 ```{r eval=FALSE, include=FALSE}
@@ -939,7 +990,7 @@ aov(Quantidade~Código, data= dados_outros) -> outros_anova
 #summary(outros_anova)
 #TukeyHSD(outros_anova)
 
-plot(TukeyHSD(outros_anova, conf.level=.95), las = 2)
+plot(TukeyHSD(outros_anova, conf.level=.95), las = 1)
 
 ```
 
@@ -970,42 +1021,61 @@ Tr = tratamento
 ```{r calculo_eficiencia, echo=FALSE, fig.cap="Eficiência contra diferentes pragas alvo. Fonte o autor, Porto Algre - RS, 2021"}
 
 df.armadilhas %>%
-filter(Agente == "Pulgões") %>%
-group_by(Prevenção) %>%
-summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
-df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
-df.temp %>% filter(Prevenção != "Contraprova") %>%
+  filter(Agente == "Pulgões") %>%
+  group_by(Prevenção) %>%
+  summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+
+df.temp %>% 
+  filter(Prevenção == "Contraprova") %>%
+  pull(Total) -> valor.contraprova
+
+df.temp %>% 
+  filter(Prevenção != "Contraprova") %>%
   mutate(Contraprova = valor.contraprova) %>%
   mutate(`Eficiência pulgões (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
   select(-"Contraprova", - "Total") -> df.eficiencia
-  #mutate(`Praga alvo`= "Pulgões")-> df.eficiencia
 
 df.armadilhas %>%
-filter(Agente == "Outros") %>%
-group_by(Prevenção) %>%
-summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
-df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
-df.temp %>% filter(Prevenção != "Contraprova") %>%
-mutate(Contraprova = valor.contraprova) %>%
-mutate(`Eficiência outros (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
-select(-"Contraprova", - "Total") ->df.eficiencia_outros
+  filter(Agente == "Outros") %>%
+  group_by(Prevenção) %>%
+  summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+
+df.temp %>% 
+  filter(Prevenção == "Contraprova") %>% 
+  pull(Total) -> valor.contraprova
+
+df.temp %>% 
+  filter(Prevenção != "Contraprova") %>%
+  mutate(Contraprova = valor.contraprova) %>%
+  mutate(`Eficiência outros (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+  select(-"Contraprova", - "Total") ->df.eficiencia_outros
 
 df.armadilhas %>%
-filter(Agente == "mosca") %>%
-group_by(Prevenção) %>%
-summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
-df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
-df.temp %>% filter(Prevenção != "Contraprova") %>%
-mutate(Contraprova = valor.contraprova) %>%
-mutate(`Eficiência moscas (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
-select(-"Contraprova", - "Total") ->df.eficiencia_moscas
+  filter(Agente == "mosca") %>%
+  group_by(Prevenção) %>%
+  summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+
+df.temp %>% 
+  filter(Prevenção == "Contraprova") %>% 
+  pull(Total) -> valor.contraprova
+
+df.temp %>% 
+  filter(Prevenção != "Contraprova") %>%
+  mutate(Contraprova = valor.contraprova) %>%
+  mutate(`Eficiência moscas (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
+  select(-"Contraprova", - "Total") ->df.eficiencia_moscas
 
 df.armadilhas %>%
-filter(Agente == "lagarta") %>%
-group_by(Prevenção) %>%
-summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
-df.temp %>% filter(Prevenção == "Contraprova") %>% pull(Total) -> valor.contraprova
-df.temp %>% filter(Prevenção != "Contraprova") %>%
+  filter(Agente == "lagarta") %>%
+  group_by(Prevenção) %>%
+  summarize(Total = sum(Quantidade), .groups="drop") -> df.temp
+
+df.temp %>% 
+  filter(Prevenção == "Contraprova") %>% 
+  pull(Total) -> valor.contraprova
+
+df.temp %>% 
+  filter(Prevenção != "Contraprova") %>%
   mutate(Contraprova = valor.contraprova) %>%
   mutate(`Eficiência lagartas (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
   select(-"Contraprova", - "Total") %>%
@@ -1023,55 +1093,38 @@ knitr::kable(
 
 Conforme vemos na tabela acima,o canteiro de lona amarela foi o que teve o menor número de pulgões e de outros insetos na contagem das armadilhas, atingindo uma eficiencia de 64% e 48% respectivamente. Entretanto nas aferições de lagartas e moscas que foram realizdas diretamente nas plantas, a lona amarela foi o canteiro com os piores resultados, sendo equivalente em relação à moscas e favorecendo a presença de lagartas quando comparado ao canteiro de contraprova.
 
-Os demais canteiros, como esperado, não apresentam grandes diferenças. Existe indícios de que a essência de pimenta pode ter reduzido a infestação de lagartas, mas não apresenta evidencias na redução de pulgões e outros insetos. O _biomulching_ reduziu a infestação de pulgões em 24%, lagartas em 25% e moscas em 31%, porém não é eficiente contra a maioria dos outros insetos. 
-
-## Novas perguntas
-
-utilizando agora o Rstudio podemos realizar novos questionamentos que não foram feitos no projeto anterior baseado nos mesmo dados, para então ter um melhor entendimento de cada variável analizada.
-
-
-Agora vamos analisar as correlações entre os dados.
-
-A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?
-
-Vamos analisar a performace geral do biomulching como cobertura do solo. Para ser considerada uma boa cobertura como mímido, esta deve auxiliar no controle da umidade do solo e reduzir o crescimento de plantas daninhas durante o periódo de cultivo da couve. Uma hipótese que será estuda a seguir é de que a degradação do biomulching sofre interferência das condições climáticas. Para testar essa hipótese iremos correlacionar os dados obtidos da degração do biomulching com os dados das condições climáticas para verificar se as interpéries aumentam a velocidade de degradação
-
-
-Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? E como estava o ritmo de degradação do _biomulching_ durante esses períodos?
-
-Agora ao contrário, o que acontece em dias frios e úmidos?
-
-Qual o período de maior crescimento de plantas invasoras?
-
-A localização das plantas interfere na presença de pulgões? não é possível responder pois isso não foi analisado. não temos os valores por planta, só por armadilha ou canteiro
- 
-A cor da cobertura tem alguma relação com a presença de pulgões e outros insetos?
-
-A cor da cobertura e a umidade do solo tem alguma relação?
-
-A cor afeta o crescimento?
-
-
-Em relação ao canteiro que utilizou a essência de pimenta no controle e o _biomulching_, ouve alguma diferença? Eles tiveram desempenhos semelhantes? ouveram diferenças, o uso do biomulching é melhor do que apenas a aplicação da essência de pimenta
+Os demais canteiros, como esperado, não apresentam grandes diferenças. Existe indícios de que a essência de pimenta pode ter reduzido a infestação de lagartas, mas não apresenta evidencias na redução de pulgões e outros insetos. O _biomulching_ reduziu a infestação de pulgões em 24%, lagartas em 25% e moscas em 31%, porém não é eficiente contra a maioria dos outros insetos.
 
 
 # Conclusões
 
 **falta revisar**
 
-O objetivo do projeto foi atingido parcialmente. O objetivo de estudar as quatro plantas, alecrim, alho, sálvia e pimenta, para verificar possíveis efeitos inseticidas sobre o pulgão encontrado na couve foi alcançado. Sendo que após os testes terem sido realizados comprovou-se que a essência de pimenta foi a qual apresentou melhores resultados na plantação de couve e com uma eficiência de 100% em condições controladas. Assim, portanto, sendo eficiente no combate de pulgões.
+O objetivo do projeto foi satisfeito, conseguimos criar um novo meio para realizar a análise dos mesmos do projeto anterior, porém agora de uma forma que tudo está registrado o passo a passo.
 
-Entretanto, em relação ao biomulching, este não apresentou os resultados desejáveis para o combate de pulgões e outras pragas das couves. Uma vez que nos primeiros testes, por causa da qualidade rudimentar dos protótipos compostos basicamente de materiais orgânicos não duraram o tempo ideal para acompanhar o crescimento da plantação. E nos últimos testes realizados em plantação de couve, o modelo de teste pode não ter contribuído para um resultado satisfatório do biomulching. Visto que os canteiros estavam bastante próximos uns dos outros, havia os que recebiam algum tratamento ao lado de outros que não estavam sendo tratados. Deste modo a presença de pulgões nas plantas próximas pode ter diminuído a eficiência do biomulching consideravelmente, bem como a ação da essência no canteiro P. Contudo ainda é possível verificar certa diminuição na presença de pulgões no canteiro com o uso do biomulching, assim indicando certa ação sobre os pulgões.
 
-Sendo, o protótipo bioplástico 4, o qual obteve uma maior durabilidade, cerca de três meses, e apresentou os melhores resultados, com boas características físicas quando comparado aos outros protótipos compostos com casca de laranja, assim tornando-se o melhor protótipo já produzido, para o biomulching.
+O objetivo de avaliar o biomulching...
 
-Por mais que não se tenha conseguido obter resultados os quais contribuíssem a comprovar as vantagens geradas pela agregação do extrato de pimenta no biomulching, os resultados atingidos são promissores. E este traz, por si só, benefícios e vantagens sobre o mulching convencional. Pois não gera resíduos e não é necessária sua retirada como o mulching convencional, evitando custos com o manejo e retirada dos resíduos. Apresentando resultados semelhantes ao mulching plástico, mantendo a umidade do solo, impedindo o crescimento de plantas invasoras e contribuindo para o crescimento da planta.
+
+ para verificar possíveis efeitos inseticidas sobre o pulgão encontrado na couve foi alcançado. Sendo que após os testes terem sido realizados comprovou-se que a essência de pimenta foi a qual apresentou melhores resultados na plantação de couve e com uma eficiência de 100% em condições controladas. Assim, portanto, sendo eficiente no combate de pulgões.
+
+Entretanto, em relação ao biomulching, este não apresentou os resultados desejáveis para o combate de pulgões e outras pragas das couves.
+
+Houveram problemas na metodologia aplicada.
+
+E nos últimos testes realizados em plantação de couve, o modelo de teste pode não ter contribuído para um resultado satisfatório do biomulching. Visto que os canteiros estavam bastante próximos uns dos outros, havia os que recebiam algum tratamento ao lado de outros que não estavam sendo tratados. Deste modo a presença de pulgões nas plantas próximas pode ter diminuído a eficiência do biomulching consideravelmente, bem como a ação da essência no canteiro P. Contudo ainda é possível verificar certa diminuição na presença de pulgões no canteiro com o uso do biomulching, assim indicando certa ação sobre os pulgões.
+
+
+Quanto a sua utilização como cobertura do solo, este cobre todos os principais componetes que se espera de uma boa cobertura de solo durante o período que dura na plantação. 
+
+Para ser considerada uma boa cobertura como mínimo, esta deve auxiliar no controle da umidade do solo e reduzir o crescimento de plantas daninhas durante o periódo de cultivo da couve. Uma hipótese que será estuda a seguir é de que a degradação do biomulching sofre interferência das condições climáticas. Para testar essa hipótese iremos correlacionar os dados obtidos da degração do biomulching com os dados das condições climáticas para verificar se as interpéries aumentam a velocidade de degradação
+
+
+o qual obteve uma maior durabilidade, cerca de três meses. Por mais que não se tenha conseguido obter resultados os quais contribuíssem a comprovar as vantagens geradas pela agregação do extrato de pimenta no biomulching, os resultados atingidos são promissores. E este traz, por si só, benefícios e vantagens sobre o mulching convencional. Pois não gera resíduos e não é necessária sua retirada como o mulching convencional, evitando custos com o manejo e retirada dos resíduos. Apresentando resultados semelhantes ao mulching plástico, mantendo a umidade do solo, impedindo o crescimento de plantas invasoras e contribuindo para o crescimento da planta.
 
 Além de contribuir para o ciclo de nutrientes, auxiliando na volta dos nutrientes ao solo, com a utilização de um resíduo agroindustrial, a casca de laranja. Assim agregando valor neste resíduo.
 
 Se após mais testes ficar comprovado seu funcionamento e potencial para ser implantado em plantações com rendimento semelhante à dos agrotóxicos convencionais, este poderia ser uma nova opção para o combate de pragas. No qual o agricultor não terá de aplicar defensivos, pois já vão estar na plantação desde o início, na biocobertura, além de obter os mesmos benefícios da lona plástica.
 
-Assim o projeto também contribui para alcançar as seguintes metas dos Objetivos de Desenvolvimento Sustentável (ODS) da ONU: Objetivo 2: Acabar com a fome, alcançar a segurança alimentar e melhoria da nutrição e promover a agricultura sustentável, objetivo 12: Assegurar padrões de produção e de consumo sustentáveis, e o objetivo 15: Proteger, recuperar e promover o uso sustentável dos ecossistemas terrestres, gerir de forma sustentável as florestas, combater a desertificação, deter e reverter a degradação da terra e deter a perda de biodiversidade.
 
-A necessidade de criar um método de controle de pragas mais seguro, ecológico e sustentável que os agrotóxicos convencionais existe e é preciso! Pelo projeto nota-se que é possível a sua produção, trazendo assim maiores benefícios e facilidades, para quem produz, para o meio ambiente e para quem consome alimentos, estes que são a base da nossa existência.
 
