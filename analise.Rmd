@@ -65,14 +65,21 @@ Um ponto importante no método científico, é a correta análise e descrição 
 
 Para a parte de organização e descrição dos processos do projeto, uma técnica que pode ser empregada é a de _literal programing_, a qual foi criada por Donald Knuth e é semelhante a um caderno de anotações digital. Com a programação literal as informações sobre os conceitos, as ideias, os precedimentos, os resultados e como todos estes foram processados no programa, ficam descritos em um único lugar. Assim tanto a parte da pesquisa propriamente dita, quanto da análise, são escritas de uma forma explicativa, intercalando o sprit com trechos de códigos, que executam funções com os dados, com textos da linguagem humana, que explicam o foi feito e como foi feito. Assim tornando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam muito essa área [@knuth1984literate]. 
 
-# Hipótese/objetivo
+# Objetivos
 
-O objetivo do projeto é utilizar ferramentas computacinais como o Rstudio para verificar se conseguimos responder os questionamentos a respeito do biomulching de forma reprodutível. Avaliando se o biomulching pode ser utilizado como cobertura de solo e se auxilia no combate pragas na cultura da couve.
+## Objetivo geral
 
-método científico e tal, um negócio assim, e mais não sei o que...
+O objetivo do projeto é utilizar ferramentas computacinais como o Rstudio para verificar se conseguimos responder os questionamentos a respeito do biomulching de forma reprodutível, ou seja, independente do equipamento utilizado e do analista que performa a análise.
 
-da para colocar uma coisa mais específica e direta. um parágrafo é o suficiente.
+## Objetivos específicos
 
+ - Utilizar os dados do projeto de desenvolimento do _biomulching_ para realizar a análise por meio de pacotes da linguagem de programação R com RStudio.
+ 
+ - Empregar o conceito de programação literal durante o desenvolvimento do projeto
+ 
+ - Discutir os resultados obtidos por meio do RStudio comparando-os com os resultados do projeto original do _biomulching_ para verificar se há diferenças no processo de análise que contribuam com a reprodutibilidade.
+ 
+ - Avaliar se o biomulching pode ser utilizado como cobertura de solo e se auxilia no combate pragas na cultura da couve.
 
 # Métodos e materiais
 
@@ -81,6 +88,8 @@ Primeiramente foram reorganizados os dados do projeto original para facilitar a 
 Segue o fluxograma com todas as etapas de desenvolvimento do projeto de pesquisa:
 
 ![Fluxograma da metodologia](Slide2.JPG)
+
+A seguir são detalhadas as metodologias de como os dados foram obtidos e processados.
 
 ## Teste em condições controladas da essência e do _biomulching_
 
@@ -208,23 +217,68 @@ tribble (
 
 ```
 
+### Dados do experimento em condições controladas
+
+Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.controlado":
+
+ - Quantidade de pulgões vivos ao longo do tempo.
+ 
+ - Quantidade de pulgões mortos ao longo do tempo.
+
+Legenda:
+
+- C = Controle 1
+- C+ = Controle 2
+- B = _biomulching_
+- I = Icaridina
+- E = Essência de pimenta
+
+Inicialmente foi criado uma legenda com o intuito de melhorar a interpretação dos dados ao gerar os gráficos. Depois os dados foram reorganizados de forma que os diferentes tratamentos fossem reunidos em uma única coluna.
+
+```{r controlado, include=FALSE}
+tribble (~Código, ~Tratamento,
+         "C", "Contraprova #1",
+         "C+", "Contraprova #2",
+         "B", "Biomulching",
+         "I", "Icaridina",
+         "E", "Essência de Pimenta") -> df.controlado.legenda
+
+bind_rows(
+  read_xlsx(data.filename,
+            sheet = "controlado", 
+            range = "A2:F11") %>%
+    mutate(Estado = "vivos") %>%
+    pivot_longer(cols = C:E,
+               names_to="Tratamento",
+               values_to="Quantidade"),
+  
+  read_xlsx(data.filename,
+            sheet = "controlado", 
+            range = "I2:N11") %>%
+    mutate(Estado = "mortos") %>%
+    pivot_longer(cols = C:E,
+               names_to="Tratamento",
+               values_to="Quantidade")) %>%
+  rename(Código = Tratamento) %>%
+  left_join(df.controlado.legenda, by="Código")-> df.controlado
+
+```
+
 ### Presença de insetos na plantação de couve
  
  Foram importados os seguintes conjuntos dados, os quais foram armazenados em "df.armadilhas":
  
- -Quantidade de pulgões capturados nas armadilhas;
+ - Quantidade de pulgões capturados nas armadilhas.
 
- -Quantidade de outros insetos capturados nas armadilhas;
+ - Quantidade de outros insetos capturados nas armadilhas.
 
- -Quantidade de inimigos naturais capturados nas armadilhas;
+ - Quantidade de inimigos naturais capturados nas armadilhas.
 
- -Presença de outros agentes prejudiciais:
+ - Presença de outros agentes prejudiciais:
  Os dados correspondem a contagem de moscas e lagartas encotrados nas couves durante o periodo de 30 dias, um mês. A data de inicio da contagem foi o dia de inicio do experimento, a primeira contagem sendo realizada no 30º dia 16/01/2019), a segunda no 60º dia (15/02/2019) e o ultio no 83º dia (10/03/2019). Os dados obtidos eram sempre atualizados ao final dos 30 dias pois o número desses insetos era pequeno.
  
   
- Para a realização desta etapa primeiramente foram criadas as variáveis de semana e dia para adicionar aos dados das armadilhas. Também foi criada uma referência para os dias nos quais ocorreu a atualização da presença de outros agentes perjudiciais.
- Então os dados correspondentes às moscas e lagartas foram inseridos, agregaram-se os valores de dia e mês, retirou-se a coluna do mês e adicionou-se a legenda para os códigos de cada prevenção.
- Posteriormente foram inseridos os dados obtidos por meio das armadilhas, onde estavam os valores de pulgões, outros insetos e inimigos naturais. Juntaram-se todos os dados em um unico conjunto de dados e modificou-se a organização das colunas das prevenções para ocuparem apenas uma coluna. Removeram-se as referências sem valores e a coluna das semanas. Então foi adicionada a legenda para os diferentes códigos das prevenções e finalmente adicionou-se os valores de moscas e lagartas para formar apenas um conjunto de dados com todos os agentes.
+Para a realização desta etapa primeiramente foram criadas as variáveis de semana e dia para adicionar aos dados das armadilhas. Também foi criada uma referência para os dias nos quais ocorreu a atualização da contagem de outros agentes perjudiciais. Os dados correspondentes às moscas e lagartas foram inseridos agregaram-se os valores de dia e mês, retirou-se a coluna do mês e adicionou-se a legenda para os códigos de cada prevenção. Posteriormente foram inseridos os dados obtidos por meio das armadilhas, onde estavam os valores de pulgões, outros insetos e inimigos naturais. Juntaram-se todos os dados em um unico conjunto de dados e modificou-se a organização das colunas das prevenções para ocuparem apenas uma coluna. Removeram-se as referências sem valores e a coluna das semanas. Então foi adicionada a legenda para os diferentes códigos das prevenções e finalmente adicionou-se os valores de moscas e lagartas para formar apenas um conjunto de dados com todos os agentes.
  
 ```{r pragas, include=FALSE}
 data.filename <- "dados.xlsx"
@@ -291,14 +345,14 @@ bind_rows(
  
  Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.clima":
  
- -Temperatura ao longo do período experimental;
+ - Temperatura ao longo do período experimental.
 
- -Umidade atmosférica ao longo do período experimental;
+ - Umidade relativa do ar ao longo do período experimental.
 
+ - Umidade do solo ao longo do período experimental:
  Para os valores de umidade do solo foi criado um diretório a parte, onde forma realizados cálculos a partir dos valores originais para crear os valores corrigidos do percentual de umidade do solo. Os valores foram armazenados em "df.umidade_solo".
-
- -Umidade do solo ao longo do período experimental:
- Para o cálculo do percentual corrigido da umidade do solo foi utilizada a seguinte equação:
+ 
+ O cálculo do percentual corrigido da umidade do solo foi realizado através da seguinte equação:
  
  Diferença = (massa umida) - (massa seca)
  Água/100g = (Diferença * 100)/(massa umida)
@@ -332,7 +386,7 @@ read_xlsx(data.filename,
  
  Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.plantas_invasoras":
  
- -Número de plantas invasoras presentes em cada canteiros ao longo do período experimental:
+ - Número de plantas invasoras presentes em cada canteiros ao longo do período experimental:
  Foi criada uma tibble para adicionar os dias em que foram realizadas as medições a cada semana. Adicionou-se a legenda dos diferentes tratamentos e removeu-se a coluna da semana.
  
 ```{r invasoras, include=FALSE}
@@ -358,15 +412,17 @@ read_xlsx(data.filename,
 
 Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.dados_plantas":
 
- -Altura das couves:
+ - Altura das couves:
  Corresponde aos valores obtidos em três medições da altura de cada couve nos diferentes tratamentos. Inicialmente estes valores foram lidos separados do restante e após alguns ajustes na organização das colunas e nomenclatura, estes foram adicionados em um grupo junto com os valores das outras variáveis. A referência "altura" foi substituido por "valor"
  
- -Massa folhar total das couves ao final do periodo experimental: A referência "massa total (g)" foi substituido por "valor" para facilitar na união dos dados em um unico conjunto.
+ - Massa folhar total das couves ao final do periodo experimental: 
+ A referência "massa total (g)" foi substituido por "valor" para facilitar na união dos dados em um único conjunto.
  
- -Massa folhar comestível das couves ao final do periodo experimental: A referência "massa comestivel (g)" foi substituido por "valor" para facilitar na união dos dados em um unico conjunto.
+ - Massa folhar comestível das couves ao final do periodo experimental:
+ A referência "massa comestivel (g)" foi substituido por "valor" para facilitar na união dos dados em um único conjunto.
  
- -Tamanho médio máximo das folhas de couve:
- Corresponde ao valor médio máxima das folhas de cada couve em cada um dos diferentes tratamentos ao final do período experimental. A referência "tamanho" foi substituido por "valor" para facilitar na união dos dados em um unico conjunto.
+ - Tamanho médio máximo das folhas de couve:
+ Corresponde ao valor médio máxima das folhas de cada couve em cada um dos diferentes tratamentos ao final do período experimental. A referência "tamanho" foi substituido por "valor" para facilitar na união dos dados em um único conjunto.
 
 ```{r plantas, include=FALSE}
 
@@ -408,8 +464,8 @@ bind_rows(
  
 Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.degradação":
 
- -Percentual total da área degradada a cada semana durante o período experimental:
- Foram alterados os valores de Percentual de degração para valor em porcentagem de degradação dividindo o valor original por 100. Após foram retidas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
+ - Percentual da área degradada a cada semana durante o período experimental:
+ Foram alterados os valores de "Percentual de degração" para valor em "Porcentagem de degradação" dividindo o valor original por 100. Após foram retiradas as colunas "semana" e "Percentual de degradação" para uma melhor comparação com os demais dados.
 
 ```{r degradação, include=FALSE}
 read_xlsx(data.filename,
@@ -420,60 +476,13 @@ read_xlsx(data.filename,
   rename(Dia = dia)-> df.degradaçao
 
 ```
- 
-### Dados do experimento em condições controladas
-
-Foram importados os seguintes conjuntos dados os quais foram armazenados em "df.controlado":
-
- -Quantidade de pulgões vivos ao longo do tempo;
- 
- -Quantidade de pulgões mortos ao longo do tempo.
-
-Legenda:
-
-- C = Controle 1
-- C+ = Controle 2
-- B = _biomulching_
-- I = Icaridina
-- E = Essência de pimenta
-
-Inicialmente foi criado uma legenda com o intuito de melhorar a interpretação dos dados ao gerar os gráficos. Depois os dados foram reorganizados de forma que os diferentes tratamentos fossem reunidos em uma coluna.
-
-```{r controlado, include=FALSE}
-tribble (~Código, ~Tratamento,
-         "C", "Contraprova #1",
-         "C+", "Contraprova #2",
-         "B", "Biomulching",
-         "I", "Icaridina",
-         "E", "Essência de Pimenta") -> df.controlado.legenda
-
-bind_rows(
-  read_xlsx(data.filename,
-            sheet = "controlado", 
-            range = "A2:F11") %>%
-    mutate(Estado = "vivos") %>%
-    pivot_longer(cols = C:E,
-               names_to="Tratamento",
-               values_to="Quantidade"),
-  
-  read_xlsx(data.filename,
-            sheet = "controlado", 
-            range = "I2:N11") %>%
-    mutate(Estado = "mortos") %>%
-    pivot_longer(cols = C:E,
-               names_to="Tratamento",
-               values_to="Quantidade")) %>%
-  rename(Código = Tratamento) %>%
-  left_join(df.controlado.legenda, by="Código")-> df.controlado
-
-```
 
 # Resultados
 
 ## Teste em condições controladas
 
 Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas, ficando com uma coloração amarelada e murcha.
-Também se verificou que nas amostras de controle e do tratamento com o _biomulching_ ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões vivos nas amostras conforme evidencia a figura abaixo, Figura  \@ref(fig:dado):
+Também se verificou que nas amostras de controle e do tratamento com o _biomulching_ ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões vivos nas amostras conforme evidencia a figura abaixo, Figura \@ref(fig:dado):
 
 ```{r dado, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
@@ -498,7 +507,7 @@ Também se verificou a eficiência de cada método através da fórmula de Abbot
 
 Fórmula de Abbott:
 
-E % = ((T-Tr)/T)x100
+Eficiência (%) = ((T-Tr)/T)x100
 
 onde:
 
