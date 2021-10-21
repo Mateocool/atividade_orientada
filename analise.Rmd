@@ -236,6 +236,8 @@ Legenda:
 Inicialmente foi criado uma legenda com o intuito de melhorar a interpretação dos dados ao gerar os gráficos. Depois os dados foram reorganizados de forma que os diferentes tratamentos fossem reunidos em uma única coluna.
 
 ```{r controlado, include=FALSE}
+data.filename <- "dados.xlsx"
+
 tribble (~Código, ~Tratamento,
          "C", "Contraprova #1",
          "C+", "Contraprova #2",
@@ -281,7 +283,6 @@ bind_rows(
 Para a realização desta etapa primeiramente foram criadas as variáveis de semana e dia para adicionar aos dados das armadilhas. Também foi criada uma referência para os dias nos quais ocorreu a atualização da contagem de outros agentes perjudiciais. Os dados correspondentes às moscas e lagartas foram inseridos agregaram-se os valores de dia e mês, retirou-se a coluna do mês e adicionou-se a legenda para os códigos de cada prevenção. Posteriormente foram inseridos os dados obtidos por meio das armadilhas, onde estavam os valores de pulgões, outros insetos e inimigos naturais. Juntaram-se todos os dados em um unico conjunto de dados e modificou-se a organização das colunas das prevenções para ocuparem apenas uma coluna. Removeram-se as referências sem valores e a coluna das semanas. Então foi adicionada a legenda para os diferentes códigos das prevenções e finalmente adicionou-se os valores de moscas e lagartas para formar apenas um conjunto de dados com todos os agentes.
  
 ```{r pragas, include=FALSE}
-data.filename <- "dados.xlsx"
 
 read_xlsx(data.filename,
           sheet="armadilhas", 
@@ -1027,7 +1028,7 @@ onde:
 T = testemunha
 Tr = tratamento
 
-```{r calculo_eficiencia, echo=FALSE, fig.cap="Eficiência contra diferentes pragas alvo. Fonte o autor, Porto Algre - RS, 2021"}
+```{r include=FALSE}
 
 df.armadilhas %>%
   filter(Agente == "Pulgões") %>%
@@ -1043,6 +1044,9 @@ df.temp %>%
   mutate(Contraprova = valor.contraprova) %>%
   mutate(`Eficiência pulgões (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
   select(-"Contraprova", - "Total") -> df.eficiencia
+```
+
+```{r include=FALSE}
 
 df.armadilhas %>%
   filter(Agente == "Outros") %>%
@@ -1059,6 +1063,10 @@ df.temp %>%
   mutate(`Eficiência outros (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
   select(-"Contraprova", - "Total") ->df.eficiencia_outros
 
+```
+
+```{r include=FALSE}
+
 df.armadilhas %>%
   filter(Agente == "mosca") %>%
   group_by(Prevenção) %>%
@@ -1073,6 +1081,10 @@ df.temp %>%
   mutate(Contraprova = valor.contraprova) %>%
   mutate(`Eficiência moscas (%)` = round((Contraprova - Total)/Contraprova * 100, 0)) %>%
   select(-"Contraprova", - "Total") ->df.eficiencia_moscas
+
+```
+
+```{r calculo_eficiencia, echo=FALSE}
 
 df.armadilhas %>%
   filter(Agente == "lagarta") %>%
@@ -1093,12 +1105,21 @@ df.temp %>%
   left_join(df.eficiencia_outros, by = "Prevenção") %>%
   arrange(-`Eficiência pulgões (%)`) -> tabela5
 
+#knitr::kable(
+#  head(tabela5[, 1:4], 4), booktabs = TRUE,
+#  caption = 'Eficiência contra diferentes pragas alvo')
+
+```
+
+```{r echo=FALSE}
+
 knitr::kable(
   head(tabela5[, 1:4], 4), booktabs = TRUE,
   caption = 'Eficiência contra diferentes pragas alvo'
 )
 
 ```
+
 
 Conforme vemos na tabela acima,o canteiro de lona amarela foi o que teve o menor número de pulgões e de outros insetos na contagem das armadilhas, atingindo uma eficiencia de 64% e 48% respectivamente. Entretanto nas aferições de lagartas e moscas que foram realizdas diretamente nas plantas, a lona amarela foi o canteiro com os piores resultados, sendo equivalente em relação à moscas e favorecendo a presença de lagartas quando comparado ao canteiro de contraprova.
 
@@ -1113,6 +1134,8 @@ O objetivo do projeto foi satisfeito, conseguimos criar um novo meio para realiz
 
 
 O objetivo de avaliar o biomulching...
+
+[@xie2016bookdown], [@xie2018r], [@long2019r].
 
 
  para verificar possíveis efeitos inseticidas sobre o pulgão encontrado na couve foi alcançado. Sendo que após os testes terem sido realizados comprovou-se que a essência de pimenta foi a qual apresentou melhores resultados na plantação de couve e com uma eficiência de 100% em condições controladas. Assim, portanto, sendo eficiente no combate de pulgões.
