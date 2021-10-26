@@ -3,13 +3,13 @@ title: Avaliação de _biomulching_ com agregação de extrato de _Capsicum frut
   cobertura de solo e agente de controle de pragas em _Brassica oleracea_
 author: "Mateus Colombo"
 output:
+  bookdown::html_document2:
+    fig_caption: true
   bookdown::pdf_document2:
     toc: true
     toc_depth: 2
     number_sections: true
     citation_package: natbib
-  bookdown::html_document2:
-    fig_caption: true
   html_document:
     df_print: paged
   word_document: default
@@ -611,7 +611,7 @@ df.clima%>%
 #### Umidade
 
 
-Quanto à umidade relativa do ar, está esteve elevada em algumas semanas e baixa em outras, o que consequentemente afetava a umidade do solo. Sua média foi de 77%.
+Quanto à umidade relativa do ar, esta, esteve elevada em algumas semanas e baixa em outras, o que consequentemente afetava a umidade do solo. A umidade relativa do ar média diária foi de 77%.
 
 ```{r fig3, echo=FALSE, out.width= "80%", fig.cap="Fonte: Estação Meteorológica do aeroclube, Garibaldi - RS, 2018/2019"}
 
@@ -637,9 +637,9 @@ df.clima%>%
 
 ### Umidade do solo
 
-Conforme a Figura \@ref(fig:fig4), os valores de umidade do solo alternaram entre a faixa de cerca de 10% até cerca de 27% e, não é possivel verificar se há alguma diferença na umidade do solo entre os canteiros. Contudo é possivel observar que ouveram varios momentos com oscilações em todos os canteiros, tanto nos com cobertura do solo quanto naqueles sem cobertura, o que pode estar relacionado com a umidade relativa do ar do periodo em questão. O canteiro com menos oscilações foi o com cobertura de lona preta e o com menor amplitude foi o canteiro do _biomulching_.
+Conforme a Figura \@ref(fig:fig4), os valores de umidade do solo alternaram entre a faixa de cerca de 10% até cerca de 27% e, não é possível verificar se há alguma diferença na umidade do solo entre os canteiros. Contudo é possível observar que ouveram varios momentos com oscilações em todos os canteiros, tanto nos com cobertura do solo quanto naqueles sem cobertura, o que pode estar relacionado com a umidade relativa do ar do periodo em questão. O canteiro com menos oscilações foi o com cobertura de lona preta e o com menor amplitude aparente foi o canteiro do _biomulching_.
 
-Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principalmente de cascas de laranja, estas conseguem absorver a umidade do ambiente e mantê-la por mais tempo. Enquanto o mulching convencional de plástico é impermeável, caso não aconteça uma boa irrigação, nem escassa e nem em excesso, haverá maior variação na umidade do solo, alternando entre periodos com menor umidade ou maior umidade.
+Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principalmente de cascas de laranja, estas conseguem absorver a umidade do ambiente e mantê-la por mais tempo. Enquanto o mulching convencional de plástico é impermeável, caso não aconteça uma boa irrigação, nem escassa e nem em excesso, haverá maior variação na umidade do solo, alternando entre periodos muito secos e muito umidos.
 
 ```{r fig4, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 df.umidade_solo %>%
@@ -654,7 +654,7 @@ df.umidade_solo %>%
 
 ```
 
-Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura \@ref(fig:fig5), onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
+Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada a análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura \@ref(fig:fig5), onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
 
 ```{r fig5, echo=FALSE, out.width= "70%", fig.cap="Teste Tukey para umidade do solo. Fonte o autor, Porto Alegre - RS, 2021"}
 
@@ -670,27 +670,25 @@ plot(TukeyHSD(solo_anova, conf.level=.95), las = 1)
 
 ```
 
-```{r eval=FALSE, include=FALSE}
+Além desses testes estátisticos foi estudada a possibilidade de correlacionar os dados de temperatura, umidade do ar e umidade do solo por meio de uma regressão liner multivariada. Entretanto, isso não foi possível de realizar por causa do pequeno número amostral, a baixa precisão dos valores obtidos e também por não sabermos qual o melhor modelo estatístico a ser aplicado nesse caso. Embora os teste estatísticos não poderem ser realizados, constrímos um gráfico de três eixos, com os valores de temperatura, umidade do e umidade do solo, para tentar vizualisar algum padrão entre esses três dados. A figura \@ref(fig:3D) ( disponível na versão em HTML do relatório), ilustra o gráfico projetado.
+
+
+```{r 3D, echo=FALSE}
+
+
+library(plotly)
 
 df.umidade_solo %>%
   rename(dia = Dia) %>%
   left_join(df.clima, by = "dia") -> df.multi_solo
 
-#aov(lm(`percentual corrigido`~Prevenção + temperatura + umidade, data= df.multi_solo)) -> solo_multianova
 
-#summary(solo_multianova)
+fig <- plot_ly(df.multi_solo, x = ~`percentual corrigido`, y = ~umidade, z = ~temperatura, type = 'scatter3d', size=1, color = ~Prevenção)
 
-
-library(plotly)
-
-
-data <- read.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-line1.csv')
-
-data$color <- as.factor(data$color)
-
-
-fig <- plot_ly(data, x = ~x, y = ~y, z = ~z, type = 'scatter3d', size=0.5)
-
+fig <- fig %>% add_markers()
+fig <- fig %>% layout(scene = list(xaxis = list(title = 'Umidade solo'),
+                     yaxis = list(title = 'Umidade ar'),
+                     zaxis = list(title = 'Temperatura')))
 
 fig
 
@@ -699,14 +697,12 @@ fig
 
 ```
 
+Através da visualização da \@ref(fig:3D) é possível observar uma leve tendência à tanto a umidade do ar quanto a umidade do solo serem mais elevadas nos dias com temperatura mais baixa, e o oposto também se verifica, nos dias mais quentes o percentual de umidade é mais baixo.
 
 
+### Presença de plantas invasoras e degradação do _biomulching_
 
-### Presença de plantas invasoras
-
-**Qual o período de maior crescimento de plantas invasoras?**
-
-A presença de plantas invasoras nos canteiros foi, de uma maneira geral, controlada significativamente pelo tipo de cobertura utilizado no canteiro. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e bio-mulching, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
+A presença de plantas invasoras nos canteiros foi, de uma maneira geral, controlada significativamente pelo tipo de cobertura utilizado no canteiro. Percebe-se que o controle das plantas invasoras foi eficiente no solo com coberturas de plástico e _biomulching_, quando comparados com o solo sem cobertura dos canteiros de controle e pimenta.
 
 ```{r fig6, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
@@ -723,28 +719,31 @@ df.plantas_invasoras %>%
 
 
 
-```{r echo=FALSE}
+```{r eval=FALSE, include=FALSE}
 df.plantas_invasoras %>%
   rename(dia = Dia) %>%
-  left_join(df.clima, by = "dia") -> df.multi_invasoras
+  left_join(df.clima, by = "dia") %>%
+  #filter(Prevenção == "Biomulching") %>%
+  group_by(Prevenção) %>%
+  mutate(Quantmenor = lag(Quantidade)) %>%
+  mutate(Q = Quantidade - Quantmenor) %>%
+  select(Prevenção, Q, umidade, temperatura) -> df.multi_invasoras
 
 
-aov(lm(Quantidade~Prevenção + temperatura + umidade, data= df.multi_invasoras)) ->invasoras_anova
+fig <- plot_ly(df.multi_invasoras, x = ~Q, y = ~umidade, z = ~temperatura, type = 'scatter3d', size=1, color = ~Prevenção)
 
-summary(invasoras_anova)
+fig <- fig %>% add_markers()
+fig <- fig %>% layout(scene = list(xaxis = list(title = 'Nº plantas invasoras por semana'),
+                     yaxis = list(title = 'Umidade ar'),
+                     zaxis = list(title = 'Temperatura')))
+
+fig
 
 
 ```
 
 
-**trÊs estrelas códigos de significancia, explica a quantidade.
-
-as estrelas são uma escala de influencias**
-
-
-summary lm, modelo
-
-valor abaixo de 0,9 é uma influencia fraca. 
+Na Tabela \@ref(tab:tab2) são apresentados os valores de eficiência contra plantas invasoras cálculados conforme a fórmula de Abbott.
 
 
 
@@ -768,9 +767,6 @@ df.plantas_invasoras %>%
 
 ```
 
-### Degradação do _biomulching_
-
-**Em dias quentes e de pouca umidade como estava o ritmo de degradação do _biomulching_ durante esses períodos?**
 
 Comparando os números de plantas invasoras determinados no solo sem cobertura e com coberturas de lona amarela, lona preta e bio-mulching, nota-se que a lona preta reduziu a infestação das plantas invasoras em 89%, a lona amarela em 75% e o _biomulching_ em 61%. O fato de o _biomulching_ ter tido um desempenho inferior deve-se a sua degradação, que chegou a 82% no período de 84 dias, conforme mostra a Figura \@ref(fig:degradabilidade). O que através do tempo reduziu a área de proteção do solo, assim permitindo o crescimento de plantas invasoras.
 
@@ -788,15 +784,43 @@ df.degradaçao %>%
 Conforme vemos na Figura \@ref(fig:degradabilidade), houve um pico de degradação no mês de janeiro, ao entrar no mês de fevereiro, o percentual já estava em cerca de 60%. Contudo, após esse periodo teve o ritmo de degradação reduzido. Chegando ao final do periodo experimental, após 84 dias, com o _biomulching_ degradado em mais de 80%.
 
 
+```{r eval=FALSE, include=FALSE}
+
+#Fatores como as condições climáticas são grandes influenciadores no ritmo de degradação de uma biocobertura, para verififar como esses fatores interferiram no nosso experimento constrimos um gráfico de três eixos (disponível somente na versão em HTML do relatório).
+
+#**Em dias quentes e de pouca umidade como estava o ritmo de degradação do _biomulching_?**
+
+df.clima %>%
+  group_by(7) %>%
+  print()
+
+  mutate(Umenor = lag(Quantidade)) %>%
+  mutate(U = Quantidade - Quantmenor) %>%
+
+  mutate(UltimoDia = lag(Dia)) %>%
+  filter(!is.na(UltimoDia)) %>%
+  mutate(DiffDias = as.integer(Dia - UltimoDia)) %>%
+  mutate(PulgoesPorDia = Quantidade/DiffDias) %>%
+  select(Agente, Dia, Código, Prevenção, PulgoesPorDia)
+
+
+df.degradaçao %>%
+  rename(dia = Dia) %>%
+  left_join(df.clima, by = "dia") -> df.multi_degrada
+
+```
+
+
+
 ### Desenvolvimento das plantas 
 
-As plantas se desenvolveram com saúde e bem viçosas. Apenas uma planta morreu, a X2 no canteiro com lona preta, e tiveram 2 casos em que as couves não se desenvolveram. Uma no canteiro de contraprova, a T5, a qual foi impedida de crescer devido a muitas plantas invasoras próximas a ela, o que diminuiu a o tempo de exposição ao sol. E a outra no canteiro com lona amarela, a S3, a qual teve dificuldade de se adequar à cobertura de plástico, devido a fatores como umidade em excesso ou em falta.
+As plantas se desenvolveram com saúde e bem viçosas. Apenas uma planta morreu, a X2 no canteiro com lona preta, e tiveram 2 casos em que as couves não se desenvolveram. Uma no canteiro de contraprova, a T5, a qual foi impedida de crescer devido a muitas plantas invasoras próximas a ela, o que diminuiu o tempo de exposição ao sol. E a outra no canteiro com lona amarela, a S3, a qual teve dificuldade de se adequar à cobertura de plástico, devido a fatores como umidade em excesso ou em falta.
 
 #### Altura média das couves
 
-A altura média das couves pode se conferida na figura abaixo, Figura \@ref(fig:fig8):
+A altura média das couves pode ser conferida na figura abaixo, Figura \@ref(fig:fig8):
 
-Pode-se ver que não houveram grandes diferenças em relação à altura das couves. Sendo o canteiro de pimenta o com a maior média de altura, seguido do _biomulching_, lona amarela, contraprova e lona preta. A baixa estatura das plantas em X pode ser devido ao fato de elas terem sido plantadas duas semanas após as demais. Outro fator que contribuiu para alguns canteiros terem se desenvolvido mais, foi o tempo de insolação, um parâmetro não aferido neste experimento. Os canteiros de lona amarela, pimenta, e contraprova recebiam mais horas de sol que em comparação com 0s de _biomulching_ e lona preta.
+Pode-se ver que não houveram grandes diferenças em relação à altura das couves. O canteiro de pimenta foi o tratamento com a maior média de altura, seguido do _biomulching_, lona amarela, contraprova e lona preta. A baixa estatura das plantas em X pode ser devido ao fato de elas terem sido plantadas duas semanas após as demais. Outro fator que contribuiu para alguns canteiros terem se desenvolvido mais, foi o tempo de exposição ao sol, um parâmetro não aferido neste experimento. Os canteiros de lona amarela, pimenta, e contraprova recebiam mais horas de sol que em comparação com os de _biomulching_ e lona preta.
 
 ```{r fig8, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
@@ -818,9 +842,11 @@ df.dados_plantas%>%
 
 Assim, portanto, não fica evidente quanto a utilização de cobertura para o solo contribui para o crescimento das plantas. Entretanto não se pode negar que houve uma menor incidência de plantas invasoras nos canteiros com cobertura, o que ajudou no desenvolvimento das plantas, quando comparado com a contraprova.
 
-Também foi verificado que, como as plantas do canteiro de _biomulching_ conseguiram se desenvolver de forma saudável, o uso do _biomulching_ não é prejudicial às plantas, ou seja, não é tóxico.
+Também foi verificado que, como as plantas do canteiro de _biomulching_ conseguiram se desenvolver de forma saudável, o uso do _biomulching_ não é prejudicial às plantas, ou seja, não é muito tóxico.
+
 
 #### Tamanho médio máximo das folhas de couve
+
 
 Conforme mostra a Figura \@ref(fig:fig9), o canteiro de pimenta também foi o com o maior o tamanho médio máximos das folhas, com 32,2 cm, seguido de _biomulching, lona amarela, contraprova e lona preta.
 
@@ -840,9 +866,9 @@ df.dados_plantas%>%
 
 ```
 
-O gráfico indica que não há diferença estatística no tamanho das cauves entre os diferentes canteiros, o que indica que nenhum dos tratamentos as plantas tiveram dificuldade para se desenvolver, fora aqueles casos específicos anteriormente citados. Mesmo assim, fizemos o teste estatístico, teste de Tukey, para confirmar par a par se existe ou não tal diferença:
+A figura \@ref(fig:fig10) indica que não há diferença estatística pelo Teste de Tukey a 95% de confiança no tamanho das cauves entre os diferentes canteiros, o que indica que nenhum dos tratamentos as plantas tiveram dificuldade para se desenvolver, fora aqueles casos específicos anteriormente citados.
 
-```{r fig10, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
+```{r fig10, echo=FALSE, fig.cap="Teste Tukey para o tamanho das couves. Fonte o autor, Porto Alegre - RS, 2021"}
 
 df.dados_plantas%>%
   filter(grepl("tamanho", Observação)) -> dados_tamanho
@@ -857,9 +883,9 @@ plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 1)
 ```
 #### Massa foliar das couves
 
-Em relação à massa foliar das couves e o seu rendimento, os dados foram obtidos de uma única colheita realizada no último dia. Assim não foram colhidas nenhuma folha de couve durante a realização do experimento, portanto o resultado não é diretamente proporcional ao potencial total de produção das couves. Uma vez que foi feita apenas uma colheita, quando normalmente se poderiam ter feito mais vezes. Entretanto, através deste resultado é possível verificar qual dos canteiros mais produziu, além de estabelecer um comparativo entre eles e determinar qual apresentou um maior rendimento.
+Em relação à massa foliar das couves e o seu rendimento, os dados foram obtidos de uma única colheita realizada no último dia, assim não foram colhidas nenhuma folha de couve durante a realização do experimento. Portanto, o resultado não é diretamente proporcional ao potencial total de produção das couves, uma vez que foi feita apenas uma colheita quando normalmente se poderiam ter feito mais vezes. Entretanto, através deste resultado é possível verificar qual dos canteiros mais produziu, além de estabelecer um comparativo entre eles e determinar qual apresentou um maior rendimento.
 
-Selecionamos um indivíduo aleatoriamente da lona preta para ter a mesma quantidade de indivíduos:
+Selecionamos um indivíduo aleatoriamente da lona preta para ter a mesma quantidade de indivíduos.
 
 ```{r include=FALSE}
 set.seed(1)
@@ -884,14 +910,14 @@ df.plantas_selecionadas %>%
 ```{r fig11, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 df.plantas_selecionadas_dados_totais %>%
   ggplot(aes(x = Prevenção, y = Massa.Total, color = Observação)) +
-  geom_point()+
+  geom_point(size = 4)+
   ggtitle("Massa total de cada canteiro")+
   ylab("Massa (g)") +
   ylim(0, NA)
 
 ```
 
-Pode-se notar que mesmo o canteiro de contraprova ter sido o mais infestado por pulgões, apresentar o maior número de insetos capturados nas armadilhas e ter apenas 4 plantas produzindo, ainda sim, foi o que mais produziu massa comestível, seguido por pimenta, lona amarela, _biomulching_ e lona preta. Este fato, pode estar relacionado ao de que os canteiros de contraporva, pimenta e lona amarela estavam mais protegidos, de um lado havia uma parede e de outro os canteiros de _biomulching_ e lona preta. Assim os canteiros de _biomulching_ e lona preta acabaram sendo prejudicados, uma por terem algumas horas a menos de insolação e outra por não terem tido a mesma proteção que os demais canteiros.
+Pode-se notar que mesmo o canteiro de contraprova apresentar o maior número pulgões e de outros insetos capturados nas armadilhas e ter apenas 4 plantas produzindo, ainda sim, foi o que mais produziu massa comestível, seguido por pimenta, lona amarela, _biomulching_ e lona preta. Este fato, pode estar relacionado ao de que os canteiros de contraporva, pimenta e lona amarela estavam mais protegidos, de um lado havia uma parede e de outro os canteiros de _biomulching_ e lona preta. Assim os canteiros de _biomulching_ e lona preta acabaram sendo prejudicados, uma por terem algumas horas a menos de insolação e outra por não terem tido a mesma proteção que os demais canteiros.
 
 Os canteiros de lona amarela e pimenta foram os que mais produziram massa total, contudo, boa parte da planta eram caules e folhas infestadas por pulgões, assim não sendo as com maior massa comestível.
 
@@ -910,12 +936,11 @@ knitr::kable(
 )
 ```
 
-O canteiro com o maior rendimento foi o de contraprova, o qual também havia produzido mais massa consumível, seguido por lona preta, pimenta, _biomulching_ e lona amarela. O canteiro com lona amarela foi o que menos rendeu devido ao fato de terem plantas muito infestadas por pulgões, de modo que não era possível utilizar as folhar para consumo.
-A média geral de rendimento do experimento foi de 40,9%
+O canteiro com o maior rendimento foi o de contraprova, o qual também havia produzido mais massa consumível, seguido por lona preta, pimenta, _biomulching_ e lona amarela. O canteiro com lona amarela foi o que menos rendeu devido ao fato de terem plantas muito infestadas por pulgões, de modo que não era possível utilizar as folhas para consumo. A média geral de rendimento do experimento foi de 40,9%.
 
 ### Presença de pragas, outros insetos e inimigos naturais na plantação de couve
 
-Em relação à incidência de pragas e outros insetos, o controle foi feito com o uso das armadilhas, e com a observação das plantas. 
+Em relação à incidência de pragas e outros insetos, o controle foi feito com o uso das armadilhas e com a observação das plantas. 
 
 #### Moscas e lagartas
 
@@ -937,17 +962,15 @@ Em relação as moscas, esta esteve presente em todos os canteiros, sendo em men
 
 #### Pulgões
 
-**A presença de pulgões afeta o crescimento e rendimento do cultivo de couve? Ou existe algum outro fator externo com maior influência?**
-
-**Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? Agora ao contrário, o que acontece em dias frios e úmidos?**
-
-**A cor da cobertura tem alguma relação com a presença de pulgões e outros insetos?**
-
-Em relação aos pulgões, foram encontrados em sua maioria _Brevicoryne brassicae_, além de também terem sido encontradas outras duas espécies descritas na bibliografia as quais são comuns na cultura da colve, _Myzus persicae_ e _Lipaphis erisinii_. As três espécies foram identificadas em todos os canteiros.
+Em relação aos pulgões, foram encontrados em sua maioria _Brevicoryne brassicae_ além de também terem sido encontradas outras duas espécies descritas na bibliografia as quais são comuns na cultura da couve, _Myzus persicae_ e _Lipaphis erisinii_. As três espécies foram identificadas em todos os canteiros.
 
 A quantidade de pulgões alados capturados nas armadilhas ao longo do tempo pode ser conferida na figura abaixo, Figura \@ref(fig:pulgoes):
 
 ```{r pulgoes, echo=FALSE, fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
+
+#**A presença de pulgões afeta o crescimento e rendimento do cultivo de couve?**
+
+#**Em dias quentes e de pouca umidade, há maior ou menor presença de pulgões? Agora ao contrário, o que acontece em dias frios e úmidos?**
 
 df.armadilhas %>%
   filter(Agente == "Pulgões")%>%
@@ -959,7 +982,7 @@ df.armadilhas %>%
 
 ```
 
-De acordo com os dados obtidos, o canteiro de contraprova foi o qual teve maior incidência de pulgões alados capturados nas armadilhas, seguido por pimenta, _biomulching_, lona preta e lona amarela. O canteiro de pimenta, o qual foi aplicado a essência de pimenta, não teve uma quantidade menor de pulgões devido ao fato de ser ter feito a aplicação da essência da pimenta apenas durante uma semana no final do 1º mês, o que não foi o suficiente. O canteiro de lona amarela teve menos pulgões capturados nas armadilhas que todos os outros tratamento durante quase todo o período do teste. O que pode ser devido principalmente a coloração amarela do mulching utilizado neste canteiro, o que refletia mais luz por baixo das folhas. Entretanto conforme verificado anteriormente na questão sobre a massa produzida por este canteiro, uma parcela considerável não pôde ser consumida devida a alta infestação de colônias de pulgões nas folhas das plantas. Isso gera uma inconsistencia dos dados obtidos, o que precisa ser revisado pois a utilização da lona amarela pode ter afetado o princípio de funcionamento das armadilhas, as quais se baseia na reflexão da cor amarela para atrair insetos.
+De acordo com os dados obtidos, o canteiro de contraprova foi o qual teve maior incidência de pulgões alados capturados nas armadilhas, seguido por pimenta, _biomulching_, lona preta e lona amarela. O canteiro de pimenta, o qual foi aplicado a essência de pimenta, não teve uma quantidade menor de pulgões devido ao fato de a aplicação da essência da pimenta ter ocorrido apenas durante uma semana no final do 1º mês, o que não foi o suficiente. O canteiro de lona amarela teve menos pulgões capturados nas armadilhas que todos os outros tratamento durante quase todo o período do teste. O que pode ser devido a coloração amarela do mulching utilizado neste canteiro, o que refletia mais luz por baixo das folhas. Entretanto, conforme verificado anteriormente na questão sobre a massa produzida por este canteiro, uma parcela considerável não pôde ser consumida devida a alta infestação de colônias de pulgões nas folhas das plantas. Isso gera uma inconsistencia dos dados obtidos, o que precisa ser revisado pois a utilização da lona amarela pode ter afetado o princípio de funcionamento das armadilhas, as quais se baseia na reflexão da cor amarela para atrair insetos.
 
 O canteiro com _biomulching_ não apresentou a menor quantidade de pulgões quando comparado a lona amarela e a lona preta. Como o canteiro de lona preta foi plantado duas semanas após os demais, este provavelmente poderia superar o número de pulgões do canteiro com _biomulching_, tanto que houveram diversas contagens em que os valores da lona preta foram superiores ao do _biomulching_, conforme evidencia-se na Figura \@ref(fig:pulgões).
 
@@ -981,12 +1004,12 @@ dados_pulgoes %>%
   summarize(Media = mean(Q)) -> df.media_pulgoes_dia
 
 knitr::kable(
-  head(df.media_pulgoes_dia[, 1:2], 5), booktabs = TRUE,
+  head(df.media_pulgoes_dia[, 1:2], 5), longtable = TRUE, booktabs = TRUE,
   caption = 'Número médio de pulgões capturados por dia'
 )
 ```
 
-Após, os dados de pulgões por dia foram analisados estatisticamente por meio de análise de variância e teste de Tukey. O resultado do teste de Tukey pode ser conferido na Figura \@ref(fig:pulgoes_anova). Conforme o teste de Tukey, observa-se que há diferenças estatísticas entre o canteiro S (lona amarela) e os demais canteiros. Como relatado anteriormente, ponto que necessita de maiores estudos para compreender a razão deste fenomeno. Em relação aos demais canteiros, não há diferenças estatísticas entre os valores encontrados a 95% de confiança. Ou seja, não podemos dizer se há benefícios utilizando algum tratamento ou não quando comparados com a contraprova e entre si mesmos.
+Após, os dados de pulgões por dia foram analisados estatisticamente por meio de análise de variância e Teste de Tukey. O resultado do Teste de Tukey pode ser conferido na Figura \@ref(fig:pulgoes_anova). Conforme o Teste de Tukey, observa-se que há diferenças estatísticas entre o canteiro S (lona amarela) e os demais canteiros. Como relatado anteriormente, ponto que necessita de maiores estudos para compreender a razão deste fenômeno. Em relação aos demais canteiros, não há diferenças estatísticas entre os valores encontrados a 95% de confiança, ou seja, não podemos dizer se há benefícios utilizando algum tratamento ou não quando comparados com a contraprova e entre si mesmos.
 
 ```{r pulgoes_anova, echo=FALSE, fig.cap="Teste de Tukey para pulgões. Fonte o autor, Porto Algre - RS, 2021"}
 
@@ -1008,7 +1031,10 @@ aov(lm(PulgoesPorDia~Código, data= df.dados_pulgoes_por_dia)) -> pulgoes_anova
 plot(TukeyHSD(pulgoes_anova, conf.level=.95), las = 1)
 ```
 
+
 ```{r eval=FALSE, include=FALSE}
+#histograma dos dados de pulgões
+
 dados_pulgoes %>%
   group_by(Prevenção) %>%
   #filter(Prevenção == "Contraprova") %>%
@@ -1026,7 +1052,7 @@ dados_pulgoes %>%
  
 #### Outros insetos não identificados
 
-A quantidade de outros insetos capturados nas armadilhas pode ser observada na Figura \@ref(fig:outros). Os pontos apresentados possuem certa similaridade com os da Figura \@ref(fig:pulgoes), pois possuem picos e regiões de queda parecidas e também se verifica que com o passar do tempo a quantidade de insetos capturados aumenta. A lona amarela, teve um resultado parecido com o do número de pulões e também mostrou um menor número de outros insetos.
+A quantidade de outros insetos capturados nas armadilhas pode ser observada na Figura \@ref(fig:outros). Os pontos apresentados possuem certa similaridade com os da Figura \@ref(fig:pulgoes), pois possuem picos e regiões de queda parecidas e também se verifica que com o passar do tempo a quantidade de insetos capturados aumenta. A lona amarela, teve um resultado parecido com o do número de pulgões e também mostrou um menor número de outros insetos.
 
 ```{r outros, echo=FALSE, fig.cap="Fonte o autor, Porto Algre - RS, 2021"}
 df.armadilhas %>%
@@ -1040,7 +1066,10 @@ df.armadilhas %>%
   ylab("Número de outros insetos")
 
 ```
-Analisando a Figura \@ref(fig:outrosanova), pode-se visualizar uma tendencia para uma diferença maior no canteiro com lona amarela em relação aos demais canteiros, contudo não é possivil dizer que há diferenças significativas. Ou seja, não é possivél afirmar se o _biomulching_ nem o uso da essencia de pimenta contribui para a redução do número de outros insetos, bem como de pulgões.
+
+
+Analisando a Figura \@ref(fig:outrosanova), pode-se visualizar uma tendencia para uma diferença maior no canteiro com lona amarela em relação aos demais canteiros, contudo não é possível dizer que há diferenças significativas. Ou seja, não é possivél afirmar se o _biomulching_ nem o uso da essencia de pimenta contribui para a redução do número de outros insetos, bem como de pulgões.
+
 
 ```{r outrosanova, echo=FALSE, fig.cap="Fonte o autor, Porto Algre - RS, 2021"}
 
@@ -1058,7 +1087,7 @@ plot(TukeyHSD(outros_anova, conf.level=.95), las = 1)
 
 #### Inimigos naturais
 
-Sobre a presença de inimigos naturais, não foi registrado um grande número destes. Como pode-se ver na Figura \@ref(fig:naturais), o canteiro que mais teve incidência de inimigos naturais nas armadilhas foi do _biomulching_. Por mais que este canteiro estivesse sobre tratamento, seu uso não influenciou de forma significativa na presença, nem na mortalidade de inimigos naturais.
+Sobre a presença de inimigos naturais, não foi registrado um grande número destes. Conforme a Figura \@ref(fig:naturais), o canteiro com maior incidência de inimigos naturais nas armadilhas foi o de _biomulching_. Por mais que este canteiro estivesse sobre tratamento, seu uso não influenciou de forma significativa na presença, nem na mortalidade de inimigos naturais.
 
 ```{r naturais, echo=FALSE, fig.cap="Fonte o autor, Porto Algre - RS, 2021"}
 
@@ -1072,7 +1101,7 @@ df.armadilhas %>%
 
 ### Eficiência dos tratamentos
 
-Embora os resultados não apresentem diferênças significativas, foi cálculado o percentual de eficiencia das diferentes prevenções contra pulgões, moscas brancas, lagartas e outros insetos em relação ao canteiro de controle utilizando a fórmula de Abbott, a qual pode ser conferida na seguinte equação:
+Embora os resultados não apresentem diferênças significativas, foi cálculado o percentual de eficiência das diferentes prevenções contra pulgões, moscas brancas, lagartas e outros insetos em relação ao canteiro de controle utilizando a fórmula de Abbott, a qual pode ser conferida na seguinte equação:
 
 E % = ((T-Tr)/T)*100
 
@@ -1157,58 +1186,36 @@ df.temp %>%
   left_join(df.eficiencia_outros, by = "Prevenção") %>%
   arrange(-`Eficiência pulgões (%)`) -> tabela5
 
-#knitr::kable(
-#  head(tabela5[, 1:4], 4), booktabs = TRUE,
-#  caption = 'Eficiência contra diferentes pragas alvo')
-
 ```
 
 ```{r echo=FALSE}
 
 knitr::kable(
-  head(tabela5[, 1:4], 4), booktabs = TRUE,
+  head(tabela5[, 1:5], 4), longtable = TRUE, booktabs = TRUE,
   caption = 'Eficiência contra diferentes pragas alvo'
 )
 
 ```
 
 
-Conforme vemos na tabela acima,o canteiro de lona amarela foi o que teve o menor número de pulgões e de outros insetos na contagem das armadilhas, atingindo uma eficiencia de 64% e 48% respectivamente. Entretanto nas aferições de lagartas e moscas que foram realizdas diretamente nas plantas, a lona amarela foi o canteiro com os piores resultados, sendo equivalente em relação à moscas e favorecendo a presença de lagartas quando comparado ao canteiro de contraprova.
+Conforme vemos na tabela acima,o canteiro de lona amarela foi o que teve o menor número de pulgões e de outros insetos na contagem das armadilhas, atingindo uma eficiencia de 64% e 48% respectivamente. Entretanto nas aferições de lagartas e moscas que foram realizadas diretamente nas plantas, a lona amarela foi o canteiro com os piores resultados, sendo equivalente em relação à moscas e favorecendo a presença de lagartas quando comparado ao canteiro de contraprova.
 
 Os demais canteiros, como esperado, não apresentam grandes diferenças. Existe indícios de que a essência de pimenta pode ter reduzido a infestação de lagartas, mas não apresenta evidencias na redução de pulgões e outros insetos. O _biomulching_ reduziu a infestação de pulgões em 24%, lagartas em 25% e moscas em 31%, porém não é eficiente contra a maioria dos outros insetos.
 
 
 # Conclusões
 
-**falta revisar**
 
-O objetivo do projeto foi satisfeito, conseguimos criar um novo meio para realizar a análise dos mesmos do projeto anterior, porém agora de uma forma que tudo está registrado o passo a passo.
+O objetivo do projeto foi satisfeito, conseguimos criar um novo meio para realizar a análise dos mesmos dados do projeto anterior e reproduzir a maioria dos resultados obtidos, porém agora de uma forma em que tudo está registrado o passo a passo. 
 
+Em alguns casos foi necessário mudar a abordagem adotada na análise para melhorar a qualidade e o sentido dos dados apresentados, como em relação ao valor médio por dia de pulgões nas armadilhas, o qual anteriormente tinha sido realizada pelos dias de contagem.  Outro problema encontrado no projeto original do _biomulching_ foi na metodologia aplicada, O modelo de teste pode não ter contribuído para um resultado satisfatório do _biomulching_. Visto que diversos fatores acabaram afetando os resultados como o fato de os canteiros estarem bastante próximos uns dos outros. Desse modo a presença de pulgões nas plantas próximas pode ter diminuído a eficiência do _biomulching_ consideravelmente, bem como a ação da essência no canteiro com pimenta. Contudo ainda é possível verificar certa diminuição na presença de pulgões no canteiro com o uso do biomulching, assim indicando certa ação sobre os pulgões.
 
-O objetivo de avaliar o biomulching...
+O objetivo de avaliar o biomulching como cobertura de solo e agente de controle de pragas foi atingido parcialmente, visto que não há difereças significativas com os outros tratamentos quanto ao combate de insetos. Todavia, o _biomulching_ cumpre sua função como cobertura de solo, impedindo o crescimento de plantas invasoras e auxiliando no controle da umidade do solo tanto quanto as coberturas de lona. Possui uma durabilidade estimada de três meses, o que é suficiente para a cultura da couve. Também pode-se afirmar que o uso do _biomulching_ não é prejudicial ao desenvolvimento das plantas pois estas não foram afetas pelo seu uso.
 
-[@xie2016bookdown], [@xie2018r], [@long2019r].
+Por mais que não se tenha conseguido obter resultados os quais contribuíssem a comprovar as vantagens geradas pela agregação do extrato de pimenta no biomulching, os resultados atingidos são promissores. E este traz, por si só, benefícios e vantagens sobre o mulching convencional. Pois não gera resíduos e não é necessária sua retirada como o mulching convencional, evitando custos com o manejo e a retirada dos resíduos. Além de contribuir para o ciclo de nutrientes, auxiliando na volta dos nutrientes ao solo, com a utilização de um resíduo agroindustrial, a casca de laranja. Assim agregando valor neste resíduo.
 
+Em relação às análises estatíticas, como a regressão linear multivariada para correlacionar os dados do climas com a degradação do biomulching ou a presença de plantas invasoras, não foi possível de realizá-las devido ao baixo número amostral e a grande variabilidade dos valores obtidos.
 
- para verificar possíveis efeitos inseticidas sobre o pulgão encontrado na couve foi alcançado. Sendo que após os testes terem sido realizados comprovou-se que a essência de pimenta foi a qual apresentou melhores resultados na plantação de couve e com uma eficiência de 100% em condições controladas. Assim, portanto, sendo eficiente no combate de pulgões.
-
-Entretanto, em relação ao biomulching, este não apresentou os resultados desejáveis para o combate de pulgões e outras pragas das couves.
-
-Houveram problemas na metodologia aplicada.
-
-E nos últimos testes realizados em plantação de couve, o modelo de teste pode não ter contribuído para um resultado satisfatório do biomulching. Visto que os canteiros estavam bastante próximos uns dos outros, havia os que recebiam algum tratamento ao lado de outros que não estavam sendo tratados. Deste modo a presença de pulgões nas plantas próximas pode ter diminuído a eficiência do biomulching consideravelmente, bem como a ação da essência no canteiro P. Contudo ainda é possível verificar certa diminuição na presença de pulgões no canteiro com o uso do biomulching, assim indicando certa ação sobre os pulgões.
-
-
-Quanto a sua utilização como cobertura do solo, este cobre todos os principais componetes que se espera de uma boa cobertura de solo durante o período que dura na plantação. 
-
-Para ser considerada uma boa cobertura como mínimo, esta deve auxiliar no controle da umidade do solo e reduzir o crescimento de plantas daninhas durante o periódo de cultivo da couve. Uma hipótese que será estuda a seguir é de que a degradação do biomulching sofre interferência das condições climáticas. Para testar essa hipótese iremos correlacionar os dados obtidos da degração do biomulching com os dados das condições climáticas para verificar se as interpéries aumentam a velocidade de degradação
-
-
-o qual obteve uma maior durabilidade, cerca de três meses. Por mais que não se tenha conseguido obter resultados os quais contribuíssem a comprovar as vantagens geradas pela agregação do extrato de pimenta no biomulching, os resultados atingidos são promissores. E este traz, por si só, benefícios e vantagens sobre o mulching convencional. Pois não gera resíduos e não é necessária sua retirada como o mulching convencional, evitando custos com o manejo e retirada dos resíduos. Apresentando resultados semelhantes ao mulching plástico, mantendo a umidade do solo, impedindo o crescimento de plantas invasoras e contribuindo para o crescimento da planta.
-
-Além de contribuir para o ciclo de nutrientes, auxiliando na volta dos nutrientes ao solo, com a utilização de um resíduo agroindustrial, a casca de laranja. Assim agregando valor neste resíduo.
-
-Se após mais testes ficar comprovado seu funcionamento e potencial para ser implantado em plantações com rendimento semelhante à dos agrotóxicos convencionais, este poderia ser uma nova opção para o combate de pragas. No qual o agricultor não terá de aplicar defensivos, pois já vão estar na plantação desde o início, na biocobertura, além de obter os mesmos benefícios da lona plástica.
-
+Algumas das vantagens de escrever o relatório no Rstudio são a facilidade da manipulação dos dados, a sua visualização e organização, pois como todo o processo é realizado em apenas um programa, fica mais fácil de gestionar essas informações. Bibliografias como [@xie2016bookdown], [@xie2018r], [@long2019r], foram fundamentais para realizar o presente projeto pois continham ótimas informações de como fazer a organização dos dados e a formatação do arquivo. O uso de programação literal contribui para que se saiba exatamente o que foi feito em cada trecho de código. Podemos dizer que na maioria dos códigos isso foi realizado, contudo, podem haver algumas exceções. Outra ferramente utilizada durante o desenvolvimento do projeto, a qual auxiliou no compartilhamento e no registro das atividades ao longo do tempo, foi o uso de um repositório GIT, tanto no próprio computador como na núvem através da plataforma GITHUB. Isso permitiu termos um controle maior sobre o que estávamos fazendo e facilitou o processo de compartilhamento, o que diminuiu o risco de ocorrer a perda de dados.
 
 
