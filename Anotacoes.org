@@ -33,7 +33,6 @@
 ** SR3 (uso de rstudio)
 - Remover "Funciona em outros computadores"
 - Mostrar um exemplo do RMarkdown -> PDF / HTML
-
 * 2021-10-28 Revisão
 ** Geral
 - O trabalho já havia sido feito antes da disciplina, mas o tom da
