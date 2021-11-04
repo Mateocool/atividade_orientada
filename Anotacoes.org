@@ -1,0 +1,55 @@
+#+STARTUP: overview indent
+* 2021-11-04 Prévia
+** S1
+- Mello Schnorr
+- Data
+- E-mails de contato
+** S2
+** S3
+- "descobrimentos e tal"..
+- Evitar a leitura do texto do slide
+- Usar o mouse para apontar para figura
+** S4
+- Reproduzíveis -> Reprodutíveis
+** S5
+- "e tal"
+** S6
+- Se aquilo lá é reprodutível
+** SX (slide com dois artigos)
+- Se preparar melhor para apresentar melhor
+  - Artigos que detalham os problemas de erros
+** SY
+- Capturas de tela do RStudio
+  - Mencionar o pacote tidyverse
+- Captura de tela do que é programação literal
+** SR1
+- "Não teve grande diferença dos resultados originais"
+- Aumentar o tamanho da fonte dos gráficos
+  #+begin_src R :results output :session *R* :exports both
+  theme_bw(base_size=22)
+  #+end_src
+** SR2
+- "Conclusões foram um pouco diferentes"
+** SR3 (uso de rstudio)
+- Remover "Funciona em outros computadores"
+- Mostrar um exemplo do RMarkdown -> PDF / HTML
+
+* 2021-10-28 Revisão
+** Geral
+- O trabalho já havia sido feito antes da disciplina, mas o tom da
+  introdução dá a entender que foi refeito. Deve haver uma
+  diferenciação.
+** Introdução
+- Parágrafos de uma única frase
+- "Dentre os malefícios destes" -> destes quais?
+- Vírgula excessiva "destes, ao meio ambiente"
+** 1.1 Justificativa/Problema
+- "Um fato o qual não se pode negar"
+- Um pouco repetitivo em relação ao conteúdo de 1.
+- "de /mulching/" (remover barras ou colocar itálico adequadamente)
+** 2.1
+- computacinais
+- se conseguimos reproduzir as conclusões obtidas na primeira análise
+  manual a respeito do biomulching
+- 
+
