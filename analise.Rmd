@@ -1,14 +1,17 @@
 ---
 title: Reavaliação de _biomulching_ com agregação de extrato de _Capsicum frutescens_ como cobertura de solo e agente de controle de pragas em _Brassica oleracea_
-author: "Mateus Colombo"
+author: 
+- Mateus Colombo^[Graduando em Biotecnologia - Instituto de Biociências, Universidade Federal do Rio Grande do Sul, mateus.colombo@ufrgs.br]
+- Lucas Mello Schnorr^[Professor orientador - Instituto de Informática, Universidade Federal do Rio Grande do Sul, schnorr@inf.ufrgs.br]
+date: "Novembro/2021"
 output:
-  bookdown::html_document2:
-    fig_caption: true
   bookdown::pdf_document2:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     number_sections: true
     citation_package: natbib
+  bookdown::html_document2:
+    fig_caption: true
   html_document:
     df_print: paged
   word_document: default
@@ -58,19 +61,17 @@ knitr::include_graphics("P_20181222_200022.jpg")
 
 ```
 
-
 Naquele trabalho concluiu-se que o _biomulching_ poderia ser empregado como cobertura de solo e que a essência de pimenta malagueta apresenta potencial para repelir pulgões, entretanto, não foi possível verificar a eficiência do método contra as pragas da couves devido a problemas no modelo experimental. Outro ponto a resaltar foi o de que a cor da cobertura utilizada poderia influenciar na severidade da infestação de pragas, pois como foi observado, no canteiro com cobertura de lona amerela houve um menor número de insetos capturados nas armadilhas de amostragem. Tais conclusões foram apresentadas em diversas feiras nacionais e internacionais de iniciação científica como MOSTRASEG, MOSTRATEC, FEBRACE, MCTEA e GENIUS Olympiad.
 
 Na parte de análise do projeto do _biomulching_, uma grande quantidade de dados sobre diversas variáveis e testes foram obtidas e processadas muitas vezes manualmente por meio de anotações em cadernos. Após os dados eram passados para tabelas preenchidas manualmente no software Microsoft Excel, estas foram divididas em diferentes pastas e grupos de dados de uma forma que facilitasse a sua visualização. Quando se encerou a parte experimental, realizou-se a análise dos dados adquiridos performando cálculos, testes estatísticos e criando gráficos dentro do próprio software. Para tanto os dados eram selecionados diretamente nas tabelas ou então eram geradas novas tabelas apenas com os dados de interesse, o que ocasionava uma grande manipulação dos dados. E, depois de todos esse processo ainda era necessário passar os resultados e gráficos para o relatório cujo estava sendo redigido em outro software.
 
 A análise manual dos dados via Excel poderia gerar conclusões imprecisas e indefinidas sobre o objeto de estudo, um problema conhecido na comunidade científica. Alguns exemplos que já ocorreram no passado são:
 
-- A autocorreção que o Excel realiza nas células, como alteração de números para datas, pode corromper os dados brutos alterando-os. No ramo da genética esse problema foi diagnosticado em 2004, quando perceberam que cerca de 30 nomes de genes e proteínas humanas eram alteradas a datas, [@ziemann2021].
+- A autocorreção que o Excel realiza nas células, como alteração de números para datas, pode corromper os dados brutos alterando-os. No ramo da genética esse problema foi diagnosticado em 2004, quando perceberam que cerca de 30 nomes de genes e proteínas humanas eram alteradas a datas, [@ziemann2021], [@zeeberg2004mistaken].
 
-- Na área econômica, um artigo agora infame dos economistas de Harvard Carmen Reinhart e Kenneth Rogoff foi usado para justificar os cortes de austeridade após a crise financeira global, mas a análise continha um erro crítico do Excel que levou à omissão de cinco dos 20 países em sua modelagem, [@ziemann2021].
+- Na área econômica, um artigo agora infame dos economistas de Harvard Carmen Reinhart e Kenneth Rogoff foi usado para justificar os cortes de austeridade após a crise financeira global, mas a análise continha um erro crítico do Excel que levou à omissão de cinco dos 20 países em sua modelagem, [@ziemann2021], [@reinhart2010growth]. Alguns anos depois da publicação do artigo um estudante de doutorado revisou o trabalho e encontrou os problemas dos dados, [@herndon2014does].
 
-- Na pesquisa biomédica, um erro na preparação de uma pasta de amostra resultou em um conjunto completo de rótulos de amostra sendo deslocados em uma posição e mudando completamente os resultados da análise genômica. Esses resultados foram significativos porque estavam sendo usados para justificar os medicamentos que os pacientes deveriam receber em um ensaio clínico subsequente. Este pode ser um caso isolado, mas não sabemos realmente o quão comuns esses erros são em pesquisas devido à falta de estudos sistemáticos de detecção de erros, [@ziemann2021].
-
+- Na pesquisa biomédica, um erro na preparação de uma pasta de amostra resultou em um conjunto completo de rótulos de amostra sendo deslocados em uma posição e mudando completamente os resultados da análise genômica. Esses resultados foram significativos porque estavam sendo usados para justificar os medicamentos que os pacientes deveriam receber em um ensaio clínico subsequente. Este pode ser um caso isolado, mas não sabemos realmente o quão comuns esses erros são em pesquisas devido à falta de estudos sistemáticos de detecção de erros, [@ziemann2021], [@hutson2010data].
 
 ## Proposta deste trabalho
 
@@ -79,6 +80,8 @@ Visando mitigar os problemas acima citados, o presente projeto se propõem a rea
 Através da análise correta dos dados obtidos dos experimentos, o trabalho de pesquisa ganha maior reprodutibilidade e confiança ao estudo que foi realizado. Uma proposta de amenizar os problemas causados na análise de dados por erros humanos é a utilização de softwares e outros programas de análise tais como o Rstudio.
 
 Para a parte de organização e descrição dos processos do projeto, uma técnica que pode ser empregada é a de _literal programing_, ou programação literal, a qual foi criada por Donald Knuth e é semelhante a um caderno de anotações digital. Com a programação literal as informações sobre os conceitos, as ideias, os precedimentos, os resultados e como todos estes foram processados no programa, ficam descritos em um único lugar. Assim tanto a parte da pesquisa propriamente dita, quanto da análise, são descritas de uma forma explicativa, intercalando o sprit com trechos de códigos, que executam funções com os dados, com textos da linguagem humana, que explicam o foi feito e como foi feito. Assim tornando o script mais fácil de entender, tanto às pessoas que possuem maior conhecimento sobre pragramação quanto às que não dominam essa área [@knuth1984literate].
+
+A seguir no relatório são descritos os objetivos do trabalho, a metodologia aplicada, os resultados obtidos através da análise pelo software Rstudio e, por fim, as conclusões a respeito do trabalho e da análise.
 
 # Objetivos
 
@@ -140,13 +143,6 @@ Manteve-se a temperatura em torno de 25°C, com observações nos intervalos de 
 
 Primeiramente o solo foi preparado com um mês de antecedência do início do teste, sendo feita a retirada de plantas invasoras, a aeração e aração do solo, com cerca de 20cm de profundidade. Após o solo foi adubado com cinzas, restos de alimentos, cal e esterco. Foram dispostos cinco canteiros de aproximadamente 0,5m X 2,5m, totalizando cerca de 15m², nos quais foram plantados cinco pés de couve (_Brassica oleracea_) no espaçamento de 50cm X 1m em cada canteiro. Foram plantadas 25 mudas de couve, as quais haviam sido cultivadas a partir de ramos de outras plantas. A Figura \@ref(fig:plantacao) mostra como estavam dispostos os canteiros do experimento.
 
-
-```{r plantacao, echo=FALSE, fig.align = 'center', out.width= "90%", fig.cap= "Plantação teste. Fonte o Autor, Porto Alegre - RS, 2021."}
-
-knitr::include_graphics("P_20190209_185515.jpg")
-
-```
-
 Legenda:
 
 G = Canteiro com _biomulching_
@@ -158,6 +154,14 @@ P = Canteiro com aplicação de essência de pimenta
 S = Canteiro com lona plástica amarela
 
 X = Canteiro com lona plástica preta
+
+
+```{r plantacao, echo=FALSE, fig.align = 'center', out.width= "90%", fig.cap= "Plantação teste. Fonte o Autor, Porto Alegre - RS, 2021."}
+
+knitr::include_graphics("P_20190209_185515.jpg")
+
+```
+
 
 Para a cobertura do canteiro com o _biomulching_, foram utilizados pedaços pequenos do protótipo de _biomulching_ totalizando a área de 1m². Depois de produzidos os protótipos foram armazenados em sacos plásticos até o momento de aplicação na plantação quando então foram dispostos sobre o solo um ao lado do outro entre as couves, formando a área de cobertura de 1m². Também foram dispostas as coberturas de mulching amarelo e preto sobre os canteiros S e X, respectivamente.
 O controle deste teste foi realizado do dia 17 de dezembro de 2018 até o dia 11 de março de 2019, totalizando o período de 84 dias.
@@ -520,7 +524,7 @@ read_xlsx(data.filename,
 Após realizado o teste obtiveram-se os resultados do número de pulgões vivos e mortos em cada tratamento. Notou-se que a essência de pimenta conseguiu atingir um resultado satisfatório, visto que matou todos os pulgões em cerca de duas horas na concentração de 5000ppm. Já o tratamento à base de icaridina também conseguiu eliminar totalmente a população de pulgões, contudo, foi observado que após a aplicação do repelente a base de icaridina, a folha de couve teve alterações em sua coloração e em características físicas, ficando com uma coloração amarelada e murcha.
 Também se verificou que nas amostras de controle e do tratamento com o _biomulching_ ocorreu uma proliferação de pulgões após 48horas, aumentando o número total de pulgões vivos nas amostras conforme evidencia a figura abaixo, Figura \@ref(fig:dado):
 
-```{r dado, echo=FALSE, fig.align = 'center', out.width= "90%", fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
+```{r dado, echo=FALSE, fig.align = 'center', out.width= "80%", fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 
 df.controlado %>%
   pivot_wider(names_from="Estado", values_from="Quantidade") %>%
@@ -536,6 +540,8 @@ df.controlado %>%
   scale_x_continuous(breaks = seq(0, 200, by = 12))
 
 ```
+
+\newpage
 
 Quanto ao tratamento com o _biomulching_, este não teve resultado semelhante quando comparados aos tratamentos com a essência de pimenta e icaridina. O que pode se relacionar ao fato de o _biomulching_ não ter se degradado completamente, ou a outros fatores ainda desconhecidos. Contudo mostra certa redução do número de pulgões quando comparado com as amostras de controle.
 
@@ -650,7 +656,7 @@ Conforme a Figura \@ref(fig:fig4), os valores de umidade do solo alternaram entr
 
 Isto pode estar relacionado com o fato de o _biomulching_ ser compostos principalmente de cascas de laranja, estas conseguem absorver a umidade do ambiente e mantê-la por mais tempo. Enquanto o mulching convencional de plástico é impermeável, caso não aconteça uma boa irrigação, nem escassa e nem em excesso, haverá maior variação na umidade do solo, alternando entre periodos muito secos e muito umidos.
 
-```{r fig4, echo=FALSE, fig.align = 'center', fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
+```{r fig4, echo=FALSE, fig.align = 'center', out.width= "80%", fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 df.umidade_solo %>%
   ggplot(aes(x =Dia, y = `percentual corrigido`))+
   geom_point()+
@@ -663,9 +669,9 @@ df.umidade_solo %>%
 
 ```
 
-Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada a análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura \@ref(fig:fig5), onde consta o resultado do teste de Tukey, não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
+Para confirmar se há diferenças na umidade do solo entre os canteiro, foi realizada a análise de variancia (One-way ANOVA) e o teste de Tukey. Conforme a Figura \@ref(fig:fig5), não há diferenças significativas a 95% de confiança entre os valores da umidade do solo dos canteiros.
 
-```{r fig5, echo=FALSE, fig.align = 'center', out.width= "90%", fig.cap="Teste Tukey para umidade do solo. Fonte o autor, Porto Alegre - RS, 2021"}
+```{r fig5, echo=FALSE, fig.align = 'center', out.width= "80%", fig.cap="Teste Tukey para umidade do solo. Fonte o autor, Porto Alegre - RS, 2021"}
 
 aov(lm(`percentual corrigido`~Código, data= df.umidade_solo)) -> solo_anova
 
@@ -679,7 +685,7 @@ plot(TukeyHSD(solo_anova, conf.level=.95), las = 1)
 
 ```
 
-Além desses testes estátisticos foi estudada a possibilidade de correlacionar os dados de temperatura, umidade do ar e umidade do solo por meio de uma regressão liner multivariada. Entretanto, isso não foi possível de realizar por causa do pequeno número amostral, a baixa precisão dos valores obtidos e também por não sabermos qual o melhor modelo estatístico a ser aplicado nesse caso. Embora os teste estatísticos não poderem ser realizados, constrímos um gráfico de três eixos, com os valores de temperatura, umidade do e umidade do solo, para tentar vizualisar algum padrão entre esses três dados. A figura \@ref(fig:3D) ( disponível na versão em HTML do relatório), ilustra o gráfico projetado.
+Além desses testes estátisticos, foi estudada a possibilidade de correlacionar os dados de temperatura, umidade do ar e umidade do solo por meio de uma regressão liner multivariada. Entretanto, isso não foi possível de realizar por causa do pequeno número amostral, a baixa precisão dos valores obtidos e também por não sabermos qual o melhor modelo estatístico a ser aplicado nesse caso.
 
 
 ```{r 3D, eval=FALSE, include=FALSE}
@@ -704,7 +710,7 @@ fig
 
 ```
 
-Através da visualização da \@ref(fig:3D) é possível observar uma leve tendência à tanto a umidade do ar quanto a umidade do solo serem mais elevadas nos dias com temperatura mais baixa, e o oposto também se verifica, nos dias mais quentes o percentual de umidade é mais baixo.
+
 
 \newpage
 
@@ -721,7 +727,8 @@ df.plantas_invasoras %>%
   geom_line()+
   scale_y_continuous(breaks = seq(0, 1000, by = 20))+
   ggtitle("Número total de plantas invasoras em cada canteiro")+
-  ylab("Quantidade de plantas invasoras em 1,25m²")
+  ylab("Quantidade de plantas invasoras em 1,25m²")+
+  theme_bw(base_size = 15)
 
 ```
 
@@ -785,7 +792,8 @@ df.degradaçao %>%
   geom_point()+
   geom_line()+
   scale_y_continuous(breaks = seq(0, 1, by = 0.1))+
-  ggtitle("Degradação do Biomulching ao longo do tempo")
+  ggtitle("Degradação do Biomulching ao longo do tempo")+
+  theme_bw(base_size = 15)
 
 ``` 
 
@@ -826,7 +834,7 @@ As plantas se desenvolveram com saúde e bem viçosas. Apenas uma planta morreu,
 
 #### Altura média das couves
 
-A altura média das couves pode ser conferida na Figura \@ref(fig:fig8):
+A altura média das couves pode ser conferida na Figura \@ref(fig:fig8).
 
 
 ```{r fig8, echo=FALSE, fig.align = 'center', out.width= "90%", fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
@@ -859,6 +867,8 @@ Também foi verificado que, como as plantas do canteiro de _biomulching_ consegu
 
 Conforme mostra a Figura \@ref(fig:fig9), o canteiro de pimenta também foi o com o maior o tamanho médio máximos das folhas, com 32,2 cm, seguido de _biomulching, lona amarela, contraprova e lona preta.
 
+A figura \@ref(fig:fig10) indica que não há diferença estatística pelo Teste de Tukey a 95% de confiança no tamanho das cauves entre os diferentes canteiros, o que indica que nenhum dos tratamentos as plantas tiveram dificuldade para se desenvolver, fora aqueles casos específicos anteriormente citados.
+
 ```{r fig9, echo=FALSE,  fig.align = 'center', out.width= "70%", fig.cap="Fonte o autor, Porto Alegre - RS, 2021"}
 df.dados_plantas%>%
   filter(grepl("tamanho", Observação)) %>%
@@ -877,8 +887,6 @@ df.dados_plantas%>%
 
 
 
-A figura \@ref(fig:fig10) indica que não há diferença estatística pelo Teste de Tukey a 95% de confiança no tamanho das cauves entre os diferentes canteiros, o que indica que nenhum dos tratamentos as plantas tiveram dificuldade para se desenvolver, fora aqueles casos específicos anteriormente citados.
-
 ```{r fig10, echo=FALSE,  fig.align = 'center', out.width= "60%", fig.cap="Teste Tukey para o tamanho das couves. Fonte o autor, Porto Alegre - RS, 2021"}
 
 df.dados_plantas%>%
@@ -892,6 +900,7 @@ aov(Valor~Código, data= dados_tamanho) -> tamanho_anova
 plot(TukeyHSD(tamanho_anova, conf.level=.95), las = 1)
 
 ```
+
 \newpage
 
 #### Massa foliar das couves
@@ -927,7 +936,8 @@ df.plantas_selecionadas_dados_totais %>%
   geom_point(size = 4)+
   ggtitle("Massa total de cada canteiro")+
   ylab("Massa (g)") +
-  ylim(0, NA)
+  ylim(0, NA)+
+  theme_bw(base_size = 12)
 
 ```
 
@@ -978,7 +988,7 @@ df.armadilhas %>%
 
 Em relação as moscas, esta esteve presente em todos os canteiros, sendo em menor quantidade nos canteiros com lona preta e pimenta. Também foi observado um menor número de lagarta nestes mesmos canteiros juntamente com o canteiro de _biomulching_, sendo mais evidente a diferença do canteiro com pimenta comparado ao canteiro com lona amarela.
 
-\newpage
+
 
 #### Pulgões
 
